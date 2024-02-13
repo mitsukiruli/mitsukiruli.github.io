@@ -1,7 +1,7 @@
-$ git add index.html
+$ git add --all
 
-$ git commit -m "add index"
-[master (root-commit) 80450b2] add index
+$ git commit -m "add --all"
+[master (root-commit) 80450b2] add --all
  1 file changed, 10 insertions(+)
  create mode 100644 index.html
  
