@@ -5,12 +5,12 @@ $ git commit -m "add index"
  1 file changed, 10 insertions(+)
  create mode 100644 index.html
 
- $ git add index.html
+ $ git add style.css
 
-$ git commit -m "add index"
-[master (root-commit) 80450b2] add index
+$ git commit -m "add style"
+[master (root-commit) 80450b2] add style
  1 file changed, 10 insertions(+)
- create mode 100644 index.html
+ create mode 100644 style.css
  
 $ git remote add origin https://github.com/eddiekao/eddiekao.github.io.git
 
