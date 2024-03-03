@@ -522,11 +522,11 @@ section {
   color: #fff;
 
 
-.act .act-item {
+.actt .actt-item {
   margin-bottom: 30px;
 }
 
-.act #act-flters {
+.actt #actt-flters {
   padding: 0;
   margin: 0 auto 35px auto;
   list-style: none;
@@ -536,7 +536,7 @@ section {
   padding: 2px 15px;
 }
 
-.act #act-flters li {
+.actt #actt-flters li {
   cursor: pointer;
   display: inline-block;
   padding: 10px 15px 8px 15px;
@@ -549,23 +549,23 @@ section {
   transition: all 0.3s ease-in-out;
 }
 
-.act #act-flters li:hover,
+.actt #actt-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
   color: #A58CDC;
 }
 
-.act #act-flters li:last-child {
+.actt #actt-flters li:last-child {
   margin-right: 0;
 }
 
-.act .act-wrap {
+.actt .actt-wrap {
   transition: 0.3s;
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
-.act .act-wrap::before {
+.actt .actt-wrap::before {
   content: "";
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
@@ -578,7 +578,7 @@ section {
   opacity: 0;
 }
 
-.act .act-wrap .act-links {
+.actt .actt-wrap .act-links {
   opacity: 1;
   left: 0;
   right: 0;
@@ -589,7 +589,7 @@ section {
   display: flex;
   justify-content: center;
 }
-.act .act-wrap .act-link {
+.actt .actt-wrap .actt-link {
   opacity: 1;
   left: 0;
   right: 0;
@@ -601,7 +601,7 @@ section {
   justify-content: center;
 }
 
-.act .act-wrap .act-links a {
+.actt .actt-wrap .actt-links a {
   color: #fff;
   font-size: 28px;
   text-align: center;
@@ -613,7 +613,7 @@ section {
 }
 
 
-.act .act-wrap .act-link a {
+.actt .actt-wrap .actt-link a {
   color: #fff;
   font-size: 28px;
   text-align: center;
@@ -622,21 +622,21 @@ section {
   width: 50%;
 }
 
-.pact .act-wrap .act-links a:hover {
+.actt .actt-wrap .actt-links a:hover {
   background: rgba(247, 230, 255, 0.95);
 }
-.act .act-wrap .act-link a:hover {
+.actt .actt-wrap .actt-link a:hover {
   background: rgba(247, 230, 255, 0.95);
 }
 
-.act .act-wrap .act-links a+a {
+.actt .actt-wrap .actt-links a+a {
   border-left: 1px solid #C5F5F8;
 }
-.act .portfolio-wrap .act-link a+a {
+.actt .actt-wrap .actt-link a+a {
   border-left: 1px solid #C5F5F8;
 }
 
-.act .act-wrap:hover::before {
+.actt .actt-wrap:hover::before {
   top: 0;
   left: 0;
   right: 0;
@@ -644,15 +644,15 @@ section {
   opacity: 1;
 }
 
-.act .act-wrap:hover .act-links {
+.actt .actt-wrap:hover .actt-links {
   opacity: 1;
   bottom: 0;
 }
-.act .act-wrap:hover .act-link {
+.actt .actt-wrap:hover .actt-link {
   opacity: 1;
   bottom: 0;
 }
-.act .act-wrap .act-link h3 {
+.actt .actt-wrap .actt-link h3 {
   font-weight: 700;
   font-size: 26px;
   color: rgba(0, 0, 0,0.95);
@@ -660,12 +660,13 @@ section {
   
   
 }
-.act .act-wrap .act-links p {
+.actt .actt-wrap .actt-links p {
   
   text-align: center;
   
   font-size: 26px;
   color: #fff;
+}
 
   
   
