@@ -46,12 +46,12 @@ body {
 }
 
 a {
-  color: #A58CDC;
+  color: #986db2;
   text-decoration: none;
 }
 
 a:hover {
-  color: #C5F5F8;
+  color: #e7e0be;
   text-decoration: none;
 }
 
@@ -83,7 +83,7 @@ h1 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #A58CDC;
+  background: #986db2;
   width: 40px;
   height: 40px;
   border-radius: 50px;
@@ -97,7 +97,7 @@ h1 {
 }
 
 .back-to-top:hover {
-  background: #C5F5F8;
+  background:#e7e0be;
   color: #fff;
 }
 
@@ -406,7 +406,7 @@ section {
 }
 
 .btn-pink {
-  background-color: #ff90b3;
+  background-color: #986db2;
   color: white;
   border: none;
   border-radius: 999px;
@@ -416,7 +416,7 @@ section {
 }
 
 .btn-pink:hover {
-  background-color: #ff6f9d;
+  background-color: #e7e0be;
   box-shadow: 0 4px 10px rgba(255, 144, 179, 0.4);
 }
 /*--------------------------------------------------------------
