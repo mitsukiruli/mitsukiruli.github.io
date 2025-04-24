@@ -137,7 +137,7 @@ h1 {
   font-weight: 600;
   -moz-text-align-last: center;
   text-align-last: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Shippori Mincho B1", serif;
 }
 
 #header .profile h1 a,
@@ -366,6 +366,7 @@ section {
   padding-bottom: 20px;
   position: relative;
   color: #173b6c;
+  font-family: "Shippori Mincho B1", serif;
 }
 
 .section-title h2::after {
@@ -507,6 +508,7 @@ section {
 .portfolio .portfolio-card .portfolio-content .category {
   font-size: 14px;
   color: var(--accent-color);
+  font-family: "Shippori Mincho B1", serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 500;
@@ -519,10 +521,12 @@ section {
   margin: 0 0 15px;
   font-weight: 600;
   transition: color 0.3s ease;
+  font-family: "Shippori Mincho B1", serif;
 }
 
 .portfolio .portfolio-card .portfolio-content h3:hover {
   color: var(--accent-color);
+  font-family: "Shippori Mincho B1", serif;
 }
 
 .portfolio .portfolio-card .portfolio-content p {
@@ -530,12 +534,14 @@ section {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin: 0;
   line-height: 1.6;
+  font-family: "Shippori Mincho B1", serif;
 }
 
 @media (max-width: 768px) {
   .portfolio .portfolio-filters li {
     font-size: 14px;
     padding: 6px 15px;
+    font-family: "Shippori Mincho B1", serif;
   }
 
   .portfolio .portfolio-card .portfolio-content {
