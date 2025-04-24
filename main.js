@@ -260,3 +260,9 @@
   new PureCounter();
 
 })()
+/**
+ * Initiate photo wall lightbox 
+ */
+const photoWallLightbox = GLightbox({
+  selector: '.glightbox'
+});
