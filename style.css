@@ -955,6 +955,25 @@ section {
   color: #ff5f9e; /* 你喜歡的可愛色可以改 */
 }
 
+.photo-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.photo-wall img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.photo-wall img:hover {
+  transform: scale(1.03);
+}
 
 
 /*--------------------------------------------------------------
