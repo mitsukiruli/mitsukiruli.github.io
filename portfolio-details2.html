@@ -68,7 +68,8 @@
 
   <!-- ======= Hero Section ======= -->
   <main id="main">
-      <h2 class="text-center">標題</h2>
+     <section id="photo" class="custom-section container mt-4">
+  <h2 class="text-center">標題</h2>
 
   <div class="row mt-4">
     <div class="col-md-6">
@@ -81,21 +82,15 @@
     </div>
   </div>
 
-<div class="container mt-5">
-  <div class="row justify-content-center gap-3">
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-      <a href="img/portfolio/IMG_1441.PNG" class="glightbox" data-gallery="gallery1">
-        <img src="img/portfolio/IMG_1441.PNG" class="img-thumbnail w-100">
-      </a>
-    </div>
-    <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-3">
-      <a href="img/portfolio/2504-05 胸像qq.png" class="glightbox" data-gallery="gallery1">
-        <img src="img/portfolio/2504-05 胸像qq.png" class="img-thumbnail w-100">
-      </a>
-    </div>
-    <!-- 可以繼續加更多圖片區塊 -->
-  </div>
-</div>
+  <div class="photo-wall d-flex flex-wrap justify-content-center mt-5 gap-3">
+    <a href="img/portfolio/IMG_1441.PNG" class="glightbox" data-gallery="gallery1">
+      <img src="img/portfolio/IMG_1441.PNG" class="img-thumbnail" width="200">
+    </a>
+    <a href="img/portfolio/2504-05 胸像qq.png" class="glightbox" data-gallery="gallery1">
+      <img src="img/portfolio/2504-05 胸像qq.png" class="img-thumbnail" width="200">
+    </a>
+  </div> <!-- ⚠️ 把 .photo-wall 包住，放在 section 內 -->
+</section>
 
 
   
