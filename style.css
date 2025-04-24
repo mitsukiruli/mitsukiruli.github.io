@@ -146,26 +146,7 @@ h1 {
   text-decoration: none;
 }
 
-#header .profile .social-links a {
-  font-size: 18px;
-  display: inline-block;
-  background: #212431;
-  color: #fff;
-  line-height: 1;
-  padding: 8px 0;
-  margin-right: 4px;
-  border-radius: 50%;
-  text-align: center;
-  width: 36px;
-  height: 36px;
-  transition: 0.3s;
-}
 
-#header .profile .social-links a:hover {
-  background: #A58CDC;
-  color: #fff;
-  text-decoration: none;
-}
 
 #main {
   margin-left: 300px;
