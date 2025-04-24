@@ -192,6 +192,28 @@ h1 {
     padding-right: 12px;
   }
 }
+.social-links a {
+  display: inline-block;
+  margin: 6px;
+  color: white;
+  font-size: 20px;
+  transition: 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #ff90b3;
+}
+
+.threads-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(1); /* 黑背景用白 icon，看起來乾淨 */
+  transition: 0.3s ease;
+}
+
+.threads-icon:hover {
+  transform: scale(1.2);
+}
 
 /*--------------------------------------------------------------
 # Navigation Menu
