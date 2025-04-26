@@ -211,6 +211,8 @@ h1 {
   height: 20px;
   filter: invert(1); /* 黑背景用白 icon，看起來乾淨 */
   transition: 0.3s ease;
+  display: inline-block; /* 還是inline但不留文字空隙 */
+  vertical-align: middle; 
 }
 
 .threads-icon:hover {
