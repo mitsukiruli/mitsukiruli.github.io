@@ -996,12 +996,16 @@ section {
 .photo-wall img:hover {
   transform: scale(1.03);
 }
+
 .photo-container {
   position: relative;
-  display: inline-block;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .photo-container img {
+  width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -1009,11 +1013,14 @@ section {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
-  color: #fff;
-  padding: 5px 10px;
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
   font-size: 14px;
+  text-align: left;
 }
+
 
 
 /*--------------------------------------------------------------
