@@ -203,6 +203,7 @@ h1 {
   height: 18px;
   filter: invert(1); /* 白色 icon */
   transition: 0.3s;
+  display: block;
 }
 
 #header .profile .social-links a:hover .threads-icon {
