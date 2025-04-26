@@ -237,6 +237,24 @@
   const lightbox = GLightbox({
     selector: '.glightbox'
   });
+  new Swiper('.character-cards', {
+  slidesPerView: 1.2,
+  spaceBetween: 20,
+  loop: false,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 2.2,
+    },
+    992: {
+      slidesPerView: 3.2,
+    },
+  }
+});
+
 </script>
 
 
