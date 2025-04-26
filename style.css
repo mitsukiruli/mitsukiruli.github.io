@@ -996,6 +996,24 @@ section {
 .photo-wall img:hover {
   transform: scale(1.03);
 }
+.photo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.photo-container img {
+  display: block;
+}
+
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+}
 
 
 /*--------------------------------------------------------------
