@@ -174,29 +174,41 @@ h1 {
   }
 }
 #header .profile .social-links a {
-  display: inline-flex;
+  font-size: 18px;
+  display: inline-flex; /* 這裡用flex，方便img置中 */
   align-items: center;
   justify-content: center;
-  background: #212431;
-  border-radius: 50%;
+  background: #212431; /* 深灰背景 */
+  color: #fff;
   width: 36px;
   height: 36px;
+  margin: 6px 4px 0 0;
+  border-radius: 50%;
   transition: 0.3s;
-  overflow: hidden;
+  overflow: hidden; /* 防止超出圈圈 */
+  text-decoration: none;
 }
 
 #header .profile .social-links a:hover {
-  background: #986db2;
+  background: #A58CDC; /* hover變成紫色 */
+  color: #fff;
 }
 
-#header .profile .social-links a.threads img {
-  width: 60%; /* 不要塞滿，留點空氣感 */
-  height: 60%;
-  object-fit: contain;
-  filter: invert(1); /* 讓圖變白 */
-  transition: 0.3s;
-  display: block;
+#header .profile .social-links a i {
+  font-size: 20px; /* icon大小 */
 }
+
+#header .profile .social-links a .threads-icon {
+  width: 18px; /* Threads圖示稍微小一點 */
+  height: 18px;
+  filter: invert(1); /* 白色 icon */
+  transition: 0.3s;
+}
+
+#header .profile .social-links a:hover .threads-icon {
+  transform: scale(1.2); /* hover時放大 */
+}
+
 
 /*--------------------------------------------------------------
 # Navigation Menu
