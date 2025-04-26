@@ -96,12 +96,42 @@
   </a>
 </div>
       
-<div class="photo-container">
-  <a href="img/portfolio/IMG_1441.PNG" class="glightbox" data-gallery="gallery1">
-    <img src="img/portfolio/IMG_1441.PNG" alt="作品圖 1" class="img-fluid>
-    <div class="photo-caption">作品名稱</div>
-  </a>
-</div>
+<section id="portfolio-details" class="portfolio-details">
+  <div class="container">
+
+    <!-- 照片牆 Photo Wall -->
+    <div class="photo-wall mb-5">
+      <div class="row g-3">
+
+        <div class="col-md-4">
+          <div class="photo-container">
+            <a href="img/portfolio/IMG_1441.PNG" class="glightbox" data-gallery="gallery1">
+              <img src="img/portfolio/IMG_1441.PNG" class="img-fluid" alt="作品1">
+              <div class="photo-caption">Selin</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="photo-container">
+            <a href="img/portfolio/portfolio-2.jpg" class="glightbox" data-gallery="gallery1">
+              <img src="img/portfolio/portfolio-2.jpg" class="img-fluid" alt="作品2">
+              <div class="photo-caption">作品2</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="photo-container">
+            <a href="img/portfolio/portfolio-3.jpg" class="glightbox" data-gallery="gallery1">
+              <img src="img/portfolio/portfolio-3.jpg" class="img-fluid" alt="作品3">
+              <div class="photo-caption">作品3</div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     </section>
 
@@ -266,6 +296,14 @@
 });
 
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const lightbox = GLightbox({
+      selector: '.glightbox'
+    });
+  });
+</script>
+
 <style>
   .character-cards .card {
     min-width: 250px;
