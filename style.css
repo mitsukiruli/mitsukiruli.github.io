@@ -366,6 +366,11 @@ h1 {
     margin-bottom: 30px;
   }
 }
+.card-img-top {
+  height: 220px; /* 根據你要的預覽高度調整 */
+  object-fit: cover;
+  object-position: top;
+}
 
 /*--------------------------------------------------------------
 # Sections General
