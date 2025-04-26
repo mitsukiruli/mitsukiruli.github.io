@@ -177,7 +177,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #212431;
+  background: #FFFFFF;
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -186,7 +186,7 @@ h1 {
 }
 
 #header .profile .social-links a:hover {
-  background: #A58CDC;
+  background: #986db2;
 }
 
 #header .profile .social-links a.threads img {
