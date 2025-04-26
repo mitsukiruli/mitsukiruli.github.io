@@ -175,17 +175,17 @@ h1 {
 }
 #header .profile .social-links a {
   font-size: 18px;
-  display: inline-flex; /* ← 原本 inline-block，改成 inline-flex 更好置中 */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   background: #212431;
   color: #fff;
-  line-height: 1;
   width: 36px;
   height: 36px;
   margin-right: 4px;
   border-radius: 50%;
   transition: 0.3s;
+  overflow: hidden; /* 防止img溢出 */
 }
 
 #header .profile .social-links a:hover {
@@ -193,6 +193,7 @@ h1 {
   color: #fff;
   text-decoration: none;
 }
+
 #header .profile .social-links a.threads img {
   width: 70%;
   height: 70%;
@@ -205,6 +206,7 @@ h1 {
 #header .profile .social-links a.threads:hover img {
   transform: scale(1.2);
 }
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
