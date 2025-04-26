@@ -469,7 +469,7 @@ section {
 # sport
 --------------------------------------------------------------*/
 
-. .card-img-top {
+.sport .card-img-top {
   height: 200px;
   object-fit: cover;
   border-top-left-radius: 0.5rem;
