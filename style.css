@@ -198,6 +198,7 @@ h1 {
   height: 18px;
   filter: invert(1); /* 變成白色 */
   transition: 0.3s ease;
+   display: block; 
 }
 
 #header .profile .social-links a.threads img:hover {
