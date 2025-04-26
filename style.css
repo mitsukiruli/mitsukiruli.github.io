@@ -195,6 +195,7 @@ h1 {
   object-fit: contain;
   filter: invert(1); /* 讓圖變白 */
   transition: 0.3s;
+  display: block;
 }
 
 /*--------------------------------------------------------------
