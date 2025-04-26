@@ -415,7 +415,7 @@ section {
 # Portfolio
 --------------------------------------------------------------*/
 .portfolio-section .card-img-top {
-  height: 200px;
+  height: 400px;
   object-fit: cover;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
