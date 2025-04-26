@@ -194,18 +194,17 @@ h1 {
   text-decoration: none;
 }
 #header .profile .social-links a.threads img {
-  width: 18px; /* icon本身小小的 */
-  height: 18px;
-  filter: invert(1); /* 變成白色 */
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  filter: invert(1);
   transition: 0.3s ease;
-   display: block; 
+  display: block;
 }
 
-#header .profile .social-links a.threads img:hover {
+#header .profile .social-links a.threads:hover img {
   transform: scale(1.2);
 }
-
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
