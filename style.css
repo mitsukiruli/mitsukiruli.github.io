@@ -206,18 +206,24 @@ h1 {
   color: #ff90b3;
 }
 
-.threads-icon {
-  width: 20px;
-  height: 20px;
-  filter: invert(1); /* 黑背景用白 icon，看起來乾淨 */
+.social-links .threads-icon {
+  width: 40px; /* 讓它大小跟其他icon一樣 */
+  height: 40px;
+  background: #212431; /* 其他icon的背景色 */
+  border-radius: 50%; /* 做成圓形 */
+  padding: 8px; /* 讓圖片縮在中間 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.3s ease;
-  display: inline-block; /* 還是inline但不留文字空隙 */
-  vertical-align: middle; 
+  filter: invert(1); /* 讓圖片是白的 */
 }
 
-.threads-icon:hover {
+.social-links .threads-icon:hover {
+  background: #e7e0be; /* hover時換顏色 */
   transform: scale(1.2);
 }
+
 
 /*--------------------------------------------------------------
 # Navigation Menu
