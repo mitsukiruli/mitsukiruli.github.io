@@ -530,6 +530,7 @@ section {
 #story .card-img-top {
   height: 200px;
   object-fit: cover;
+  object-position: top;
 }
 
 .swiper {
