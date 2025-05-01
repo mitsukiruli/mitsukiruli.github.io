@@ -718,6 +718,20 @@ section {
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
+#story {
+  padding: 0 20px;
+}
+
+#story .swiper-slide {
+  width: 250px;
+  height: 350px;
+}
+
+#story .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
 .swiper {
   padding-left: 20px;
   padding-right: 20px;
