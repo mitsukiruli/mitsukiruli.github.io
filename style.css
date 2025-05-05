@@ -555,7 +555,7 @@ section {
   box-shadow: 0 2px 10px rgba(0,0,0,0.06);
   transition: transform 0.3s ease;
   width: 250px;          /* 固定寬度，swiper 才會橫排一致 */
-  height: 420px;
+  height: 450px;
 }
 
 .swiper {
