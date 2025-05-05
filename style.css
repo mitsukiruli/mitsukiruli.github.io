@@ -533,6 +533,21 @@ section {
   object-position: top;
 }
 
+#doll {
+  padding: 0 20px;
+}
+
+#doll .swiper-slide {
+  width: 250px;
+  height: 350px;
+}
+
+#doll .card-img-top {
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
+}
+
 .swiper {
   padding-left: 20px;
   padding-right: 20px;
