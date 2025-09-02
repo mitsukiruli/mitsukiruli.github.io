@@ -262,6 +262,8 @@ h1 {
   .image-boxes {
     flex-direction: row;
     justify-content: center;
+    margin-top: 10px;   /* 跟記日器距離近一點 */
+    margin-bottom: 30px;
   }
 }
 
