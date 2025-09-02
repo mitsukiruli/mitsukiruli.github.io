@@ -275,6 +275,7 @@ h1 {
   max-width: 400px;
   width:100%
   margin: 0;
+  justify-self: center; 
   text-align: center;
   font-family: "Comic Sans MS", "Segoe UI", sans-serif;
   box-shadow: 0 6px 15px rgba(235, 242, 247, 0.5);
