@@ -214,15 +214,15 @@ h1 {
 # 記日器
 --------------------------------------------------------------*/
 #love-counter-card {
-  background: linear-gradient(135deg, #ffe6f0, #fff0f6, #ffe0f0);
-  border: 2px solid #ffb6c1;
+  background: linear-gradient(135deg, #c0d8fc, #c0d8fc, #ffffff);
+  border: 2px solid #90c4ff;
   border-radius: 20px;
   padding: 25px;
   max-width: 400px;
   margin: 40px auto;
   text-align: center;
   font-family: "Comic Sans MS", "Segoe UI", sans-serif;
-  box-shadow: 0 6px 15px rgba(255, 182, 193, 0.5);
+  box-shadow: 0 6px 15px rgba(114, 296, 255, 0.5);
   position: relative;
   overflow: hidden;
 }
