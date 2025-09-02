@@ -215,7 +215,7 @@ h1 {
 --------------------------------------------------------------*/
 #love-counter-card {
   background: linear-gradient(135deg, #e0f2ff, #ebf7ff, #ffffff);
-  border: 2px solid #90c4ff;
+  border: 2px solid #ddd;
   border-radius: 20px;
   padding: 25px;
   max-width: 400px;
