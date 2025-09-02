@@ -273,7 +273,8 @@ h1 {
   border-radius: 20px;
   padding: 25px;
   max-width: 400px;
-  width:100%
+  width:100%；
+  margin:0;
   justify-self: center; 
   text-align: center;
   font-family: "Comic Sans MS", "Segoe UI", sans-serif;
