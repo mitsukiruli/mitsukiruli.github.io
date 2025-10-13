@@ -231,14 +231,9 @@ h1 {
 }
 
 /* 右邊的框框排列 */
-/* ==================================== */
-/* 原始樣式（微調） */
-/* ==================================== */
-.image-boxes {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+/* ================================================= */
+/* 核心組件：點擊放大效果 (所有尺寸適用) */
+/* ================================================= */
 
 .image-box {
   width: 60px;
@@ -247,57 +242,116 @@ h1 {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  cursor: pointer; /* 讓整個區域都顯示手型游標 */
+  cursor: pointer;
 }
 
-/* 為了讓 a 標籤可以撐滿 box，並確保 img 縮放時 box 仍然有陰影，
-   建議將 a 標籤作為獨立的區塊來處理點擊和動畫。*/
+/* 確保連結填滿 image-box */
 .box-link {
-    display: block; /* 讓 a 標籤變成區塊，才能設定寬高 */
+    display: block;
     width: 100%;
     height: 100%;
-    text-decoration: none; /* 移除連結的預設底線 */
+    text-decoration: none;
 }
 
-
-/* ==================================== */
-/* 圖片動畫核心修改 */
-/* ==================================== */
 .image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    
-    /* **【關鍵改動 1】** 讓動畫平滑：設置過渡效果 */
-    /* 讓 transform (縮放) 效果在 0.15 秒內完成，使用 ease-out 緩慢結束 */
-    transition: transform 0.15s ease-out;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ⚡️【動畫】平滑過渡 */
+  transition: transform 0.15s ease-out;
 }
 
-/* **【關鍵改動 2】** 偵測「戳下去」的瞬間 */
-/* 當點擊按住 a.box-link 時，其內部的 img 進行縮放 */
-.box-link:active img {
-    /* 微微放大 1.05 倍 (你也可以嘗試 1.1 或 1.03) */
-    transform: scale(1.05);
-}
-
-/* **額外優化：加入滑鼠移入 (Hover) 效果** */
-/* 當滑鼠移入 a.box-link 時，圖片先預先放大一點，增強互動感 */
+/* ⚡️【動畫】滑鼠移入時微微放大 (預覽) */
 .box-link:hover img {
-    /* 微微放大 1.02 倍 (讓滑鼠移入就有微動態) */
     transform: scale(1.02);
 }
 
+/* ⚡️【動畫】點擊按住時放大 (視覺回饋) */
+.box-link:active img {
+    transform: scale(1.05);
+}
 
-/* ==================================== */
-/* 響應式樣式（保持不變） */
-/* ==================================== */
+
+/* ================================================= */
+/* 佈局組件：電腦版 (預設佈局) */
+/* ================================================= */
+
+/* 假設 counter-layout 是記日器和 image-text-group 的父容器 */
+.counter-layout {
+    /* ⚡️【電腦版】讓記日器和圖片/文字區塊橫向排列 */
+    display: flex; 
+    justify-content: space-around;
+    align-items: center; 
+}
+
+/* ⚡️【新增】圖片與文字的群組容器 */
+.image-text-group {
+    /* ⚡️【電腦版】讓文字和圖片橫向排列 */
+    display: flex;
+    flex-direction: row; 
+    gap: 20px;
+    align-items: center; 
+}
+
+/* ⚡️【新增】文字區塊樣式：直式效果 */
+.image-text-info {
+    /* 讓文字在左側形成「直式」視覺 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* 靠右對齊 image-boxes */
+    text-align: right; /* 文字內容靠右 */
+    max-width: 100px; /* 限制寬度讓文字換行 */
+}
+
+/* ⚡️【修改】圖片組：在電腦版上是直向排列 */
+.image-boxes {
+    /* ⚡️【電腦版】圖片從上到下堆疊 */
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+}
+
+/* 調整文字大小 */
+.image-text-info h3 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.image-text-info p {
+    margin-top: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ================================================= */
+/* 響應式：手機版 (@media max-width: 768px) */
+/* ================================================= */
+
 @media (max-width: 768px) {
+  /* 記日器排版：變為單欄 */
+  /* ⚡️ 確保 counter-layout 變為直向堆疊 */
   .counter-layout {
-    grid-template-columns: 1fr; 
-    justify-items: center;
+    flex-direction: column; 
+    align-items: center;
+  }
+    
+  /* ⚡️【修改】圖片與文字群組：切回直向堆疊 (文字在上方) */
+  .image-text-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+    
+  /* ⚡️【修改】文字區塊樣式：手機版居中、移除寬度限制 */
+  .image-text-info {
+    text-align: center;
+    align-items: center; 
+    max-width: none;
   }
 
+  /* 圖片組：切回橫向排列 */
   .image-boxes {
+    /* ⚡️【手機版】圖片從左到右排列 */
     flex-direction: row;
     justify-content: center;
     margin-top: 10px;
