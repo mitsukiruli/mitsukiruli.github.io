@@ -512,9 +512,157 @@ h1 {
 .mobile-nav-active #header {
   left: 0;
 }
+/* ===================================== */
+/* 回上一頁按鈕 - 可愛風格 CSS */
+/* ===================================== */
+
+.cute-back-up-button {
+    /* 外觀與佈局 */
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px; /* 按鈕內邊距 */
+    border-radius: 50px; /* 圓角設定為超大，呈現藥丸狀 */
+    position: fixed; 
+  
+    /* 顏色與排版 */
+    background-color: #f7d9e4; /* 柔和的粉紅色底色 */
+    color: #4a4a4a; /* 深灰色文字 */
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Noto Serif TC', sans-serif; /* 使用中文字體 */
+    font-size: 1rem;
+    cursor: pointer;
+    top: 20px;     /* 距離視窗頂部 20px */
+    left: 20px;
+    z-index: 1000; 
+    
+    /* 陰影與動畫 */
+    box-shadow: 0 4px 6px rgba(247, 217, 228, 0.6), /* 柔和的外部陰影 */
+                0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease; /* 平滑的動畫效果 */
+}
+
+/* 腳印圖示樣式 */
+.cute-back-up-button .paw-print {
+    font-size: 1.2rem;
+    margin-right: 8px; /* 腳印和文字的間距 */
+    line-height: 1; /* 確保圖示垂直居中 */
+}
+
+/* 滑鼠移入 (Hover) 效果：變色和微抬升 */
+.cute-back-up-button:hover {
+    background-color: #fce7ec; /* 淺一點的顏色 */
+    color: #000;
+    transform: translateY(-2px); /* 微微向上抬升 2px */
+    box-shadow: 0 6px 10px rgba(247, 217, 228, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* 點擊按住 (Active) 效果：下沉 */
+.cute-back-up-button:active {
+    transform: translateY(0); /* 恢復原位（模擬按下去的感覺） */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
 
 /*--------------------------------------------------------------
-# Hero Section
+# button Section*/
+/* 讓下一頁按鈕也具備基本樣式 */
+.cute-next-button {
+    /* 繼承回上一頁的所有可愛樣式 */
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px; 
+    border-radius: 50px; 
+    background-color: #f7d9e4; 
+    color: #4a4a4a; 
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Noto Serif TC', sans-serif; 
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(247, 217, 228, 0.6), 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease; 
+    
+    /* ⚡️【定位】固定在右下角 */
+    position: fixed;
+    bottom: 20px; /* 距離底部 20px */
+    right: 20px;  /* 距離右側 20px */
+    z-index: 1000;
+}
+
+/* 確保箭頭圖示的間距和對齊 */
+.cute-next-button .arrow-icon {
+    font-size: 1.2rem;
+    margin-left: 8px; /* 箭頭在文字右邊，所以是 margin-left */
+    line-height: 1;
+    color: inherit;
+}
+
+/* Hover 效果 */
+.cute-next-button:hover {
+    background-color: #fce7ec; 
+    color: #000;
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 10px rgba(247, 217, 228, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Active 效果 */
+.cute-next-button:active {
+    transform: translateY(0); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* 讓下一頁按鈕也具備基本樣式 */
+.cute-back-button {
+    /* 繼承回上一頁的所有可愛樣式 */
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px; 
+    border-radius: 50px; 
+    background-color: #f7d9e4; 
+    color: #4a4a4a; 
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Noto Serif TC', sans-serif; 
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(247, 217, 228, 0.6), 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease; 
+    
+    /* ⚡️【定位】固定在右下角 */
+    position: fixed;
+    bottom: 20px; /* 距離底部 20px */
+    lift: 20px;  /* 距離右側 20px */
+    z-index: 1000;
+}
+
+/* 確保箭頭圖示的間距和對齊 */
+.cute-back-button .arrow-icon {
+    font-size: 1.2rem;
+    margin-left: 8px; /* 箭頭在文字右邊，所以是 margin-left */
+    line-height: 1;
+    color: inherit;
+}
+
+/* Hover 效果 */
+.cute-back-button:hover {
+    background-color: #fce7ec; 
+    color: #000;
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 10px rgba(247, 217, 228, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Active 效果 */
+.cute-back-button:active {
+    transform: translateY(0); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 
 /*--------------------------------------------------------------
@@ -581,7 +729,7 @@ section {
 }
 
 .btn-pink {
-  background-color: #986db2;
+  background-color: #FF79BC;
   color: white;
   border: none;
   border-radius: 999px;
@@ -591,7 +739,7 @@ section {
 }
 
 .btn-pink:hover {
-  background-color: #e7e0be;
+  background-color: #FFC1E0;
   box-shadow: 0 4px 10px rgba(255, 144, 179, 0.4);
 }
 /*--------------------------------------------------------------
