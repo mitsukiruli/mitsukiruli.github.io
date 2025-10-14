@@ -550,8 +550,8 @@ h1 {
     align-items: center;     /* 圖示垂直居中 */
     
     /* ⚡️【修改 1】設定圓形尺寸：確保寬高一致，這裡使用 padding 來控制大小 */
-    width: 45px; 
-    height: 45px; 
+    width: 55px; 
+    height: 55px; 
     padding: 0; /* 移除 padding，改用 width/height 控管尺寸 */
     
     /* ⚡️【修改 2】關鍵：設定 50% 圓角 */
