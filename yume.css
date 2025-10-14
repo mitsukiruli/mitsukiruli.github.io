@@ -571,10 +571,10 @@ h1 {
     transition: all 0.2s ease; 
     
     /* ⚡️【固定位置】如果您希望它固定在左上角 (如果需要) */
-    /* position: fixed; 
+    position: fixed; 
     top: 20px;     
     left: 20px;    
-    z-index: 1000; */
+    z-index: 1000; 
 }
 
 /* ⚡️【修改 3】圖示樣式：現在不需要 margin-right 了，因為文字被移除了 */
