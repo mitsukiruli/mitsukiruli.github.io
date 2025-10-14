@@ -545,7 +545,6 @@ h1 {
 /* 腳印圖示樣式 */
 .cute-back-up-button .paw-print {
     font-size: 1.2rem;
-    margin-right: 8px; /* 腳印和文字的間距 */
     line-height: 1; /* 確保圖示垂直居中 */
 }
 
