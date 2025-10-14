@@ -515,13 +515,36 @@ h1 {
 /* ===================================== */
 /* 回上一頁按鈕 - 可愛風格 CSS */
 /* ===================================== */
+/* ===================================== */
+/* 底部導航容器：置中與留白 */
+/* ===================================== */
+
+.footer-nav {
+    width: 100%;
+    
+    /* ⚡️【置中】使用 Flexbox 實現按鈕水平置中 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 (如果需要) */
+    
+    /* 兩個按鈕之間的間距 */
+    gap: 25px; 
+    
+    /* ⚡️【留白】控制上下留白 */
+    padding-top: 25px;   /* 上方留白空間 */
+    padding-bottom: 50px; /* 底部留白空間（多一點） */
+    
+    /* ⚡️【邊界】如果 footer-nav 貼著前一個元素，可能需要額外的 margin */
+    /* margin-top: 20px; */ 
+}
+
 
 .cute-back-up-button {
     /* 外觀與佈局 */
     display: inline-flex;
     align-items: center;
-    padding: 10px 18px; /* 按鈕內邊距 */
-    border-radius: 50px; /* 圓角設定為超大，呈現藥丸狀 */
+    padding: 0; 
+    border-radius: 50%; /* 圓形框 */
     position: fixed; 
   
     /* 顏色與排版 */
@@ -583,11 +606,7 @@ h1 {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(247, 217, 228, 0.6), 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease; 
-    
-    /* ⚡️【定位】固定在右下角 */
-    top:40px;
-    bottom:60px; /* 距離底部 20px */
-    right:40px;  /* 距離右側 20px */
+
   
 }
 
@@ -631,12 +650,7 @@ h1 {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(247, 217, 228, 0.6), 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease; 
-    
-    /* ⚡️【定位】固定在右下角 */
-    top:40px;
-    bottom: 60px; /* 距離底部 20px */
-    lift: 40px;  /* 距離右側 20px */
-  
+
 }
 
 /* 確保箭頭圖示的間距和對齊 */
