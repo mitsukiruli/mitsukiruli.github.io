@@ -1,0 +1,930 @@
+/**
+* Template Name: iPortfolio
+* Updated: Jan 29 2024 with Bootstrap v5.3.2
+* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+.shippori-mincho-b1-regular {
+  font-family: "Shippori Mincho B1", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.noto-serif-tc-<uniquifier> {
+  font-family: "Noto Serif TC", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ChenYuluoyan-Thin-Monospaced';
+  src: url('/font/ChenYuluoyan-Thin-Monospaced.woff') format("woff"),
+         url('/ChenYuluoyan-Thin-Monospaced.ttf') format("truetype"),
+        
+}
+@font-face {
+  font-family: 'ThePeakFontBeta_V0_101';
+  src: url('/font/ThePeakFontBeta_V0_101.woff') format("woff"),
+         url('/ThePeakFontBeta_V0_101.ttf') format("truetype"),
+
+}
+@font-face {
+  font-family: 'ChenYuluoyan-Thin';
+  src: url('/font/ChenYuluoyan-Thin.woff') format("woff"),
+         url('/ChenYuluoyan-Thin.ttf') format("truetype"),
+        
+}
+body {
+  font-family: "Shippori Mincho B1", sans-serif;
+  color: #272829;
+}
+
+a {
+  color: #986db2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e7e0be;
+  text-decoration: none;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:"Shippori Mincho B1", sans-serif;
+}
+h7 {
+  font-family: "Shippori Mincho B1", sans-serif;
+  color: #272829;
+}
+h1 {
+  font-family: "Shippori Mincho B1", sans-serif;
+  
+}
+
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #986db2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background:#e7e0be;
+  color: #fff;
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  transition: all ease-in-out 0.1s;
+  z-index: 9997;
+  transition: all 0.1s;
+  padding: 0 15px;
+  background: #040b14;
+  overflow-y: auto;
+}
+
+#header .profile img {
+  margin: 15px auto;
+  display: block;
+  width: 120px;
+  border: 8px solid #2c2f3f;
+}
+
+#header .profile h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  font-family: "Shippori Mincho B1", serif;
+}
+
+#header .profile h1 a,
+#header .profile h1 a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+#main {
+  margin-left: 300px;
+}
+
+.container,
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+@media (max-width: 1199px) {
+  #header {
+    left: -300px;
+  }
+
+  #main {
+    margin-left: 0;
+  }
+
+  .container,
+  .container-fluid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+#header .profile .social-links a {
+  font-size: 18px;
+  display: inline-flex; /* 這裡用flex，方便img置中 */
+  align-items: center;
+  justify-content: center;
+  background: #212431; /* 深灰背景 */
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  margin: 6px 4px 0 0;
+  border-radius: 50%;
+  transition: 0.3s;
+  overflow: hidden; /* 防止超出圈圈 */
+  text-decoration: none;
+}
+
+#header .profile .social-links a:hover {
+  background: #986db2; /* hover變成紫色 */
+  color: #fff;
+}
+
+#header .profile .social-links a i {
+  font-size: 20px; /* icon大小 */
+}
+
+#header .profile .social-links a .threads-icon {
+  width: 18px; /* Threads圖示稍微小一點 */
+  height: 18px;
+  filter: invert(1); /* 白色 icon */
+  transition: 0.3s;
+  display: block;
+}
+
+#header .profile .social-links a:hover .threads-icon {
+  transform: scale(1.2); /* hover時放大 */
+}
+
+/*--------------------------------------------------------------
+# 記日器
+--------------------------------------------------------------*/
+/* 外層排版 */
+.counter-layout {
+  display: grid;
+  grid-template-columns: 1fr auto; /* 左右：左邊置中, 右邊靠右 */
+  align-items: center;
+  gap: 10px;
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 20px;
+}
+
+/* 記日器保持置中 */
+.center-counter {
+  display: flex;
+  justify-content: center;
+}
+
+/* 右邊的框框排列 */
+/* ================================================= */
+/* 核心組件：點擊放大效果 (所有尺寸適用) */
+/* ================================================= */
+
+.image-box {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+/* 確保連結填滿 image-box */
+.box-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* ⚡️【動畫】平滑過渡 */
+  transition: transform 0.15s ease-out;
+}
+
+/* ⚡️【動畫】滑鼠移入時微微放大 (預覽) */
+.box-link:hover img {
+    transform: scale(1.02);
+}
+
+/* ⚡️【動畫】點擊按住時放大 (視覺回饋) */
+.box-link:active img {
+    transform: scale(1.05);
+}
+
+
+/* ================================================= */
+/* 佈局組件：電腦版 (預設佈局) */
+/* ================================================= */
+
+/* 假設 counter-layout 是記日器和 image-text-group 的父容器 */
+.counter-layout {
+    /* ⚡️【電腦版】讓記日器和圖片/文字區塊橫向排列 */
+    display: flex; 
+    justify-content: space-around;
+    align-items: center; 
+}
+
+/* ⚡️【新增】圖片與文字的群組容器 */
+.image-text-group {
+    /* ⚡️【電腦版】讓文字和圖片橫向排列 */
+    display: flex;
+    flex-direction: row; 
+    gap: 20px;
+    align-items: center; 
+}
+
+/* ⚡️【新增】文字區塊樣式：直式效果 */
+.image-text-info {
+    /* 讓文字在左側形成「直式」視覺 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* 靠右對齊 image-boxes */
+    text-align: right; /* 文字內容靠右 */
+    max-width: 100px; /* 限制寬度讓文字換行 */
+}
+
+/* ⚡️【修改】圖片組：在電腦版上是直向排列 */
+.image-boxes {
+    /* ⚡️【電腦版】圖片從上到下堆疊 */
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+}
+
+/* 調整文字大小 */
+.image-text-info h3 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.image-text-info p {
+    margin-top: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ================================================= */
+/* 響應式：手機版 (@media max-width: 768px) */
+/* ================================================= */
+
+@media (max-width: 768px) {
+  /* 記日器排版：變為單欄 */
+  /* ⚡️ 確保 counter-layout 變為直向堆疊 */
+  .counter-layout {
+    flex-direction: column; 
+    align-items: center;
+  }
+    
+  /* ⚡️【修改】圖片與文字群組：切回直向堆疊 (文字在上方) */
+  .image-text-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+    
+  /* ⚡️【修改】文字區塊樣式：手機版居中、移除寬度限制 */
+  .image-text-info {
+    text-align: center;
+    align-items: center; 
+    max-width: none;
+  }
+
+  /* 圖片組：切回橫向排列 */
+  .image-boxes {
+    /* ⚡️【手機版】圖片從左到右排列 */
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+}
+
+
+#love-counter-card {
+  background: linear-gradient(135deg, #e0f2ff, #ebf7ff, #ffffff);
+  border: 2px solid #c8e0e0;
+  border-radius: 20px;
+  padding: 25px;
+  max-width: 400px;
+  width:100%；
+  margin:0;
+  justify-self: center; 
+  text-align: center;
+  font-family: "Comic Sans MS", "Segoe UI", sans-serif;
+  box-shadow: 0 6px 15px rgba(235, 242, 247, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+#love-counter-card h3 {
+  color: #ff5f9e;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#love-counter {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.time-box {
+  background: #fff;
+  border: 2px solid #c8e0e0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  min-width: 65px;
+  box-shadow: 0 3px 8px rgba(206, 217, 217, 0.4);
+  animation: float 3s ease-in-out infinite;
+}
+
+.time-box span {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff69b4;
+}
+
+.time-box small {
+  font-size: 14px;
+  color: #2a2a2b;
+}
+
+/* 小愛心動畫 */
+.hearts {
+  margin-top: 15px;
+  font-size: 20px;
+  animation: pulse 1.5s infinite alternate;
+  color: #ff5f9e;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); opacity: 0.8; }
+  to { transform: scale(1.3); opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+/*--------------------------------------------------------------
+# 記日器
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Desktop Navigation */
+.nav-menu {
+  padding: 30px 0 0 0;
+}
+
+.nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu>ul>li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu a,
+.nav-menu a:focus {
+  display: flex;
+  align-items: center;
+  color: #a8a9b4;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.nav-menu a i,
+.nav-menu a:focus i {
+  font-size: 24px;
+  padding-right: 8px;
+  color: #6f7180;
+}
+
+.nav-menu a:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover>a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-menu a:hover i,
+.nav-menu .active i,
+.nav-menu .active:focus i,
+.nav-menu li:hover>a i {
+  color: #A58CDC;
+}
+
+/* Mobile Navigation */
+.mobile-nav-toggle {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 9998;
+  border: 0;
+  font-size: 24px;
+  transition: all 0.4s;
+  outline: none !important;
+  background-color: #A58CDC;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.mobile-nav-active {
+  overflow: hidden;
+}
+
+.mobile-nav-active #header {
+  left: 0;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: url("../img/IMG_0525.png") top center;
+  background-size: cover;
+}
+
+#hero:before {
+  content: "";
+  background: rgba(5, 13, 24, 0.3);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#hero .hero-container {
+  position: relative;
+  z-index: 2;
+  min-width: 300px;
+}
+
+#hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #212431;
+}
+
+#hero p {
+  color: #212431;
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-family: "Shippori Mincho B1", sans-serif;
+}
+
+#hero p span {
+  color: #212431;
+  padding-bottom: 4px;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #A58CDC;
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.section-bg {
+  background: #f5f8fd;
+}
+
+.section-title {
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #173b6c;
+  font-family: "Shippori Mincho B1", serif;
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #A58CDC;
+  bottom: 0;
+  left: 0;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
+
+/*----------------
+/*--------------------------------------------------------------
+# Portfolio
+--------------------------------------------------------------*/
+.portfolio-section .card-img-top {
+  height: 400px;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  object-position: top;
+}
+
+.portfolio-section .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-section .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.btn-pink {
+  background-color: #986db2;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-pink:hover {
+  background-color: #e7e0be;
+  box-shadow: 0 4px 10px rgba(255, 144, 179, 0.4);
+}
+/*--------------------------------------------------------------
+# act
+--------------------------------------------------------------*/
+
+
+
+
+/*--------------------------------------------------------------
+# Gun
+--------------------------------------------------------------*/
+#gun {
+  width: 100%;
+  height: 100vh;
+  background: url("../img/IMG_0525.png") top center;
+  background-size: cover;
+}
+
+#gun:before {
+  content: "";
+  background: rgba(5, 13, 24, 0.3);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#gun .hero-container {
+  position: relative;
+  z-index: 2;
+  min-width: 300px;
+}
+
+#gun h1 {
+  margin: 0 0 10px 0;
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #212431;
+}
+
+#gun p {
+  color: #212431;
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-family: "Shippori Mincho B1", sans-serif;
+}
+
+#gun p span {
+  color: #212431;
+  padding-bottom: 4px;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #A58CDC;
+}
+
+@media (min-width: 1024px) {
+  #gun {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  #gun h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  #gun h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+
+/*--------------------------------------------------------------
+# Portfolio Details
+--------------------------------------------------------------*/
+#story {
+  padding: 0 20px;
+}
+
+#story .swiper-slide {
+  width: 250px;
+  height: 350px;
+}
+
+#story .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+}
+
+#doll {
+  padding: 0 20px;
+}
+
+#doll .swiper-slide {
+  width: 250px;
+  height: 450px;
+}
+
+#doll .card-img-top {
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
+}
+
+#doll .swiper-slide {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+  width: 250px;          /* 固定寬度，swiper 才會橫排一致 */
+  height: 450px;
+}
+
+.swiper {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#story.swiper-slide {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+  width: 250px;          /* 固定寬度，swiper 才會橫排一致 */
+  height: 320px;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.03);
+}
+
+.slide-link {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  text-align: center;
+}
+
+.slide-link img {
+  width: 100%;
+  height: 200px;        /* 統一高度 */
+  object-fit: cover;    /* 保持不變形 */
+  border-bottom: 1px solid #eee;
+}
+
+.slide-title {
+  font-size: 16px;
+  margin: 10px 0 15px;
+  font-weight: 600;
+  color: #ff5f9e; /* 你喜歡的可愛色可以改 */
+}
+
+.slide-link {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  text-align: center;
+}
+
+.slide-link img {
+  width: 100%;
+  height: 200px;        /* 統一高度 */
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.slide-title {
+  font-size: 16px;
+  margin: 10px 0 15px;
+  font-weight: 600;
+  color: #ff5f9e; /* 你喜歡的可愛色可以改 */
+}
+
+.photo-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.photo-wall img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.photo-wall img:hover {
+  transform: scale(1.03);
+}
+
+.photo-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.photo-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  font-size: 14px;
+  text-align: middle;
+}
+
+
+@media (max-width: 768px) {
+  .photo {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* 手機版上下之間的間距 */
+    text-align: center; /* 讓文字居中可選 */
+  }
+}
+
+
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+  padding: 15px;
+  color: #f4f6fd;
+  font-size: 14px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  z-index: 9999;
+  background: #040b14;
+}
+
+#footer .copyright {
+  text-align: center;
+}
+
+#footer .credits {
+  padding-top: 5px;
+  text-align: center;
+  font-size: 13px;
+  color: #eaebf0;
+}
+
+@media (max-width: 1199px) {
+  #footer {
+    position: static;
+    width: auto;
+    padding-right: 20px 15px;
+  }
+}
