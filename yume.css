@@ -539,50 +539,71 @@ h1 {
 }
 
 
-.cute-back-up-button {
+/* ===================================== */
+/* 回上一頁按鈕 - 圓形純圖示風格 CSS */
+/* ===================================== */
+
+.cute-back-top-button {
     /* 外觀與佈局 */
     display: inline-flex;
-    align-items: center;
-    padding: 0; 
-    border-radius: 50%; /* 圓形框 */
-    position: fixed; 
-  
+    justify-content: center; /* 圖示水平居中 */
+    align-items: center;     /* 圖示垂直居中 */
+    
+    /* ⚡️【修改 1】設定圓形尺寸：確保寬高一致，這裡使用 padding 來控制大小 */
+    width: 45px; 
+    height: 45px; 
+    padding: 0; /* 移除 padding，改用 width/height 控管尺寸 */
+    
+    /* ⚡️【修改 2】關鍵：設定 50% 圓角 */
+    border-radius: 50%; 
+    
     /* 顏色與排版 */
     background-color: #f7d9e4; /* 柔和的粉紅色底色 */
-    color: #4a4a4a; /* 深灰色文字 */
+    color: #4a4a4a; 
     text-decoration: none;
     font-weight: bold;
-    font-family: 'Noto Serif TC', sans-serif; /* 使用中文字體 */
-    font-size: 1rem;
+    font-size: 1.2rem; /* 圖示通常要大一點 */
     cursor: pointer;
-    top: 20px;     /* 距離視窗頂部 20px */
-    left: 20px;
-    z-index: 1000; 
     
     /* 陰影與動畫 */
-    box-shadow: 0 4px 6px rgba(247, 217, 228, 0.6), /* 柔和的外部陰影 */
+    box-shadow: 0 4px 6px rgba(247, 217, 228, 0.6), 
                 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease; /* 平滑的動畫效果 */
+    transition: all 0.2s ease; 
+    
+    /* ⚡️【固定位置】如果您希望它固定在左上角 (如果需要) */
+    /* position: fixed; 
+    top: 20px;     
+    left: 20px;    
+    z-index: 1000; */
 }
 
-/* 腳印圖示樣式 */
-.cute-back-up-button .paw-print {
+/* ⚡️【修改 3】圖示樣式：現在不需要 margin-right 了，因為文字被移除了 */
+.cute-back-top-button .arrow-icon, 
+.cute-back-top-button .paw-print { /* 適用於箭頭或腳印圖示 */
     font-size: 1.2rem;
-    line-height: 1; /* 確保圖示垂直居中 */
+    margin: 0; 
+    line-height: 1; 
 }
 
-/* 滑鼠移入 (Hover) 效果：變色和微抬升 */
-.cute-back-up-button:hover {
-    background-color: #fce7ec; /* 淺一點的顏色 */
+/* 隱藏文字（因為圓形框太小放不下） */
+.cute-back-top-button span:not(.arrow-icon):not(.paw-print) {
+    /* 如果您使用 HTML 像這樣: <span>回上一頁</span> */
+    /* 建議直接從 HTML 中移除文字，或使用以下方式隱藏 */
+    display: none; 
+}
+
+/* Hover 效果 */
+.cute-back-top-button:hover {
+    background-color: #fce7ec; 
     color: #000;
-    transform: translateY(-2px); /* 微微向上抬升 2px */
+    transform: translateY(-2px); 
     box-shadow: 0 6px 10px rgba(247, 217, 228, 0.8),
                 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-/* 點擊按住 (Active) 效果：下沉 */
-.cute-back-up-button:active {
-    transform: translateY(0); /* 恢復原位（模擬按下去的感覺） */
+/* Active 效果 */
+.cute-back-top-button:active {
+    transform: translateY(0); 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
