@@ -46,12 +46,12 @@ body {
 }
 
 a {
-  color: #FF79BC;
+  color: #a5d6f2;
   text-decoration: none;
 }
 
 a:hover {
-  color:#FFC1E0;
+  color:#c2dff0;
   text-decoration: none;
 }
 p,
@@ -83,7 +83,7 @@ h1 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #FF79BC;
+  background: #a5d6f2;
   width: 40px;
   height: 40px;
   border-radius: 50px;
@@ -97,7 +97,7 @@ h1 {
 }
 
 .back-to-top:hover {
-  background:#FFC1E0;
+  background:#c2dff0;
   color: #fff;
 }
 
@@ -377,7 +377,7 @@ h1 {
 }
 
 #love-counter-card h3 {
-  color: #FF79BC;
+  color: #9ac6f5;
   margin-bottom: 20px;
   font-size: 20px;
 }
@@ -731,7 +731,7 @@ section {
   display: block;
   width: 50px;
   height: 3px;
-  background: #FFC1E0;
+  background: #a4b4de;
   bottom: 0;
   left: 0;
 }
@@ -763,7 +763,7 @@ section {
 }
 
 .btn-pink {
-  background-color: #FF79BC;
+  background-color: #a5d6f2;
   color: white;
   border: none;
   border-radius: 999px;
@@ -773,7 +773,7 @@ section {
 }
 
 .btn-pink:hover {
-  background-color: #FFC1E0;
+  background-color: #c2dff0;
   box-shadow: 0 4px 10px rgba(255, 144, 179, 0.4);
 }
 /*--------------------------------------------------------------
