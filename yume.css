@@ -586,9 +586,9 @@ h1 {
     transition: all 0.2s ease; 
     
     /* ⚡️【定位】固定在右下角 */
-  
+    top:40px;
     bottom:60px; /* 距離底部 20px */
-    right: 40px;  /* 距離右側 20px */
+    right:40px;  /* 距離右側 20px */
   
 }
 
@@ -634,7 +634,7 @@ h1 {
     transition: all 0.2s ease; 
     
     /* ⚡️【定位】固定在右下角 */
-  
+    top:40px;
     bottom: 60px; /* 距離底部 20px */
     lift: 40px;  /* 距離右側 20px */
   
