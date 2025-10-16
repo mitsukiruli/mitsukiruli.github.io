@@ -533,10 +533,26 @@ h1 {
 /* 2. summary (表情符號框) 樣式：虛線圓角與底線 */
 .interactive-gallery .emoji-trigger { /* ⚡️【修改點】加上前綴 */
     /* ... 樣式保持不變 ... */
-    border: 3px dashed #e499b7;
-    /* ... */
-}
+    
+    /* ⚡️【修正點 1】移除虛線，以免和外層大框框重複 */
+    border: none; /* 移除 border: 3px dashed #e499b7; */
+    
+    /* 保持圓角和底線 */
+    border-radius: 50%; /* 讓它變成一個小圓圈 */
+    border-bottom: 5px solid #74b0d4; /* 保持底線 */
+    
+    /* 調整大小，確保是圓的 */
+    width: 80px;      
+    height: 80px;     
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    font-size: 2rem;
+    cursor: pointer;
+    background-color: transparent; /* 背景透明 */
+    transition: all 0.2s ease;
+}
 /* 3. 展開內容樣式：確保內容在框框「下面」 */
 .interactive-gallery .content-box { /* ⚡️【修改點】加上前綴 */
     /* ... 樣式保持不變 ... */
