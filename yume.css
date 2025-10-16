@@ -527,7 +527,8 @@ h1 {
     
     /* 讓容器接近正方形 (例如 2:1 的寬高比) */
     /* 這裡使用一個大長方形 (2:1)，您可以調整 width 和 height 達到您的正方形效果 */
-    aspect-ratio: 2 / 1; /* 寬高比 2:1 (如果想更接近正方形，用 1.2 / 1) */
+    aspect-ratio: unset; 
+    height: auto; 
     
     margin: 0 auto; /* 水平居中 */
     padding: 10px; /* 增大內邊距 */
@@ -540,7 +541,7 @@ h1 {
     /* 佈局調整：確保內部元素居中 */
     display: flex;
     justify-content: center; 
-    align-items: center;
+    align-items: flex-start;
 }
 
 /* 確保這個容器是響應式的 (可選) - 移除 max-width 媒體查詢，使用上面的 aspect-ratio 更好 */
