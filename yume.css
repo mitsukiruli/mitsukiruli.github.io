@@ -531,7 +531,7 @@ h1 {
     height: auto; 
     
     margin: 0 auto; /* 水平居中 */
-    padding: 10px; /* 增大內邊距 */
+    padding: 30px; /* 增大內邊距 */
     
     /* 保持圓角大框框的樣式 */
     border: 3px dashed #e499b7; 
