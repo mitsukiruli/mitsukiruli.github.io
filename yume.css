@@ -532,26 +532,38 @@ h1 {
 
 /* 2. summary (表情符號框) 樣式：虛線圓角與底線 */
 .interactive-gallery .emoji-trigger { /* ⚡️【修改點】加上前綴 */
-    /* ... 樣式保持不變 ... */
-    
-    /* ⚡️【修正點 1】移除虛線，以免和外層大框框重複 */
-    border: none; /* 移除 border: 3px dashed #e499b7; */
-    
-    /* 保持圓角和底線 */
-    border-radius: 50%; /* 讓它變成一個小圓圈 */
-    border-bottom: 5px solid #74b0d4; /* 保持底線 */
-    
-    /* 調整大小，確保是圓的 */
-    width: 80px;      
-    height: 80px;     
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
+    /* ⚡️【修正點 4】移除所有邊框和底線 */
+    border: none;
+    border-radius: 50%; /* 保持圓形，但沒有邊框 */
+    
+    /* ⚡️【調整尺寸】確保每個表情符號都能在一排四個中平均分配 */
+    width: 60px;      /* 表情符號的小圓範圍 */
+    height: 60px;     
+    
     font-size: 2rem;
     cursor: pointer;
-    background-color: transparent; /* 背景透明 */
-    transition: all 0.2s ease;
+    background-color: transparent; 
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* ⚡️【新增】滑鼠移入時的視覺提示 (例如微放大或變色) */
+.interactive-gallery .emoji-trigger:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* ⚡️【新增】點擊後 (active) 的樣式 */
+.interactive-gallery .emoji-card.active .emoji-trigger {
+    /* 點擊後，讓表情符號有明顯的高亮效果 */
+    transform: scale(1.15);
+    background-color: #f7d9e4; /* 淺粉色背景 */
+    box-shadow: 0 0 10px rgba(228, 153, 183, 0.7);
+}
+
 }
 /* 3. 展開內容樣式：確保內容在框框「下面」 */
 .interactive-gallery .content-box { /* ⚡️【修改點】加上前綴 */
@@ -569,17 +581,48 @@ h1 {
     border-radius: 8px;
     margin-bottom: 15px;
 }
-.interactive-gallery.emoji-list-container {
-    /* ⚡️【修正點 2】調整寬度和置中 */
-    width: 90%; 
-    max-width: 800px; 
+/* ===================================== */
+/* 1. 頂層：實現【大正方形】圓角虛線框 */
+/* ===================================== */
+.emoji-list-container {
+    /* ⚡️【修正點 1】讓其接近正方形 */
+    width: 380px;      /* 設定一個固定的寬度 */
+    height: 190px;     /* 設定一個高度 (這裡是寬度的一半，形成長方形) */
+    
+    /* ⚡️【修正點 2】置中與留白 */
     margin: 0 auto; /* 水平居中 */
-    padding: 30px; /* 增大內邊距，讓表情符號離邊緣遠一點 */
+    padding: 20px; /* 增大內邊距，讓內容離邊緣遠一點 */
     
     /* 保持圓角大框框的樣式 */
-    border: 3px dashed #a5d6f2; 
+    border: 3px dashed #e499b7; 
     border-radius: 20px; 
     background-color: #fff; 
+    
+    /* ⚡️【佈局調整】使用 Flex 或 Grid 確保內容能兩排排列 */
+    display: flex;
+    justify-content: center; /* 讓內部表情符號列表居中 */
+    align-items: center;
+}
+
+/* 確保這個容器是響應式的 (可選) */
+@media (max-width: 420px) {
+    .emoji-list-container {
+        width: 90%;
+        height: auto; /* 手機上讓高度自動，避免內容溢出 */
+    }
+}
+
+
+/* ===================================== */
+/* 2. 表情符號佈局：實現兩排，一排四個 */
+/* ===================================== */
+.interactive-gallery .emoji-gallery {
+    /* ⚡️【修正點 3】啟用換行，實現兩排 */
+    display: flex;
+    flex-wrap: wrap; /* 允許換行 */
+    justify-content: center; /* 讓所有符號在容器內居中 */
+    gap: 15px; /* 符號之間的間距 */
+    width: 100%; /* 佔滿父容器寬度 */
 }
 
 /* 確保表情符號列表是平均分散的 */
