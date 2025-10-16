@@ -569,14 +569,51 @@ h1 {
     border-radius: 8px;
     margin-bottom: 15px;
 }
+.interactive-gallery.emoji-list-container {
+    /* ⚡️【修正點 2】調整寬度和置中 */
+    width: 90%; 
+    max-width: 800px; 
+    margin: 0 auto; /* 水平居中 */
+    padding: 30px; /* 增大內邊距，讓表情符號離邊緣遠一點 */
+    
+    /* 保持圓角大框框的樣式 */
+    border: 3px dashed #a5d6f2; 
+    border-radius: 20px; 
+    background-color: #fff; 
+}
+
+/* 確保表情符號列表是平均分散的 */
+.interactive-gallery .emoji-gallery {
+    display: flex;
+    /* ⚡️【修正點 3】確保項目之間有足夠的留白 */
+    justify-content: space-around; 
+    gap: 10px;
+}
 
 /* ⚡️【新增】展示區樣式：實現居中 */
+/* ⚡️【修正點 4】展示區樣式：實現居中和留白 */
 #expanded-content-area {
-    margin: 30px auto 0; /* 上方間距 30px，下方置中 */
+    /* 讓整個展示區塊置中 */
+    margin: 30px auto 50px; /* 上間距 30px，下間距 50px (多一點留白) */
     width: 90%; 
-    max-width: 500px; /* 限制內容的最大寬度，看起來更居中舒服 */
-    transition: all 0.3s ease; /* 讓內容替換時更平滑 */
+    max-width: 500px; /* 限制內容的最大寬度 */
+    transition: all 0.3s ease; 
+    
+    /* ⚡️【新增】如果內容區塊需要背景或邊框，在這裡添加 */
+    min-height: 100px; /* 避免剛載入時塌陷 */
 }
+
+/* 內容框本身的樣式 */
+.interactive-gallery .content-box { 
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e9e6fc; /* 淺粉色背景 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    
+    /* ⚡️ 確保內容框內的文字和圖片置中 (如果需要) */
+    text-align: center;
+}
+
 
 /* ===================================== */
 /* 底部導航容器：置中與留白 */
