@@ -540,8 +540,26 @@ h1 {
 /* 3. 展開內容樣式：確保內容在框框「下面」 */
 .interactive-gallery .content-box { /* ⚡️【修改點】加上前綴 */
     /* ... 樣式保持不變 ... */
-    width: 400px; 
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e6f4fc; /* 淺粉色背景 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     /* ... */
+}
+
+.interactive-gallery .content-box .story-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* ⚡️【新增】展示區樣式：實現居中 */
+#expanded-content-area {
+    margin: 30px auto 0; /* 上方間距 30px，下方置中 */
+    width: 90%; 
+    max-width: 500px; /* 限制內容的最大寬度，看起來更居中舒服 */
+    transition: all 0.3s ease; /* 讓內容替換時更平滑 */
 }
 
 /* ===================================== */
