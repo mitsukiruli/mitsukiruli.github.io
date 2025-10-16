@@ -566,6 +566,16 @@ h1 {
     /* ⚡️【邊界】如果 footer-nav 貼著前一個元素，可能需要額外的 margin */
     /* margin-top: 20px; */ 
 }
+/* 鎖定並移除 <summary> 元素的原生箭頭/三角形圖示 */
+.interactive-gallery .emoji-card summary {
+    list-style: none; /* 針對 Firefox/舊版瀏覽器 */
+}
+
+/* 針對 Webkit 核心的瀏覽器 (Chrome, Safari, Edge) 移除圖示 */
+.interactive-gallery .emoji-card summary::-webkit-details-marker {
+    display: none;
+}
+
 
 
 /* ===================================== */
