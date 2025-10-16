@@ -28,26 +28,66 @@
 
 <main id="main">
 <section id="emoji-section" class="interactive-gallery">
-    <div class="emoji-gallery">
-
-        <details class="emoji-card">
-           <summary class="emoji-trigger">
-            <span role="img" aria-label="生氣">😠</span>
-        </summary>
+    
+    <h2 class="text-center">選擇您的夢境故事</h2>
+    
+    <div class="emoji-list-container">
         
-        <div class="content-box">
-            <h4>生氣的小插曲</h4>
-            <img src="img/story2.jpg" alt="生氣圖文" class="story-image">
-            <p>發生了一點小誤會，雖然有點生氣，但很快就沒事了！這是一個小小的教訓。</p>
+        <div class="emoji-gallery">
+            
+            <details class="emoji-card" data-content-id="story1">
+                <summary class="emoji-trigger"><span role="img" aria-label="開心">😊</span></summary>
+            </details>
+
+            <details class="emoji-card" data-content-id="story2">
+                <summary class="emoji-trigger"><span role="img" aria-label="驚訝">😮</span></summary>
+            </details>
+
+            <details class="emoji-card" data-content-id="story3">
+                <summary class="emoji-trigger"><span role="img" aria-label="難過">😢</span></summary>
+            </details>
+
+            <details class="emoji-card" data-content-id="story4">
+                <summary class="emoji-trigger"><span role="img" aria-label="愛心">😍</span></summary>
+            </details>
+            
         </div>
-            </details>
-
-        <details class="emoji-card">
-            </details>
         
+    </div>
+    
+    <div id="expanded-content-area">
         </div>
     
+    <div id="content-templates" style="display: none;">
+        
+        <div class="content-box" id="story1">
+            <h4>開心的小故事</h4>
+            <img src="img/story1.jpg" alt="開心圖文" class="story-image">
+            <p>今天天氣超好，心情也跟著晴朗起來了！這是關於一隻小貓咪的故事。</p>
+        </div>
+
+        <div class="content-box" id="story2">
+            <h4>驚訝的瞬間</h4>
+            <img src="img/story2.jpg" alt="驚訝圖文" class="story-image">
+            <p>這是一個讓人驚訝的夢境情節。</p>
+        </div>
+        
+        <div class="content-box" id="story3">
+            <h4>難過的片段</h4>
+            <img src="img/story3.jpg" alt="難過圖文" class="story-image">
+            <p>夢裡有些感傷的時刻。</p>
+        </div>
+
+        <div class="content-box" id="story4">
+            <h4>愛的場景</h4>
+            <img src="img/story4.jpg" alt="愛心圖文" class="story-image">
+            <p>這是最甜蜜的時刻！</p>
+        </div>
+
+    </div>
+    
 </section>
+
 
 
 
@@ -112,6 +152,65 @@
     });
   });
 </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 獲取所有表情符號的開關 (details 元素)
+    const emojiCards = document.querySelectorAll('.interactive-gallery .emoji-card');
+    // 獲取內容展示區
+    const contentArea = document.getElementById('expanded-content-area');
+
+    emojiCards.forEach(card => {
+        // 點擊事件監聽
+        card.addEventListener('click', (event) => {
+            // 阻止 <details> 標籤預設的開合行為，我們用 JS 控制
+            event.preventDefault(); 
+            
+            // 獲取該卡片對應的內容 ID
+            const contentId = card.getAttribute('data-content-id');
+            // 獲取內容模板
+            const templateContent = document.getElementById(contentId);
+            
+            // 檢查是否已經展開
+            const isActive = card.classList.contains('active');
+
+            // 1. 清除所有活動狀態和內容
+            // 關閉所有卡片的 active 狀態
+            emojiCards.forEach(c => c.classList.remove('active'));
+            // 清空展示區的內容
+            contentArea.innerHTML = '';
+            
+            // 2. 決定是關閉還是展開新的內容
+            if (!isActive) {
+                // 如果目前是關閉狀態，則展開新的內容
+                
+                // 標記為活動狀態 (用於 CSS 樣式)
+                card.classList.add('active');
+                
+                // 複製模板內容並添加到展示區
+                if (templateContent) {
+                    // 必須使用 cloneNode(true) 來複製內容，而不是移動
+                    const newContent = templateContent.cloneNode(true);
+                    newContent.removeAttribute('id'); // 移除 ID 避免重複
+                    
+                    // 為了動畫效果，可以先設置透明
+                    newContent.style.opacity = 0; 
+                    contentArea.appendChild(newContent);
+                    
+                    // 稍微延遲後顯示，產生淡入效果
+                    setTimeout(() => {
+                        newContent.style.opacity = 1;
+                    }, 50);
+                }
+            }
+            // 如果 isActive 為 true，則點擊會執行上面的清除，達到關閉效果。
+
+            // (可選) 滾動到內容區
+            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+});
+  </script>
+  
 
 <style>
   .character-cards .card {
