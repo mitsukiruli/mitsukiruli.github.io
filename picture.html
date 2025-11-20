@@ -5,29 +5,55 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Picture</title>
-  <meta content="" name="description"> <meta content="" name="keywords">
-  <link href="mg/testimonials/v/無標題252_20250902222530.png" rel="icon"> 
-  <link href="mg/testimonials/v/無標題252_20250902222530.png" rel="apple-touch-icon">
+  <title>picture</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
+  <!-- Favicons -->
+  <link href="img/testimonials/v/無標題252_20250902222530.png" rel="icon">
+  <link href="img/testimonials/v/無標題252_20250902222530.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&family=Shippori+Mincho+B1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
   <link href="vendor/aos/aos.css" rel="stylesheet">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet"> 
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <link href="style.css" rel="stylesheet">
-  </head>
+  <!-- Template Main CSS File -->
+  <link href="yume.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+
+
+</head>
 
 <body>
 
+  <!-- ======= Mobile nav toggle button ======= -->
 
 
-<main id="main">
+  <!-- ======= Header ======= -->
+<!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <main id="main">
+    <section id="photo" class="custom-section container mt-4">
+  <h2 class="text-center">夢向注意</h2>
+
+
+    </section>
+
+    <!--=============== Portfolio Section ================-->
+
+
+<!--=============== Photo Section ================-->      
 <section id="portfolio-details" class="portfolio-details">
   <div class="container">
 
@@ -430,28 +456,47 @@
 
     </section>
 
-
-
-<div class="footer-nav">
+      <div class="footer-nav">
     
-  <a href="love.html">
-      <i class="bi bi-caret-left-fill"></i>
-     <span>上一頁</span>
-      </a>
-     <a href="Ruli.html" class="cute-back-up-button">
-    <span class="paw-print">🐾</span>
-   </a>
-  
-    <a href="story.html" >
+
+   
+    <a href="vani.html" >
      <span>下一頁</span>
       <i class="bi bi-caret-right-fill"></i>
       </a>
-  
-</div>
-    
-</main>
+  </div>
 
+  </main>
+
+
+
+
+    <!-- ======= 滑動卡片區塊 ======= -->
   
+
+
+    
+
+
+    
+
+  <!-- 左右箭頭 -->
+
+
+    
+
+    <!-- End Portfolio Section -->
+    
+
+   
+
+
+
+  <!-- ======= Footer ======= -->
+  
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
   <!-- Vendor JS Files -->
   <script src="vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="vendor/aos/aos.js"></script>
@@ -496,65 +541,6 @@
     });
   });
 </script>
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // 獲取所有表情符號的開關 (details 元素)
-    const emojiCards = document.querySelectorAll('.interactive-gallery .emoji-card');
-    // 獲取內容展示區
-    const contentArea = document.getElementById('expanded-content-area');
-
-    emojiCards.forEach(card => {
-        // 點擊事件監聽
-        card.addEventListener('click', (event) => {
-            // 阻止 <details> 標籤預設的開合行為，我們用 JS 控制
-            event.preventDefault(); 
-            
-            // 獲取該卡片對應的內容 ID
-            const contentId = card.getAttribute('data-content-id');
-            // 獲取內容模板
-            const templateContent = document.getElementById(contentId);
-            
-            // 檢查是否已經展開
-            const isActive = card.classList.contains('active');
-
-            // 1. 清除所有活動狀態和內容
-            // 關閉所有卡片的 active 狀態
-            emojiCards.forEach(c => c.classList.remove('active'));
-            // 清空展示區的內容
-            contentArea.innerHTML = '';
-            
-            // 2. 決定是關閉還是展開新的內容
-            if (!isActive) {
-                // 如果目前是關閉狀態，則展開新的內容
-                
-                // 標記為活動狀態 (用於 CSS 樣式)
-                card.classList.add('active');
-                
-                // 複製模板內容並添加到展示區
-                if (templateContent) {
-                    // 必須使用 cloneNode(true) 來複製內容，而不是移動
-                    const newContent = templateContent.cloneNode(true);
-                    newContent.removeAttribute('id'); // 移除 ID 避免重複
-                    
-                    // 為了動畫效果，可以先設置透明
-                    newContent.style.opacity = 0; 
-                    contentArea.appendChild(newContent);
-                    
-                    // 稍微延遲後顯示，產生淡入效果
-                    setTimeout(() => {
-                        newContent.style.opacity = 1;
-                    }, 50);
-                }
-            }
-            // 如果 isActive 為 true，則點擊會執行上面的清除，達到關閉效果。
-
-            // (可選) 滾動到內容區
-            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-});
-  </script>
-  
 
 <style>
   .character-cards .card {
@@ -562,5 +548,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 </style>
 
+
+
 </body>
+
 </html>
