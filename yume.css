@@ -487,8 +487,8 @@ h1 {
 /* 2. 表情符號佈局：實現兩排，一排四個 */
 .interactive-gallery .emoji-gallery {
     display: flex;
-    flex-wrap: nowrap; /* 不允許換行 */
-    justify-content: space-between; /* 讓表情符號分散對齊 */
+    flex-wrap: wrap; /* ⚡️【修正點 1】必須允許換行 */       
+    justify-content: space-evenly; /* ⚡️【修正點 2】使用 space-evenly 或 center 避免兩端溢出 */
     gap: 15px; /* 垂直間距 */
     width: 95%; 
     height: 100%;
@@ -496,14 +496,16 @@ h1 {
 
 /* 3. 單個文字標籤的容器大小 (確保四欄對齊) */
 .interactive-gallery .emoji-card {
-    /* 確保四個項目可以排在一行 */
-    width: calc(25% - 15px); 
-    flex-basis: calc(25% - 15px); /* 考慮到 flex-wrap: wrap; */
+ /* ⚡️【修正點 3】使用稍微保守的寬度，確保四個標籤能擠進一行 */
+    /* 100% / 4 = 25% */
+    width: 23%; /* 確保標籤有足夠空間，避免精確計算導致溢出 */
+    
+    /* ⚡️【關鍵】移除 flex-basis 相關設定，讓 width 主導 */
+    flex-basis: auto; 
     flex-grow: 0;
     flex-shrink: 0;
     
-    /* ⚡️【調整高度】文字卡片的高度 */
-    height: 35px; 
+    height: 35px; /* 標籤高度 */
     
     display: flex;
     justify-content: center;
@@ -549,6 +551,7 @@ h1 {
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis; 
+    max-width: 95%;
 }
 
 
