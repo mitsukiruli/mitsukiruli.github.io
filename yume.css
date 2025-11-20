@@ -487,7 +487,7 @@ h1 {
 /* 2. 表情符號佈局：實現兩排，一排四個 */
 .interactive-gallery .emoji-gallery {
     display: flex;
-    flex-wrap: wrap; /* 允許換行 */
+    flex-wrap: nowrap; /* 不允許換行 */
     justify-content: space-between; /* 讓表情符號分散對齊 */
     gap: 15px; /* 垂直間距 */
     width: 95%; 
