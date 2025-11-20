@@ -227,69 +227,56 @@
 
 </script>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const lightbox = GLightbox({
-      selector: '.glightbox'
-    });
-  });
-</script>
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
-    // 獲取所有表情符號的開關 (details 元素)
+    // 獲取所有互動卡片
     const emojiCards = document.querySelectorAll('.interactive-gallery .emoji-card');
     // 獲取內容展示區
     const contentArea = document.getElementById('expanded-content-area');
 
     emojiCards.forEach(card => {
-        // 點擊事件監聽
-        card.addEventListener('click', (event) => {
-            // 阻止 <details> 標籤預設的開合行為，我們用 JS 控制
+        // 監聽 summary 點擊事件
+        const summary = card.querySelector('summary');
+        
+        summary.addEventListener('click', (event) => {
+            // 阻止 <details> 標籤預設的開合行為
             event.preventDefault(); 
             
-            // 獲取該卡片對應的內容 ID
             const contentId = card.getAttribute('data-content-id');
-            // 獲取內容模板
             const templateContent = document.getElementById(contentId);
-            
-            // 檢查是否已經展開
             const isActive = card.classList.contains('active');
 
             // 1. 清除所有活動狀態和內容
-            // 關閉所有卡片的 active 狀態
             emojiCards.forEach(c => c.classList.remove('active'));
-            // 清空展示區的內容
             contentArea.innerHTML = '';
             
             // 2. 決定是關閉還是展開新的內容
             if (!isActive) {
                 // 如果目前是關閉狀態，則展開新的內容
                 
-                // 標記為活動狀態 (用於 CSS 樣式)
-                card.classList.add('active');
+                card.classList.add('active'); // 標記為活動狀態 (用於 CSS 樣式)
                 
-                // 複製模板內容並添加到展示區
                 if (templateContent) {
-                    // 必須使用 cloneNode(true) 來複製內容，而不是移動
+                    // 複製模板內容並添加到展示區
                     const newContent = templateContent.cloneNode(true);
                     newContent.removeAttribute('id'); // 移除 ID 避免重複
                     
-                    // 為了動畫效果，可以先設置透明
+                    // 設置動畫
                     newContent.style.opacity = 0; 
                     contentArea.appendChild(newContent);
                     
-                    // 稍微延遲後顯示，產生淡入效果
                     setTimeout(() => {
                         newContent.style.opacity = 1;
                     }, 50);
                 }
+                
+                // (可選) 滾動到內容區
+                contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            // 如果 isActive 為 true，則點擊會執行上面的清除，達到關閉效果。
-
-            // (可選) 滾動到內容區
-            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
 });
+</script>
   </script>
   
 
