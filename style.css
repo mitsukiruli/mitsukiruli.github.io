@@ -1041,7 +1041,7 @@ section {
     border-radius: 10px;
     background-color: #e9e6fc; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    text-align: center;
+    text-align: left;
 }
 
 .interactive-gallery .content-box .story-image {
