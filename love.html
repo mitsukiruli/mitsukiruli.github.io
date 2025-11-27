@@ -16,8 +16,8 @@
   <link href="vendor/aos/aos.css" rel="stylesheet">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <!--<link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">  -->
+  <!--<link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">-->
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">  
   <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <link href="yume.css" rel="stylesheet">
@@ -262,33 +262,33 @@
    <script src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script>
-  const lightbox = GLightbox({
-    selector: '.glightbox'
-  });
-  new Swiper('.character-cards', {
-  slidesPerView: 1.2,
-  spaceBetween: 20,
-  loop: false,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  breakpoints: {
-    768: {
-      slidesPerView: 2.2,
-    },
-    992: {
-      slidesPerView: 3.2,
-    },
-  }
-});
-
-</script>
-<script>
+  // 1. 確保網頁載入後才執行
   document.addEventListener("DOMContentLoaded", function() {
+    
+    // 初始化 Lightbox (這裡修復了 class 名稱)
     const lightbox = GLightbox({
-      selector: '.glightbox'
+      selector: '.portfolio-lightbox' 
     });
+
+    // 初始化 Swiper (如果有用到的話)
+    new Swiper('.character-cards', {
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      loop: false,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2.2,
+        },
+        992: {
+          slidesPerView: 3.2,
+        },
+      }
+    });
+
   });
 </script>
 
