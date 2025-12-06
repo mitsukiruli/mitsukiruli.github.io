@@ -295,6 +295,12 @@ h1 {
     margin-bottom: 30px;
   }
 }
+/* 讓 .p-3 容器內的圖片寬度限制在 100%，確保不會溢出 */
+.p-3 img {
+    max-width: 100%; /* 圖片寬度最大不超過父容器 */
+    height: auto;    /* 保持圖片的原始長寬比 */
+    display: block;  /* 讓圖片作為一個區塊元素 */
+}
 
 
 #love-counter-card {
