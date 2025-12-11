@@ -308,6 +308,48 @@ h1 {
     color: #555;
 }
 
+/* ===================================== */
+/* GLightbox 標題樣式美化 (gslide-description) */
+/* ===================================== */
+
+/* 1. 標題容器基本樣式 */
+.gslide-description {
+    /* 移除 Lightbox 預設的深色背景，讓它透明或半透明 */
+    background: rgba(255, 255, 255, 0.95) !important; 
+    padding: 15px 20px !important;
+    border-top: 2px solid #e499b7; /* ⚡️ 增加一條粉色邊框作為區隔 */
+}
+
+/* 2. 標題文字樣式 (Title Text) */
+.gslide-title {
+    font-family: "Noto Serif TC", serif !important; /* ⚡️ 使用中文字體 */
+    font-size: 1.15rem !important; /* ⚡️ 稍微放大字體 */
+    font-weight: 700 !important;   /* 加粗 */
+    color: #4a4a4a !important;     /* ⚡️ 深色文字 */
+    text-align: center !important; /* ⚡️ 置中顯示 */
+    margin: 0 !important;
+}
+
+/* 3. 描述文字樣式 (如果有設定的話) */
+.gslide-desc {
+    font-family: "Shippori Mincho B1", sans-serif !important;
+    font-size: 0.9rem !important;
+    color: #666 !important;
+    text-align: center !important;
+    margin-top: 5px !important;
+}
+
+/* 4. 手機版調整 */
+@media (max-width: 768px) {
+    .gslide-description {
+        padding: 10px !important;
+    }
+    .gslide-title {
+        font-size: 1rem !important;
+    }
+}
+
+
 /* ================================================= */
 /* 響應式：手機版 (@media max-width: 768px) */
 /* ================================================= */
