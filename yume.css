@@ -126,9 +126,9 @@ h1 {
 
 .photo-entry {
     /* 設定單個按鈕/圖標的尺寸 */
-    width: 120px; 
-    height: 120px;
-    border-radius: 15px; /* 圓角 */
+    width: 60px; 
+    height: 60px;
+    border-radius: 12px; /* 圓角 */
     overflow: hidden;
     display: block;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
