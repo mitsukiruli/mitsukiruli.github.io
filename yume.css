@@ -317,7 +317,7 @@ h1 {
     /* 移除 Lightbox 預設的深色背景，讓它透明或半透明 */
     background: rgba(255, 255, 255, 0.95) !important; 
     padding: 15px 20px !important;
-    border-top: 2px solid #e499b7; /* ⚡️ 增加一條粉色邊框作為區隔 */
+  /* ⚡️ 增加一條粉色邊框作為區隔 */
 }
 
 /* 2. 標題文字樣式 (Title Text) */
