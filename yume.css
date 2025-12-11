@@ -111,7 +111,54 @@ h1 {
 --------------------------------------------------------------*/
 
 
+/* ===================================== */
+/* 圓角按鈕圖庫入口樣式 */
+/* ===================================== */
 
+.gallery-button-grid {
+    display: flex;
+    flex-wrap: wrap; /* 允許換行 */
+    justify-content: center; /* 置中排列 */
+    gap: 15px; /* 按鈕間距 */
+    margin: 30px auto;
+    max-width: 900px; /* 限制整體寬度 */
+}
+
+.photo-entry {
+    /* 設定單個按鈕/圖標的尺寸 */
+    width: 120px; 
+    height: 120px;
+    border-radius: 15px; /* 圓角 */
+    overflow: hidden;
+    display: block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.photo-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.rounded-button-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 確保圖片填滿按鈕容器 */
+    border-radius: 15px;
+}
+
+/* 響應式調整：手機版改為三排 */
+@media (max-width: 600px) {
+    .photo-entry {
+        width: 100px; 
+        height: 100px;
+    }
+    /* 讓手機版顯示為 3 個一排 (需要調整 max-width) */
+    .gallery-button-grid {
+        max-width: 350px; 
+    }
+}
 
 
 
