@@ -1,0 +1,152 @@
+/* 基礎設定 */
+body {
+    font-family: "Shippori Mincho B1", "Noto Serif TC", serif;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 標題樣式 */
+.calendar-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calendar-header h2 {
+    color: #173b6c;
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.calendar-header h6 {
+    color: #888;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+/* 月份按鈕 */
+.month-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.month-btn {
+    background: white;
+    border: 1.5px solid #a5d6f2;
+    color: #173b6c;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+.month-btn.active {
+    background: #a5d6f2;
+    color: white;
+    box-shadow: 0 4px 10px rgba(165, 214, 242, 0.4);
+}
+
+/* 日曆卡片 */
+.calendar-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid rgba(165, 214, 242, 0.3);
+}
+
+.pixel-calendar {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.weekday-row th {
+    padding-bottom: 15px;
+    color: #a5d6f2;
+    font-size: 0.9rem;
+}
+
+.pixel-calendar td {
+    height: 80px;
+    border: 1px dashed #e0f2ff;
+    vertical-align: top;
+    padding: 8px;
+    position: relative;
+    transition: 0.3s;
+    font-size: 1.1rem;
+    color: #173b6c;
+}
+
+/* 有紀錄的日期 */
+.has-entry {
+    background-color: #f7fbff !important;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.has-entry span {
+    display: block;
+    font-size: 0.65rem;
+    color: #666;
+    margin-top: 4px;
+    font-weight: normal;
+}
+
+.has-entry:hover {
+    background-color: #e0f2ff !important;
+}
+
+/* 內容彈出框 */
+.entry-content {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15em;
+    padding: 15px;
+    background: white;
+    border: 2px solid #a5d6f2;
+    border-radius: 12px;
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    font-size: 0.85rem;
+    text-align: left;
+    color: #333;
+}
+
+.entry-content img {
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 8px;
+}
+
+/* 切換顯示邏輯 */
+.month-content { display: none; }
+.month-content.active { 
+    display: block; 
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.back-home {
+    margin-top: 40px;
+    text-decoration: none;
+    color: #a5d6f2;
+    font-size: 0.9rem;
+}
