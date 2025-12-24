@@ -4,22 +4,29 @@
 function switchMonth(event, monthId, labelText) {
     // 1. 隱藏所有月份內容
     const contents = document.querySelectorAll('.month-content');
-    contents.forEach(content => content.classList.remove('active'));
+    contents.forEach(content => {
+        content.classList.remove('active');
+        content.style.display = 'none'; // ⚡️ 補上這一行
+    });
 
-    // 2. 移除所有按鈕的 active 狀態
+    // 2. 移除所有按鈕 active 狀態 (這部分您寫的很對)
     const buttons = document.querySelectorAll('.month-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
     // 3. 顯示選中的月份
-    document.getElementById(monthId).classList.add('active');
-
-    // 4. 設定當前按鈕為 active
-    event.currentTarget.classList.add('active');
-
-    // 5. 更新標題文字
-    document.getElementById('current-month-label').innerText = labelText;
+    const target = document.getElementById(monthId);
+    if (target) {
+        target.classList.add('active');
+        target.style.display = 'block'; // ⚡️ 補上這一行
+        
+        // 4. 設定當前按鈕為 active
+        event.currentTarget.classList.add('active');
+        // 5. 更新標題文字
+        document.getElementById('current-month-label').innerText = labelText;
+    } else {
+        alert("該月份資料尚在準備中！");
+    }
 }
-
 /**
  * 顯示/隱藏日期詳細內容
  */
@@ -110,4 +117,10 @@ function selectYear(selectedYear) {
 
     // 5. 關閉下拉選單
     document.getElementById('year-dropdown').style.display = 'none';
+}「
+// 封裝一個關閉所有彈窗（年份選單與回憶框）的函數
+function closeAllPopups() {
+    document.querySelectorAll('.entry-content').forEach(el => el.style.display = 'none');
+    const dropdown = document.getElementById('year-dropdown');
+    if (dropdown) dropdown.style.display = 'none';
 }
