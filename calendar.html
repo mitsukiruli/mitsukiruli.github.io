@@ -1,189 +1,93 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    
-<head>
-  
-
-  <title>Memory Calendar</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="img/testimonials/v/無標題252_20250902222530.png" rel="icon">
-  <link href="img/testimonials/v/無標題252_20250902222530.png" rel="apple-touch-icon">
-
-  
-  <!-- Vendor CSS Files -->
-  <link href="vendor/aos/aos.css" rel="stylesheet">
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <!-- <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet"> -->
-  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="yume.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
-
-
-
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
+    <title>Memory Calendar</title>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: "Shippori Mincho B1", serif;
-            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* 標題區塊 */
-        .calendar-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        h2 {
-            color: #173b6c;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        h6 {
-            color: #888; /* 淺灰色副標題 */
-            font-size: 1rem;
-            font-weight: 500;
-            margin: 0;
-            letter-spacing: 2px;
-        }
-
-        /* 日曆主體容器 */
-        .calendar-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 800px;
-            border: 1px solid rgba(165, 214, 242, 0.5);
-        }
-
-        .pixel-calendar table {
-            border-collapse: collapse;
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        /* 星期顯示 */
-        .weekday-row th {
-            padding-bottom: 20px;
-            color: #a5d6f2;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        .pixel-calendar td {
-            height: 100px; /* 增加格子高度讓排版更大方 */
-            border: 1px dashed #e0f2ff;
-            vertical-align: top;
-            padding: 10px;
-            position: relative;
-            background-color: #ffffff;
-            transition: 0.3s;
-        }
-
-        /* 有內容的日期 */
-        .has-entry {
-            background-color: #f7fbff !important;
-            cursor: pointer;
-        }
-
-        .has-entry:hover {
-            background-color: #e0f2ff !important;
-        }
-
-        .date-num {
-            font-size: 1.2rem;
-            color: #173b6c;
-            font-weight: bold;
-        }
-
-        .entry-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #a5d6f2;
-            border-radius: 50%;
-            margin: 5px auto 0;
-        }
-
-        /* 內容框樣式 */
-        .entry-content {
-            display: none;
-            position: absolute;
-            z-index: 100;
-            background: white;
-            border: 2px solid #a5d6f2;
-            padding: 15px;
-            border-radius: 15px;
-            width: 200px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* 居中彈出 */
-        }
-
-        /* 回首頁按鈕 */
-        .back-home {
-            margin-top: 50px;
-            text-decoration: none;
-            color: #a5d6f2;
-            border-bottom: 1px solid #a5d6f2;
-            transition: 0.3s;
-        }
-        .back-home:hover { color: #173b6c; border-bottom-color: #173b6c; }
-
-    </style>
+    <link rel="stylesheet" href="calendar.css">
 </head>
 <body>
 
     <div class="calendar-header">
-        <h2>2025 July</h2>
+        <h2 id="current-month-label">2025 July</h2>
         <h6>紀錄每一天的點點滴滴</h6>
     </div>
 
+    <div class="month-selector">
+        <button class="month-btn active" onclick="switchMonth(event, 'july-2025', '2025 July')">7月</button>
+        <button class="month-btn" onclick="switchMonth(event, 'august-2025', '2025 August')">8月</button>
+        <button class="month-btn" onclick="switchMonth(event, 'september-2025', '2025 September')">9月</button>
+    </div>
+
     <div class="calendar-card">
-        <div class="pixel-calendar">
-            <table>
+        <div id="july-2025" class="month-content active">
+            <table class="pixel-calendar">
                 <tr class="weekday-row">
                     <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
                 </tr>
                 <tr>
-                    <td></td><td></td><td class="date-num">1</td><td class="date-num">2</td><td class="date-num">3</td><td class="date-num">4</td><td class="date-num">5</td>
+                    <td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
                 </tr>
                 <tr>
-                    <td class="date-num">6</td><td class="date-num">7</td><td class="date-num">8</td><td class="date-num">9</td><td class="date-num">10</td><td class="date-num">11</td><td class="date-num">12</td>
+                    <td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
                 </tr>
                 <tr>
-                    <td class="date-num has-entry" onclick="toggleEntry(event)">
-                        13
-                        <div class="entry-dot"></div>
+                    <td class="has-entry" onclick="toggleEntry(event)">
+                        13<br><span>紀念日</span>
                         <div class="entry-content">
-                            <b>紀念日</b><br>
-                            這是一個特別的日子。
-                            <img src="img/photo.jpg" style="width:100%; margin-top:10px; border-radius:10px;">
+                            <b>我們的紀念日</b><br>
+                            這裡可以寫下當天的回憶文字。<br>
+                            <img src="img/photo1.jpg" alt="紀念照">
                         </div>
                     </td>
-                    <td class="date-num">14</td><td class="date-num">15</td><td class="date-num">16</td><td class="date-num">17</td><td class="date-num">18</td><td class="date-num">19</td>
+                    <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+                </tr>
+                <tr>
+                    <td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td>
+                </tr>
+                <tr>
+                    <td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="august-2025" class="month-content">
+            <table class="pixel-calendar">
+                <tr class="weekday-row">
+                    <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                </tr>
+                <tr>
+                    <td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td>
+                </tr>
+                <tr>
+                    <td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+                </tr>
+                <tr>
+                    <td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td>
+                </tr>
+                <tr>
+                    <td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td>
+                </tr>
+                <tr>
+                    <td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td>
+                </tr>
+                <tr>
+                    <td>31</td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="september-2025" class="month-content">
+            <table class="pixel-calendar">
+                <tr class="weekday-row">
+                    <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                </tr>
+                <tr>
+                    <td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+                </tr>
+                <tr>
+                    <td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
                 </tr>
                 </table>
         </div>
@@ -191,22 +95,6 @@
 
     <a href="index.html" class="back-home">← Back to Home</a>
 
-    <script>
-        function toggleEntry(event) {
-            const entry = event.currentTarget.querySelector('.entry-content');
-            const isVisible = entry.style.display === 'block';
-            
-            // 關閉所有
-            document.querySelectorAll('.entry-content').forEach(el => el.style.display = 'none');
-            
-            // 切換當前
-            entry.style.display = isVisible ? 'none' : 'block';
-            event.stopPropagation();
-        }
-
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.entry-content').forEach(el => el.style.display = 'none');
-        });
-    </script>
+    <script src="calendar.js"></script>
 </body>
 </html>
