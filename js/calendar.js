@@ -51,22 +51,42 @@ function toggleEntry(event) {
 /**
  * 切換年份選單顯示/隱藏
  */
+/**
+ * 切換年份選單
+ */
 function toggleYearMenu(event) {
+    // 平板端建議加入 preventDefault 避免雙擊或縮放干擾
+    if (event.cancelable) event.preventDefault();
+    
     const dropdown = document.getElementById('year-dropdown');
     
-    // 先關閉回憶框，避免重疊
+    // 強制關閉所有回憶框
     document.querySelectorAll('.entry-content').forEach(el => el.style.display = 'none');
     
-    // 切換下拉選單顯示狀態
-    // ⚡️ 修正：檢查 computedStyle 確保邏輯準確
-    if (dropdown.style.display === 'block') {
-        dropdown.style.display = 'none';
-    } else {
-        dropdown.style.display = 'block';
-    }
+    // 切換顯示
+    const isVisible = dropdown.style.display === 'block';
+    dropdown.style.display = isVisible ? 'none' : 'block';
     
     event.stopPropagation();
 }
+
+/**
+ * 針對平板與手機優化的點擊空白處關閉
+ */
+const closeHandler = () => {
+    const dropdown = document.getElementById('year-dropdown');
+    if (dropdown) dropdown.style.display = 'none';
+    document.querySelectorAll('.entry-content').forEach(el => el.style.display = 'none');
+};
+
+// 同時監聽 click 與 touchend
+document.addEventListener('click', closeHandler);
+document.addEventListener('touchend', (e) => {
+    // 如果點擊的是選單本身，則不關閉
+    if (!e.target.closest('.year-selector-container') && !e.target.closest('.has-entry')) {
+        closeHandler();
+    }
+});
 
 /**
  * 選擇年份並更新介面
