@@ -66,32 +66,48 @@ function toggleYearMenu(event) {
 /**
  * 選擇年份並更新介面
  */
-function selectYear(year) {
-    // 1. 更新大標題文字
+function selectYear(selectedYear) {
+    // 1. 更新大標題年份顯示
     const yearDisplay = document.getElementById('current-year-display');
-    yearDisplay.innerHTML = `${year} <i class="bi bi-chevron-down"></i>`;
+    yearDisplay.innerHTML = `${selectedYear} <i class="bi bi-chevron-down"></i>`;
+
+    // 2. 隱藏當前頁面所有月份內容
+    document.querySelectorAll('.month-content').forEach(content => {
+        content.classList.remove('active');
+        content.style.display = 'none';
+    });
+
+    // 3. 更新月份按鈕的 onclick 事件，讓它們指向新年份
+    // 假設你的月份按鈕順序是 1月, 2月...
+    const monthButtons = document.querySelectorAll('.month-btn');
+    const monthNames = [
+        'january', 'february', 'march', 'april', 'may', 'june', 
+        'july', 'august', 'september', 'october', 'november', 'december'
+    ];
+
+    monthButtons.forEach((btn, index) => {
+        const mName = monthNames[index];
+        const mLabel = `${selectedYear} ${mName.charAt(0).toUpperCase() + mName.slice(1)}`;
+        // 動態重新設定按鈕功能
+        btn.setAttribute('onclick', `switchMonth(event, '${mName}-${selectedYear}', '${mLabel}')`);
+    });
+
+    // 4. 自動顯示該年份的第一個月份 (例如 1 月)
+    const firstMonthId = `january-${selectedYear}`;
+    const firstMonthContent = document.getElementById(firstMonthId);
     
-    // 2. 這裡你可以加入邏輯：例如跳轉到該年份的頁面，或切換顯示的月份資料
-    // 如果目前只有 2025 的資料，可以先做個提示
-    if (year !== '2025') {
-        alert(`目前僅提供 2025 年的紀錄，${year} 年正在準備中！`);
+    if (firstMonthContent) {
+        firstMonthContent.classList.add('active');
+        firstMonthContent.style.display = 'block';
+        document.getElementById('current-month-label').innerText = `${selectedYear} January`;
+        
+        // 將第一個按鈕（1月）設為 active 狀態
+        monthButtons.forEach(b => b.classList.remove('active'));
+        monthButtons[0].classList.add('active');
+    } else {
+        alert(`${selectedYear} 年的資料尚未建立喔！`);
     }
-    
-    // 3. 關閉選單
+
+    // 5. 關閉下拉選單
     document.getElementById('year-dropdown').style.display = 'none';
-}
-
-/**
- * 點擊頁面其他地方關閉選單
- */
-document.addEventListener('click', function() {
-    const dropdown = document.getElementById('year-dropdown');
-    if (dropdown) dropdown.style.display = 'none';
-});
-
-// 封裝一個關閉所有彈窗的函數
-function closeAllPopups() {
-    document.querySelectorAll('.entry-content').forEach(el => el.style.display = 'none');
-    const dropdown = document.getElementById('year-dropdown');
-    if (dropdown) dropdown.style.display = 'none';
 }
