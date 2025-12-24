@@ -48,3 +48,50 @@ document.addEventListener('click', () => {
         el.style.display = 'none';
     });
 });
+
+/**
+ * 切換年份選單顯示/隱藏
+ */
+function toggleYearMenu(event) {
+    const dropdown = document.getElementById('year-dropdown');
+    const isVisible = dropdown.style.display === 'block';
+    
+    // 關閉所有可能的內容框
+    closeAllPopups();
+    
+    dropdown.style.display = isVisible ? 'none' : 'block';
+    event.stopPropagation();
+}
+
+/**
+ * 選擇年份並更新介面
+ */
+function selectYear(year) {
+    // 1. 更新大標題文字
+    const yearDisplay = document.getElementById('current-year-display');
+    yearDisplay.innerHTML = `${year} <i class="bi bi-chevron-down"></i>`;
+    
+    // 2. 這裡你可以加入邏輯：例如跳轉到該年份的頁面，或切換顯示的月份資料
+    // 如果目前只有 2025 的資料，可以先做個提示
+    if (year !== '2025') {
+        alert(`目前僅提供 2025 年的紀錄，${year} 年正在準備中！`);
+    }
+    
+    // 3. 關閉選單
+    document.getElementById('year-dropdown').style.display = 'none';
+}
+
+/**
+ * 點擊頁面其他地方關閉選單
+ */
+document.addEventListener('click', function() {
+    const dropdown = document.getElementById('year-dropdown');
+    if (dropdown) dropdown.style.display = 'none';
+});
+
+// 封裝一個關閉所有彈窗的函數
+function closeAllPopups() {
+    document.querySelectorAll('.entry-content').forEach(el => el.style.display = 'none');
+    const dropdown = document.getElementById('year-dropdown');
+    if (dropdown) dropdown.style.display = 'none';
+}
