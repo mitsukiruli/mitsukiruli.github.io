@@ -108,13 +108,14 @@ body {
 }
 
 /* 內容彈出框 */
+/* 1. 基礎彈出框樣式保持不變 */
 .entry-content {
     display: none;
     position: absolute;
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    width: 15em;
+    width: 200px; /* 您可以根據需要調整寬度 */
     padding: 15px;
     background: white;
     border: 2px solid #a5d6f2;
@@ -126,11 +127,30 @@ body {
     color: #333;
 }
 
+/* ⚡️ 修正最左邊（週日）的格子：讓彈出框往右對齊 */
+.pixel-calendar td:first-child .entry-content {
+    left: 0;
+    transform: translateX(0);
+}
+
+/* ⚡️ 修正最右邊（週六）的格子：讓彈出框往左對齊 */
+.pixel-calendar td:last-child .entry-content {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+}
+
+/* 確保圖片不會撐破框框 */
 .entry-content img {
-    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
     margin-top: 8px;
     border-radius: 8px;
 }
+
+
+
 
 /* 切換顯示邏輯 */
 .month-content { display: none; }
