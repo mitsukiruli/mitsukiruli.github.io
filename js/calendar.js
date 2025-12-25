@@ -94,7 +94,7 @@ document.addEventListener('touchend', (e) => {
 function selectYear(selectedYear) {
     // 1. 更新大標題年份顯示
     const yearDisplay = document.getElementById('current-year-display');
-    yearDisplay.innerHTML = `${selectedYear} <i class="bi bi-chevron-down"></i>`;
+    yearDisplay.innerHTML = `${selectedYear}`;
 
     // 2. 隱藏所有月份內容
     document.querySelectorAll('.month-content').forEach(content => {
