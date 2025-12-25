@@ -1,47 +1,98 @@
-/* 基礎設定 */
+/* ==========================================================================
+   1. 基礎設定與字體
+   ========================================================================== */
 body {
     font-family: "Shippori Mincho B1", "Noto Serif TC", serif;
     background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
     margin: 0;
-    padding: 40px 20px;
+    padding: 30px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    color: #173b6c;
 }
 
-/* 標題樣式 */
+/* ==========================================================================
+   2. 標題與年份選擇器 (修正平板點擊範圍)
+   ========================================================================== */
 .calendar-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-.calendar-header h2 {
+.year-selector-container {
+    position: relative;
+    display: inline-block;
+}
+
+#current-year-display {
+    font-size: 1.8rem;
     color: #173b6c;
-    font-size: 2.5rem;
-    margin-bottom: 5px;
+    margin: 0;
+    cursor: pointer;
+    padding: 10px 20px; /* 增加點擊範圍 */
+    transition: color 0.3s;
 }
 
-.calendar-header h6 {
+#current-year-display:hover {
+    color: #a5d6f2;
+}
+
+h6 {
     color: #888;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    margin: 0;
+    margin: 5px 0 0 0;
     letter-spacing: 2px;
 }
 
-/* 月份按鈕 */
+/* 年份下拉選單 */
+.year-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #a5d6f2;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    z-index: 3000;
+    min-width: 100px;
+    overflow: hidden;
+}
+
+.year-dropdown div {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.year-dropdown div:hover {
+    background-color: #f0f8ff;
+    color: #a5d6f2;
+}
+
+/* ==========================================================================
+   3. 月份切換按鈕 (支援自動換行)
+   ========================================================================== */
 .month-selector {
     display: flex;
-    gap: 12px;
-    margin-bottom: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    max-width: 600px;
 }
 
 .month-btn {
     background: white;
     border: 1.5px solid #a5d6f2;
     color: #173b6c;
-    padding: 8px 20px;
+    padding: 5px 12px;
+    font-size: 0.85rem;
     border-radius: 50px;
     cursor: pointer;
     font-family: inherit;
@@ -54,41 +105,44 @@ body {
     box-shadow: 0 4px 10px rgba(165, 214, 242, 0.4);
 }
 
-/* 日曆卡片 */
+/* ==========================================================================
+   4. 日曆卡片與表格
+   ========================================================================== */
 .calendar-card {
     background: white;
-    padding: 30px;
+    padding: 20px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     width: 100%;
-    max-width: 800px;
+    max-width: 550px; /* 縮小日曆寬度 */
     border: 1px solid rgba(165, 214, 242, 0.3);
+    position: relative;
 }
 
 .pixel-calendar {
     border-collapse: collapse;
     width: 100%;
-    table-layout: fixed;
+    table-layout: fixed; /* 強制每一格寬度平均 */
 }
 
 .weekday-row th {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     color: #a5d6f2;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
 .pixel-calendar td {
-    height: 80px;
+    height: 60px; /* 縮小格子高度 */
     border: 1px dashed #e0f2ff;
     vertical-align: top;
-    padding: 8px;
+    padding: 5px;
     position: relative;
+    font-size: 0.9rem;
     transition: 0.3s;
-    font-size: 1.1rem;
-    color: #173b6c;
 }
 
-/* 有紀錄的日期 */
+/* 有紀錄的日期樣式 */
 .has-entry {
     background-color: #f7fbff !important;
     font-weight: bold;
@@ -97,9 +151,9 @@ body {
 
 .has-entry span {
     display: block;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     color: #666;
-    margin-top: 4px;
+    margin-top: 2px;
     font-weight: normal;
 }
 
@@ -107,122 +161,80 @@ body {
     background-color: #e0f2ff !important;
 }
 
-/* 內容彈出框 */
-/* 1. 基礎彈出框樣式保持不變 */
+/* ==========================================================================
+   5. 日期彈出框 (修正邊界跑出問題)
+   ========================================================================== */
 .entry-content {
     display: none;
     position: absolute;
-    bottom: calc(100% + 10px);
+    bottom: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%);
-    width: 200px; /* 您可以根據需要調整寬度 */
-    padding: 15px;
+    width: 180px;
+    max-width: 65vw; /* 防止手機上超出螢幕 */
+    padding: 12px;
     background: white;
     border: 2px solid #a5d6f2;
     border-radius: 12px;
-    z-index: 1000;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    font-size: 0.85rem;
+    z-index: 2500;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    font-size: 0.8rem;
     text-align: left;
     color: #333;
+    white-space: normal;
 }
 
-/* ⚡️ 修正最左邊（週日）的格子：讓彈出框往右對齊 */
-.pixel-calendar td:first-child .entry-content {
+.entry-content b {
+    color: #173b6c;
+}
+
+.entry-content img {
+    width: 100%;
+    height: auto;
+    margin-top: 8px;
+    border-radius: 8px;
+    display: block;
+}
+
+/* ⚡️ 修正靠近左邊與右邊格子的彈窗位移 */
+/* 週日到週二：彈窗靠左 */
+.pixel-calendar td:nth-child(-n+3) .entry-content {
     left: 0;
     transform: translateX(0);
 }
 
-/* ⚡️ 修正最右邊（週六）的格子：讓彈出框往左對齊 */
-.pixel-calendar td:last-child .entry-content {
+/* 週四到週六：彈窗靠右 */
+.pixel-calendar td:nth-child(n+5) .entry-content {
     left: auto;
     right: 0;
     transform: translateX(0);
 }
 
-/* 確保圖片不會撐破框框 */
-.entry-content img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-top: 8px;
-    border-radius: 8px;
+/* ==========================================================================
+   6. 顯示/隱藏與動畫
+   ========================================================================== */
+.month-content { 
+    display: none; 
 }
 
-
-
-
-/* 切換顯示邏輯 */
-.month-content { display: none; }
-.month-content.active { 
-    display: block; 
-    animation: fadeIn 0.5s ease forwards;
+.month-content.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .back-home {
-    margin-top: 40px;
+    margin-top: 30px;
     text-decoration: none;
     color: #a5d6f2;
-    font-size: 0.9rem;
-}
-/* 年份選擇器容器 */
-.year-selector-container {
-    position: relative;
-    display: inline-block;
+    font-size: 0.85rem;
+    transition: 0.3s;
 }
 
-/* 大標題樣式 - 加上滑鼠手勢與過渡 */
-#current-year-display {
-    cursor: pointer;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-#current-year-display:hover {
-    color: #a5d6f2; /* 懸停時變水藍色 */
-}
-
-/* 下拉選單主體 */
-.year-dropdown {
-    display: none; /* 初始隱藏 */
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    border: 1px solid #a5d6f2;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    z-index: 2000;
-    min-width: 120px;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-/* 下拉選單中的選項 */
-.year-dropdown div {
-    padding: 12px 20px;
-    cursor: pointer;
-    font-size: 1.1rem;
+.back-home:hover {
     color: #173b6c;
-    transition: background 0.2s;
-}
-
-.year-dropdown div:hover {
-    background-color: #f0f8ff;
-    color: #a5d6f2;
-}
-
-/* 小箭頭旋轉動畫 (選配) */
-.rotate-arrow {
-    transform: rotate(180deg);
-    transition: transform 0.3s;
 }
