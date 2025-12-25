@@ -133,14 +133,16 @@ h6 {
 }
 
 .pixel-calendar td {
-    height: 60px; /* 縮小格子高度 */
+    height: 60px;
     border: 1px dashed #e0f2ff;
     vertical-align: top;
     padding: 5px;
     position: relative;
     font-size: 0.9rem;
     transition: 0.3s;
+    overflow: visible; /* ⚡️ 增加這一行，確保彈窗能跳出來 */
 }
+
 
 /* 有紀錄的日期樣式 */
 .has-entry {
@@ -213,6 +215,15 @@ h6 {
     right: 0;
     transform: translateX(0);
 }
+
+.entry-content img {
+    width: 100%;       /* 強制圖片寬度等於彈出框寬度 */
+    height: auto;      /* 高度自動縮放，不變形 */
+    display: block;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
 
 
 /* ==========================================================================
