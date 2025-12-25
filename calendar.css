@@ -158,27 +158,22 @@ h6 {
 }
 
 .has-entry:hover {
-    background-color: #e0f2ff ！important;
+    background-color: #e0f2ff !important;
 }
        
 
 /* ==========================================================================
-   5. 日期彈出框 (修正頂部與左右邊界問題)
+   5. 日期彈出框 (修正頂部、左右以及圖片超出問題)
    ========================================================================== */
 .entry-content {
     display: none;
     position: absolute;
-    /* ⚡️ 預設顯示在格子下方，避免第一排超出網頁頂部 */
     top: 100%; 
     margin-top: 10px;
-    
     left: 50%;
     transform: translateX(-50%);
-    
-    /* ⚡️ 寬度設定 */
-    width: 220px; /* 平板/電腦端可以稍微寬一點 */
-    max-width: 85vw; /* 手機端確保不超出螢幕寬度 */
-    
+    width: 220px; 
+    max-width: 85vw; 
     padding: 12px;
     background: white;
     border: 2px solid #a5d6f2;
@@ -191,8 +186,16 @@ h6 {
     white-space: normal;
 }
 
-/* ⚡️ 第一排修正：如果不想讓它在下面，可以針對最後一排才讓它往上彈 */
-/* 這裡我們統一讓它往下彈最安全，或者針對特定行數調整 */
+/* 圖片適應 */
+.entry-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+/* 最後一排往上彈 */
 .pixel-calendar tr:last-child .entry-content {
     top: auto;
     bottom: 100%;
@@ -200,35 +203,17 @@ h6 {
     margin-bottom: 10px;
 }
 
-/* ⚡️ 左右溢出修正 (針對平板/電腦) */
-/* 週日到週二 (1, 2, 3格)：彈窗靠左邊界 */
+/* 左右邊界修正 */
 .pixel-calendar td:nth-child(-n+3) .entry-content {
     left: 0;
     transform: translateX(0);
 }
-
-/* 週五到週六 (6, 7格)：彈窗靠右邊界 */
 .pixel-calendar td:nth-child(n+6) .entry-content {
     left: auto;
     right: 0;
     transform: translateX(0);
 }
 
-/* ⚡️ 手機端特別優化 (螢幕寬度小於 480px) */
-@media (max-width: 480px) {
-    .entry-content {
-        width: 180px; /* 手機端稍微縮小寬度 */
-        max-width: 75vw;
-    }
-    
-    /* 手機上讓彈窗位置更靠近中間，避免極端位移 */
-    .pixel-calendar td:nth-child(-n+3) .entry-content {
-        left: -10px; 
-    }
-    .pixel-calendar td:nth-child(n+6) .entry-content {
-        right: -10px;
-    }
-}
 
 /* ==========================================================================
    6. 顯示/隱藏與動畫
