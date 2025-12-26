@@ -282,7 +282,7 @@ h6 {
     background-color: #173b6c;
     color: white ;
     border-bottom-left-radius: 2px; /* 讓對話框一角變尖 */
-    border: 1px solid #e8f344;
+    
 }
 }
 .chat-left::after {
@@ -298,7 +298,7 @@ h6 {
     background-color: #f1E5b1;
     color: #a4b4de;
     border-bottom-right-radius: 2px;
-    border: 1px solid #cdb48c;
+   
 }
 .chat-right::after {
     right: -8px;
