@@ -284,7 +284,6 @@ h6 {
     border-bottom-left-radius: 2px; /* 讓對話框一角變尖 */
     
 }
-}
 .chat-left::after {
     left: -8px;
     bottom: 0;
