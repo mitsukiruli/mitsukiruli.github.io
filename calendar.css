@@ -254,3 +254,63 @@ h6 {
 .back-home:hover {
     color: #173b6c;
 }
+
+/* 對話框基礎樣式 */
+.chat-bubble {
+    position: relative;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin: 10px 0;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    max-width: 85%;
+    clear: both;
+}
+
+/* 小尾巴的共通設定 */
+.chat-bubble::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+}
+
+/* 🔵 左邊：深藍色 (Dark Blue) */
+.chat-left {
+    float: left;
+    background-color: #173b6c;
+    color: white ;
+    border-bottom-left-radius: 2px; /* 讓對話框一角變尖 */
+    border: 1px solid #e8f344;
+}
+}
+.chat-left::after {
+    left: -8px;
+    bottom: 0;
+    border-right-color: #173b6c;
+    border-bottom-color: #173b6c;
+}
+
+/* 💛 右邊：淺藍色 (Light Blue) */
+.chat-right {
+    float: right;
+    background-color: #f1E5b1;
+    color: #a4b4de;
+    border-bottom-right-radius: 2px;
+    border: 1px solid #cdb48c;
+}
+.chat-right::after {
+    right: -8px;
+    bottom: 0;
+    border-left-color: #f1E5b1;
+    border-bottom-color: #f1E5b1;
+}
+
+/* 清除浮動防止圖片亂跑 */
+.entry-content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
