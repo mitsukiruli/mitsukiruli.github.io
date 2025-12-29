@@ -1260,3 +1260,19 @@ section {
     padding-right: 20px 15px;
   }
 }
+
+/* 確保 details 展開後的內容容器不會溢出 */
+details .content-box {
+    overflow: hidden; /* 防止內容溢出 */
+    width: 100%;      /* 確保容器寬度正確 */
+    box-sizing: border-box;
+}
+
+/* 核心修正：讓 details 裡面的所有圖片最大寬度為 100% */
+details img {
+    max-width: 100%;  /* 圖片寬度最高只能跟父容器一樣寬 */
+    height: auto;     /* 高度依比例縮放，防止變形 */
+    display: block;   /* 消除圖片下方微小間隙 */
+    margin: 10px auto; /* 讓圖片居中並保有一點上下間距 */
+}
+
