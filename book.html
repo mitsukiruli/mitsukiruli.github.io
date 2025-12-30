@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>我的多重世界線</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="lobby" class="page active">
+        <h1>探索不同世界線</h1>
+        <div class="world-container">
+            <div class="world-card" onclick="openWorld('世界線 A')">
+                <div class="gif-placeholder">GIF 預留位置</div>
+                <div class="card-text">世界線 A：黎明時刻</div>
+            </div>
+            <div class="world-card" onclick="openWorld('世界線 B')">
+                <div class="gif-placeholder">GIF 預留位置</div>
+                <div class="card-text">世界線 B：機械之城</div>
+            </div>
+            </div>
+    </div>
+
+    <div id="world-detail" class="page">
+        <button onclick="goHome()" class="back-btn">← 返回世界地圖</button>
+        <h2 id="current-world-title">世界名稱</h2>
+
+        <div class="content-sections">
+            <div class="section-box">
+                <h3>📌 主線劇情</h3>
+                <ul id="main-story-list"><li>文章加載中...</li></ul>
+            </div>
+            <div class="section-box">
+                <h3>☕ 日常生活</h3>
+                <ul id="daily-list"><li>文章加載中...</li></ul>
+            </div>
+            <div class="section-box">
+                <h3>📜 世界設定</h3>
+                <ul id="setting-list"><li>文章加載中...</li></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
