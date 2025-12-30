@@ -168,6 +168,176 @@ h2.world-title-center {
 /* =============================================================
    7. 折疊選單 (Accordion)
    ============================================================= */
+/* =============================================================
+   1. 基礎設定
+   ============================================================= */
+body {
+    font-family: "Shippori Mincho B1", sans-serif !important;
+    color: #272829;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+h2.world-title-center {
+    font-family: "Shippori Mincho B1", serif !important;
+    color: #173b6c !important;
+    text-align: center !important;
+    margin: 30px auto !important;
+    border: none !important;
+    display: block;
+}
+
+/* =============================================================
+   2. 橫幅圖片區 (Banner) - 解決手機溢出
+   ============================================================= */
+.world-banner-container {
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto 30px auto;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(165, 214, 242, 0.2);
+    box-sizing: border-box; 
+}
+
+#world-banner-img {
+    width: 100% !important;   
+    max-width: 100% !important; 
+    height: auto !important;   
+    display: block;
+    object-fit: cover;
+}
+/*=============================================================
+   3. 第一層：大地圖卡片
+   ============================================================= */
+.world-timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.world-card-entry {
+    position: relative;
+    height: 140px;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #eef7fd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+.world-card-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(165, 214, 242, 0.3);
+    border-color: #a5d6f2;
+}
+
+.world-card-info h3 {
+    margin: 0; 
+    font-size: 1.4rem; 
+    color: #173b6c;
+    font-family: "Shippori Mincho B1", serif;
+}
+
+/* =============================================================
+   4. 第二層：概覽格線 (手機版已優化)
+   ============================================================= */
+.world-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.world-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    border-top: 3px solid #a5d6f2;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    .world-grid { gap: 8px; }
+    .world-box { padding: 15px 5px; }
+    .world-box h4 { font-size: 0.85rem; }
+    /* 修正 Banner 邊距 */
+    .world-banner-container {
+        width: 95%; /* 手機版留一點點邊邊比較美 */
+    }
+}
+/*=============================================================
+   5. 第三層：閱讀器與文章字體
+   ============================================================= */
+.article-reader {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #e1f2fb;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+
+
+
+/*
+/* =============================================================
+   5. 內文排版 (故事與設定)
+   ============================================================= */
+.article-body-text, .accordion-body {
+    font-family: "Shippori Mincho B1", serif !important;
+    font-size: 1.2rem !important;
+    line-height: 2.2 !important;
+    color: #4a4a4a !important;
+    white-space: pre-wrap !important;
+    text-align: left !important;
+    display: block !important;
+}
+
+.article-inner-title {
+    font-family: "Shippori Mincho B1", serif;
+    font-size: 1.7rem !important;
+    color: #173b6c;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e1f2fb;
+}
+
+/* =============================================================
+   6. 底部導覽列 - 覆蓋 Bootstrap 藍色與底線
+   ============================================================= */
+#main-footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 40px 0;
+}
+
+#main-footer-nav a, 
+#main-footer-nav a span {
+    color: #a5d6f2 !important; 
+    text-decoration: none !important; 
+    border-bottom: none !important;
+    font-size: 1.1rem !important;
+}
+
+#main-footer-nav a:hover {
+    color: #c2dff0 !important;
+}
+
+
+
+/* =============================================================
+   7. 折疊選單 (Accordion)
+   ============================================================= */
 .accordion-item {
     border-bottom: 1px solid #e1f2fb !important;
     display: block !important;
@@ -214,5 +384,6 @@ h2.world-title-center {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(165, 214, 242, 0.4);
 }
+
 
 
