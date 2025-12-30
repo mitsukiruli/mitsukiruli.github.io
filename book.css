@@ -161,3 +161,18 @@
     min-height: 300px;
 }
 .back-btn { background: #555; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
+/* 使用 class 選擇器，這樣不會影響到網站其他地方的 h2 */
+h2.world-title-center {
+    font-family: "Shippori Mincho B1", serif !important; /* 確保字體統一 */
+    color: #173b6c !important; /* 使用模板的深藍色 */
+    text-align: center !important; /* 強制置中 */
+    margin: 30px auto !important;
+    border: none !important; /* 如果原本模板有底線，這裡可以選擇移除 */
+    display: block;
+    width: 100%;
+}
+
+/* 為了保險，我們也可以針對「詳細頁容器」內的 h2 做設定 */
+#world-detail-page h2 {
+    text-align: center;
+}
