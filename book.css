@@ -1,3 +1,9 @@
+body {
+  font-family: "Shippori Mincho B1", sans-serif;
+  color: #272829;
+  font-size: 17px; /* 稍微放大全域基礎字級，提升閱讀感 */
+  line-height: 1.6;
+}
 /* 字體與基本配色 */
 .world-title-font {
     font-family: "Shippori Mincho B1", serif;
