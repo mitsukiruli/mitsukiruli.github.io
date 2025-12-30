@@ -20,11 +20,31 @@ window.onhashchange = handleUrlHash;
 
 function handleUrlHash() {
     const hash = decodeURIComponent(window.location.hash.substring(1));
-    if (!hash || !worldData) {
-        // 如果沒有 Hash，確保回到大廳
-        if (currentStep !== 'lobby') location.reload(); 
+    
+    // 如果沒有 Hash，且目前不在大廳，才回到大廳狀態
+    if (!hash) {
+        if (currentStep !== 'lobby') {
+            document.getElementById('world-detail-page').style.display = 'none';
+            document.getElementById('world-lobby').style.display = 'block';
+            const mainNav = document.getElementById('main-footer-nav');
+            if (mainNav) mainNav.style.display = 'flex';
+            currentStep = 'lobby';
+        }
         return;
     }
+
+    if (!worldData) return; // 確保資料載入才執行後續
+
+    const parts = hash.split('|');
+    if (parts.length === 1) {
+        switchWorld(parts[0], false);
+    } else if (parts.length === 3) {
+        switchWorld(parts[0], false);
+        showChapters(parts[1], false);
+        displayArticle(parts[0], parts[1], parseInt(parts[2]), false);
+    }
+}
+
 
     const parts = hash.split('|');
     if (parts.length === 1) {
