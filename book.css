@@ -250,3 +250,18 @@ h2.world-title-center {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* 強制取消 book 頁面連結的底線，並統一顏色 */
+.footer-nav a {
+    color: #a5d6f2 !important;
+    text-decoration: none !important;
+}
+
+.footer-nav a:hover {
+    color: #c2dff0 !important;
+    text-decoration: none !important;
+}
+
+/* 針對 book 內部的文字清單 (如果有出現底線) 也可以一併處理 */
+.chapter-list li a {
+    text-decoration: none !important;
+}
