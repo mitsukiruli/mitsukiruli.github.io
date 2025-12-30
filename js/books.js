@@ -41,18 +41,41 @@ function showChapters(category) {
     document.getElementById('overview-grid').style.display = 'none';
     document.getElementById('chapter-view').style.display = 'block';
     document.getElementById('category-title').innerText = category;
+    document.getElementById('article-reader').style.display = 'none'; // 確保閱讀器是關閉的
 
     let chapters = (worldData && worldData[worldName]) ? worldData[worldName][category] : null;
     let html = "";
 
     if (chapters) {
         chapters.forEach((item, index) => {
-            html += `<li onclick="displayArticle('${worldName}', '${category}', ${index})">
+            // ⚡️ 關鍵判斷：如果分類是「世界設定」，改用折疊標籤
+            if (category === '世界設定') {
+                html += `
+                    <li class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>${item.title}</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-body">${item.content}</div>
+                        </div>
+                    </li>`;
+            } else {
+                // 一般目錄維持原本的跳轉第三層邏輯
+                html += `
+                    <li onclick="displayArticle('${worldName}', '${category}', ${index})">
                         <span>${item.title}</span>
-                     </li>`;
+                    </li>`;
+            }
         });
     }
     list.innerHTML = html || "<li>內容準備中，敬請期待...</li>";
+}
+
+// ⚡️ 新增：控制折疊展開的函數
+function toggleAccordion(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
 }
 
 // 4. 顯示文章內容
