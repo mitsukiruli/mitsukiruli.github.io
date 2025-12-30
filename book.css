@@ -176,3 +176,34 @@ h2.world-title-center {
 #world-detail-page h2 {
     text-align: center;
 }
+
+/* 文章閱讀區域的容器 */
+.article-reader {
+    background: #fff;
+    padding: 30px;
+    line-height: 2.0; /* 稍微調高，閱讀較不吃力 */
+    color: #333;
+    font-size: 1.1rem;
+    border-radius: 15px;
+    border: 1px solid #e1f2fb; /* 淺藍邊框 */
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* JSON 抓出來的文章標題 */
+.article-inner-title {
+    text-align: center;
+    color: #173b6c; /* 模板深藍色 */
+    font-family: "Shippori Mincho B1", serif;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #a5d6f2; /* 水藍色裝飾線 */
+    padding-bottom: 15px;
+}
+
+/* 文章內文的字體樣式 */
+.article-body-text {
+    font-family: "Shippori Mincho B1", serif;
+    white-space: pre-wrap; /* ⚡️ 關鍵：保留 JSON 裡的換行 */
+}
+
