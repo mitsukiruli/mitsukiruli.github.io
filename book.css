@@ -1,19 +1,50 @@
+/* =============================================================
+   1. 基礎字體與全域設定
+   ============================================================= */
 body {
-  font-family: "Shippori Mincho B1", sans-serif;
-  color: #272829;
-  font-size: 17px; /* 稍微放大全域基礎字級，提升閱讀感 */
-  line-height: 1.6;
+    font-family: "Shippori Mincho B1", sans-serif;
+    color: #272829;
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
-/* 字體與基本配色 */
-.world-title-font {
-    font-family: "Shippori Mincho B1", serif;
-    color: #173b6c;
-    text-align: center;
-    margin: 30px 0;
+/* 標題樣式 */
+h2.world-title-center {
+    font-family: "Shippori Mincho B1", serif !important;
+    color: #173b6c !important;
+    text-align: center !important;
+    margin: 30px auto !important;
+    border: none !important;
+    display: block;
+    width: 100%;
 }
 
-/* 第一層：大卡片樣式 */
+/* =============================================================
+   2. 橫幅圖片區 (Banner) - 已修正手機溢出問題
+   ============================================================= */
+.world-banner-container {
+    width: 100%;
+    max-width: 800px; /* 電腦版最大寬度 */
+    margin: 0 auto 30px auto;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(165, 214, 242, 0.2);
+    box-sizing: border-box; /* 確保 padding 不會撐破容器 */
+}
+
+#world-banner-img {
+    width: 100%;    /* 讓圖片寬度跟隨容器 */
+    max-width: 100%; /* 強制不超出手機螢幕 */
+    height: auto;   /* 比例自適應 */
+    display: block;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+}
+
+/* =============================================================
+   3. 第一層：大地圖卡片
+   ============================================================= */
 .world-timeline-container {
     display: flex;
     flex-direction: column;
@@ -40,32 +71,19 @@ body {
     border-color: #a5d6f2;
 }
 
-.world-gif-layer {
-    width: 100%;
-    height: 100%;
-    background-color: #f5f8fd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #a4b4de;
-}
-
-.world-card-info {
-    position: absolute;
-    bottom: 0; left: 0; width: 100%;
-    padding: 15px 25px;
-    background: linear-gradient(transparent, rgba(255, 255, 255, 0.9) 70%);
-}
-
 .world-card-info h3 {
-    margin: 0; font-size: 1.4rem; color: #173b6c;
+    margin: 0; 
+    font-size: 1.4rem; 
+    color: #173b6c;
     font-family: "Shippori Mincho B1", serif;
 }
 
-/* 第二層：三欄概覽 */
+/* =============================================================
+   4. 第二層：概覽格線 (手機版已優化)
+   ============================================================= */
 .world-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 強制三欄 */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -80,159 +98,122 @@ body {
     transition: 0.3s;
 }
 
-.world-box:hover {
-    background: #f5f8fd;
-    transform: scale(1.03);
-}
-
-.world-box h4 {
-    font-size: 1.1rem; color: #173b6c; margin: 0;
-}
-
-/* 章節目錄樣式 */
-.chapter-view {
-    display: none;
-    background: #fff;
-    border-radius: 15px;
-    padding: 20px;
-    border: 1px solid #e1f2fb;
-    animation: fadeIn 0.4s ease;
-}
-
-#category-title {
-    color: #a5d6f2;
-    border-bottom: 2px solid #f5f8fd;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.chapter-list {
-    list-style: none; padding: 0;
-}
-
-.chapter-list li {
-    padding: 12px;
-    border-bottom: 1px dashed #e1f2fb;
-    cursor: pointer;
-    transition: 0.2s;
-    display: flex;
-    justify-content: space-between;
-}
-
-.chapter-list li:hover {
-    background: #f5f8fd;
-    padding-left: 20px;
-    color: #a5d6f2;
-}
-
-/* 返回按鈕 */
-.btn-world-back {
-    background: #f5f8fd;
-    color: #173b6c;
-    border: 1px solid #a5d6f2;
-    padding: 8px 18px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-world-back:hover {
-    background: #a5d6f2; color: #fff;
-}
-
-/* 手機版適配：強制三排與間距縮小 */
 @media (max-width: 768px) {
     .world-grid { gap: 8px; }
     .world-box { padding: 15px 5px; }
     .world-box h4 { font-size: 0.85rem; }
-    .world-box h4 i { display: block; font-size: 1.2rem; margin-bottom: 5px; }
+    /* 修正 Banner 邊距 */
+    .world-banner-container {
+        width: 95%; /* 手機版留一點點邊邊比較美 */
+    }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-}
-
-/* 三個區塊排版 */
-.content-sections {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* 三欄佈局 */
-    gap: 20px;
-    margin-top: 30px;
-}
-.section-box {
-    background: #2a2a2a;
-    padding: 15px;
-    border-radius: 8px;
-    min-height: 300px;
-}
-.back-btn { background: #555; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; }
-/* 使用 class 選擇器，這樣不會影響到網站其他地方的 h2 */
-h2.world-title-center {
-    font-family: "Shippori Mincho B1", serif !important; /* 確保字體統一 */
-    color: #173b6c !important; /* 使用模板的深藍色 */
-    text-align: center !important; /* 強制置中 */
-    margin: 30px auto !important;
-    border: none !important; /* 如果原本模板有底線，這裡可以選擇移除 */
-    display: block;
-    width: 100%;
-}
-
-/* 為了保險，我們也可以針對「詳細頁容器」內的 h2 做設定 */
-#world-detail-page h2 {
-    text-align: center;
-}
-
-/* 文章閱讀區域的容器 */
+/* =============================================================
+   5. 第三層：閱讀器與文章字體
+   ============================================================= */
 .article-reader {
     background: #fff;
-    padding: 30px;
-    line-height: 2.0; /* 稍微調高，閱讀較不吃力 */
-    color: #333;
-    font-size: 1.2rem;
+    padding: 25px;
     border-radius: 15px;
-    border: 1px solid #e1f2fb; /* 淺藍邊框 */
+    border: 1px solid #e1f2fb;
     margin-top: 20px;
     animation: fadeIn 0.5s ease;
 }
 
-/* JSON 抓出來的文章標題 */
-
-.article-body-text {
-    font-family: "Shippori Mincho B1", serif;
-    font-size: 1.25rem !important; /* ⚡️ 再次放大！這會比一般文字大 25% */
-    line-height: 2.2 !important;  /* ⚡️ 增加行距，避免字多時擠在一起 */
-    color: #4a4a4a;               /* 使用 yume.css 的深灰色，閱讀更柔和 */
-    white-space: pre-wrap;        /* 保留 JSON 換行 */
-    letter-spacing: 0.02em;       /* 增加一點字距，更有文學感 */
+.article-body-text, 
+.accordion-body {
+    font-family: "Shippori Mincho B1", serif !important;
+    font-size: 1.25rem !important;
+    line-height: 2.2 !important;
+    color: #4a4a4a !important;
+    white-space: pre-wrap !important;
+    display: block !important;
+    text-align: left !important;
 }
 
-/* 文章內部的標題也要跟著變大 */
 .article-inner-title {
     font-family: "Shippori Mincho B1", serif;
     font-size: 1.8rem !important;
-    color: #173b6c;               /* 模板深藍色 */
+    color: #173b6c;
     text-align: center;
     margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 2px solid #e1f2fb; /* 水藍色裝飾線 */
+    border-bottom: 2px solid #e1f2fb;
 }
 
-/* 如果文章裡面有圖片，確保比例也好看 */
-.article-body-text img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin: 20px 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+/* =============================================================
+   6. 世界設定：折疊選單
+   ============================================================= */
+.accordion-item {
+    border-bottom: 1px solid #e1f2fb !important;
+    display: block !important;
 }
 
-/* --- 補上：世界線內部專用的返回按鈕樣式 --- */
-.world-footer-nav {
+.accordion-header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #173b6c;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #fffcfc;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 2000px;
+    border-top: 1px dashed #e1f2fb;
+}
+
+/* =============================================================
+   7. 底部導覽列 - 強制修正顏色與底線問題
+   ============================================================= */
+#main-footer-nav {
     display: flex;
     justify-content: center;
-    padding: 30px 0;
+    align-items: center;
+    gap: 25px;
+    padding: 40px 0;
+}
+
+/* 強力鎖定上一頁/下一頁的顏色與無底線 */
+#main-footer-nav a, 
+#main-footer-nav a span {
+    color: #a5d6f2 !important; /* yume 淺藍色 */
+    text-decoration: none !important;
+    font-size: 1.1rem !important;
+    border-bottom: none !important;
+}
+
+#main-footer-nav a:hover, 
+#main-footer-nav a:hover span {
+    color: #c2dff0 !important;
+}
+
+/* 中間圓形按鈕保持粉色 (依據 yume.css) */
+.cute-back-top-button {
+    background-color: #f7d9e4 !important;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(247, 217, 228, 0.6);
+}
+
+/* =============================================================
+   8. 其他功能樣式
+   ============================================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .cute-world-back-button {
@@ -247,156 +228,5 @@ h2.world-title-center {
     border: none;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(165, 214, 242, 0.4);
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
-
-.cute-world-back-button:hover {
-    background-color: #a5d6f2;
-    color: #fff;
-    transform: translateY(-3px);
-}
-
-/* 修正：文章圖片限制 */
-#article-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: block;
-    margin: 15px auto;
-}
-
-/* --- 世界設定：折疊選單樣式 --- */
-.accordion-item {
-    border-bottom: 1px solid #e1f2fb !important;
-    padding: 0 !important; /* 覆蓋原本 li 的 padding */
-    display: block !important; /* 覆蓋原本的 flex */
-}
-
-.accordion-header {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-weight: bold;
-    color: #173b6c;
-}
-
-.accordion-header:hover {
-    background: #f5f8fd;
-}
-
-.accordion-header i {
-    transition: transform 0.3s;
-}
-
-/* 展開時箭頭旋轉 */
-.accordion-item.active .accordion-header i {
-    transform: rotate(180deg);
-}
-
-/* 折疊內容區塊 */
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out, padding 0.3s ease;
-    background-color: #fffcfc;
-}
-
-.accordion-item.active .accordion-content {
-    max-height: 1000px; /* 給一個足夠大的高度 */
-    border-top: 1px dashed #e1f2fb;
-}
-
-.accordion-body {
-    padding: 20px;
-    font-size: 1.2rem; /* 比照你要求的大字體 */
-    line-height: 2;
-    color: #4a4a4a;
-}
-
-
-/* 確保 fadeIn 動畫存在 */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-
-
-
-
-/* 針對 book 內部的文字清單 (如果有出現底線) 也可以一併處理 */
-.chapter-list li a {
-    text-decoration: none !important;
-}
-
-/* 世界 Banner 容器 */
-.world-banner-container {
-    width: 100%;
-    max-width: 800px; /* 限制最大寬度與你的大地圖容器一致 */
-    margin: 0 auto 30px auto; /* 底部留白 30px 與選單隔開 */
-    overflow: hidden;
-   /* border-radius: 15px;  圓角質感 */
-    box-shadow: 0 4px 15px rgba(165, 214, 242, 0.2); /* 淺藍色陰影 */
-}
-
-/* 圖片本身 */
-#world-banner-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover; /* 確保圖片填滿容器不變形 */
-    transition: opacity 0.4s ease; /* 切換時的淡入效果 */
-}
-
-/* =============================================================
-   強力修復：確保文章內文與折疊區內文的排版與字體
-   ============================================================= */
-
-/* 1. 同時設定故事內文 (.article-body-text) 與 設定折疊區 (.accordion-body) */
-.article-body-text, 
-.accordion-body {
-    font-family: "Shippori Mincho B1", serif !important;
-    font-size: 1.25rem !important; /* 放大字體 */
-    line-height: 2.2 !important;  /* 增加行距，更易閱讀 */
-    color: #4a4a4a !important;     /* 深灰色質感 */
-    white-space: pre-wrap !important; /* ⚡️ 關鍵：保留 JSON 裡的換行 */
-    display: block !important;
-    text-align: left !important;
-}
-
-/* 2. 處理內部的段落或是換行標籤 */
-.article-body-text p, 
-.accordion-body p {
-    margin-bottom: 1.5rem !important;
-}
-
-/* 3. 如果裡面有標註（例如「血族」這種小標題），可以額外美化 */
-.article-body-text b, 
-.accordion-body b,
-.article-body-text strong, 
-.accordion-body strong {
-    color: #173b6c;
-    font-size: 1.4rem;
-    display: block;
-    margin-top: 20px;
-}
-
-
-
-/* 確保上一頁/下一頁連結沒有底線且顏色統一 */
-#main-footer-nav a {
-    text-decoration: none !important;
-    font-size: 1.1rem !important; /* 同步放大導航文字 */
-}
-/* 強制取消 book 頁面連結的底線，並統一顏色 */
-.footer-nav a {
-    color: #a5d6f2 !important;
-    text-decoration: none !important;
-}
-
-.footer-nav a:hover {
-    color: #c2dff0 !important;
-    text-decoration: none !important;
-}
-
