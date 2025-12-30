@@ -53,3 +53,4 @@ function showChapters(category) {
                         <span>${item.title}</span>
                      </li>`;
         });
+    }
