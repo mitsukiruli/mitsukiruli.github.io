@@ -4,7 +4,7 @@
 body {
     font-family: "Shippori Mincho B1", sans-serif !important;
     color: #272829;
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.6;
 }
 
@@ -42,7 +42,7 @@ h2.world-title-center {
    ============================================================= */
 .article-body-text, .accordion-body {
     font-family: "Shippori Mincho B1", serif !important;
-    font-size: 1.25rem !important;
+    font-size: 1.2rem !important;
     line-height: 2.2 !important;
     color: #4a4a4a !important;
     white-space: pre-wrap !important;
@@ -52,7 +52,7 @@ h2.world-title-center {
 
 .article-inner-title {
     font-family: "Shippori Mincho B1", serif;
-    font-size: 1.8rem !important;
+    font-size: 1.7rem !important;
     color: #173b6c;
     text-align: center;
     margin-bottom: 30px;
