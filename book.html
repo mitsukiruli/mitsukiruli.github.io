@@ -13,66 +13,53 @@
     </head>
 <body>
 <section id="world-system" class="section-bg">
-    
     <div id="world-lobby" class="container">
         <div class="section-title">
-            <h2 id="display-world-name" class="world-title-center">our stroy</h2>
+            <h2 class="world-title-center">Our Story</h2>
             <p>點擊下方時空片段進入不同的故事軸線。</p>
         </div>
         <div class="world-timeline-container">
-            
-
-<div class="world-card-entry" onclick="switchWorld('story.html')">
-        <div class="world-gif-layer">GIF</div>
-        <div class="world-card-info"><h3>日常</h3></div>
-</div>
-            
-    <div class="world-card-entry" onclick="switchWorld('日常世界')">
-        <div class="world-gif-layer">GIF</div>
-        <div class="world-card-info"><h3>獵人vanilLa✕吸血鬼瑠璃</h3></div>
-    </div>
-
-    
-
-    <div class="world-card-entry" onclick="switchWorld('世界線 B')">
-        <div class="world-gif-layer">GIF</div>
-        <div class="world-card-info"><h3>鷹院三年級生vanilLa✕鷹院一年級生瑠璃</h3></div>
-    </div>
-
-
-
-            
+            <div class="world-card-entry" onclick="switchWorld('story.html')">
+                <div class="world-gif-layer">GIF</div>
+                <div class="world-card-info"><h3>日常</h3></div>
             </div>
+            <div class="world-card-entry" onclick="switchWorld('獵人vanilLa✕吸血鬼瑠璃')">
+                <div class="world-gif-layer">GIF</div>
+                <div class="world-card-info"><h3>獵人vanilLa✕吸血鬼瑠璃</h3></div>
+            </div>
+            <div class="world-card-entry" onclick="switchWorld('鷹院三年級生vanilLa✕鷹院一年級生瑠璃')">
+                <div class="world-gif-layer">GIF</div>
+                <div class="world-card-info"><h3>鷹院三年級生vanilLa✕鷹院一年級生瑠璃</h3></div>
+            </div>
+        </div>
     </div>
 
     <div id="world-detail-page" class="container" style="display: none;">
-        <div class="nav-controls">
-            <button class="btn-world-back" onclick="handleBack()">
-                <i class="bi bi-arrow-left"></i> <span id="back-text">返回</span>
-            </button>
-        </div>
-        
-        <h2 id="display-world-name" class="world-title-font"></h2>
+        <h2 id="display-world-name" class="world-title-center"></h2>
 
         <div id="overview-grid" class="world-grid">
-            <div class="world-box" onclick="showChapters('主線劇情')">
-                <h4><i class="bi bi-journal-bookmark"></i> 主線</h4>
-            </div>
-            <div class="world-box" onclick="showChapters('世界日常')">
-                <h4><i class="bi bi-cup-hot"></i> 日常</h4>
-            </div>
-            <div class="world-box" onclick="showChapters('世界設定')">
-                <h4><i class="bi bi-gear"></i> 設定</h4>
-            </div>
+            <div class="world-box" onclick="showChapters('主線劇情')"><h4>主線</h4></div>
+            <div class="world-box" onclick="showChapters('世界日常')"><h4>日常</h4></div>
+            <div class="world-box" onclick="showChapters('世界設定')"><h4>設定</h4></div>
         </div>
 
-        <div id="chapter-view" class="chapter-view">
+        <div id="chapter-view" class="chapter-view" style="display: none;">
             <h3 id="category-title"></h3>
-            <ul class="chapter-list" id="chapter-data">
-                </ul>
+            <ul class="chapter-list" id="chapter-data"></ul>
+        </div>
+
+        <div id="article-reader" class="article-reader" style="display: none;">
+            <div id="article-content"></div>
+        </div>
+
+        <div class="world-footer-nav">
+            <button class="cute-world-back-button" onclick="handleBack()">
+                <i class="bi bi-arrow-left"></i>
+            </button>
         </div>
     </div>
 </section>
+
     <script src="js/books.js"></script>
 
     <div class="footer-nav">
