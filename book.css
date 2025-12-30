@@ -349,6 +349,40 @@ h2.world-title-center {
     transition: opacity 0.4s ease; /* 切換時的淡入效果 */
 }
 
+/* =============================================================
+   強力修復：確保文章內文與折疊區內文的排版與字體
+   ============================================================= */
+
+/* 1. 同時設定故事內文 (.article-body-text) 與 設定折疊區 (.accordion-body) */
+.article-body-text, 
+.accordion-body {
+    font-family: "Shippori Mincho B1", serif !important;
+    font-size: 1.25rem !important; /* 放大字體 */
+    line-height: 2.2 !important;  /* 增加行距，更易閱讀 */
+    color: #4a4a4a !important;     /* 深灰色質感 */
+    white-space: pre-wrap !important; /* ⚡️ 關鍵：保留 JSON 裡的換行 */
+    display: block !important;
+    text-align: left !important;
+}
+
+/* 2. 處理內部的段落或是換行標籤 */
+.article-body-text p, 
+.accordion-body p {
+    margin-bottom: 1.5rem !important;
+}
+
+/* 3. 如果裡面有標註（例如「血族」這種小標題），可以額外美化 */
+.article-body-text b, 
+.accordion-body b,
+.article-body-text strong, 
+.accordion-body strong {
+    color: #173b6c;
+    font-size: 1.4rem;
+    display: block;
+    margin-top: 20px;
+}
+
+
 
 /* 確保上一頁/下一頁連結沒有底線且顏色統一 */
 #main-footer-nav a {
