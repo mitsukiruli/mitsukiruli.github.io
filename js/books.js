@@ -49,7 +49,7 @@ function showChapters(category) {
     if (chapters) {
         chapters.forEach((item, index) => {
             // ⚡️ 關鍵判斷：如果分類是「世界設定」，改用折疊標籤
-            if (category === '設定') {
+            if (category === '世界設定') {
                 html += `
                     <li class="accordion-item">
                         <div class="accordion-header" onclick="toggleAccordion(this)">
