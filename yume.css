@@ -675,6 +675,14 @@ h1 {
     text-align: left;
 }
 
+/* ⚡️ 確保內容框內的圖片不會溢出，並保持圓角 */
+.interactive-gallery .content-box img {
+    max-width: 100%;    /* 寬度最大就是框框的 100% */
+    height: auto;       /* 自動維持比例，不會壓扁 */
+    border-radius: 8px; /* 給圖片一點點小圓角，視覺更統一 */
+    display: block;     /* 消除圖片下方多餘的間隙 */
+    margin: 10px auto;  /* 圖片居中並保留上下間距 */
+}
 
 /* ===================================== */
 /* 底部導航容器：置中與留白 */
