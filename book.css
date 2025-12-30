@@ -251,22 +251,7 @@ h2.world-title-center {
     border: 1px solid #e1f2fb;
 }
 
-.accordion-body {
-    padding: 40px 50px !important;
-    font-family: "Shippori Mincho B1", serif !important;
-    font-size: 1.2rem !important;
-    color: #4a4a4a !important;
-    
-    /* 豎排設定 */
-    writing-mode: vertical-lr;    /* ⚡️ lr 代表 Left to Right (由左至右) */
-    text-orientation: mixed;      /* 確保中英文混排時的方向正確 */
-    
-    height: 450px;                /* ⚡️ 固定高度，超過會自動產生橫向捲軸 */
-    width: auto;
-    line-height: 2.5 !important;  /* 直排時行距要稍微加大才好看 */
-    letter-spacing: 0.1em;        /* 增加字距，更有文學感 */
-    overflow-x: auto;             /* 如果文字太多，會出現左右捲軸 */
-}
+
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
