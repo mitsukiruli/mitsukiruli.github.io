@@ -133,17 +133,11 @@ function showChapters(category, updateHash = true) {
     list.innerHTML = html || "<li>內容準備中，敬請期待...</li>";
 }
 
-function toggleAccordion(element) {
-    const item = element.parentElement;
-    item.classList.toggle('active');
-}
-
-// 4. 顯示文章內容
+// 4. 顯示文章內容 (主線與日常)
 function displayArticle(world, cat, index, updateHash = true) {
     currentStep = 'reader';
     const article = worldData[world][cat][index];
     
-    // ⚡️ 進入文章時更新 Hash 記錄位置
     if (updateHash) {
         window.location.hash = encodeURIComponent(`${world}|${cat}|${index}`);
     }
@@ -153,6 +147,8 @@ function displayArticle(world, cat, index, updateHash = true) {
 
     document.getElementById('chapter-view').style.display = 'none';
     document.getElementById('article-reader').style.display = 'block';
+    
+    // ⚡️ 關鍵：確保內文包在 article-body-text 裡面
     document.getElementById('article-content').innerHTML = `
         <h3 class="article-inner-title">${article.title}</h3>
         <div class="article-body-text">${article.content}</div>
