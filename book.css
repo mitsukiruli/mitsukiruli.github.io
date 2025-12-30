@@ -188,6 +188,16 @@ h2.world-title-center {
     font-size: 1.1rem;
 }
 
+/* --- 世界線內部專用的返回按鈕容器 --- */
+.world-footer-nav {
+    display: flex;            /* 使用 Flex 佈局 */
+    justify-content: center;   /* ⚡️ 水平置中 */
+    align-items: center;       /* 垂直置中 */
+    padding: 60px 0 40px 0;    /* ⚡️ 增加上方間距 (60px)，讓它不貼近內容 */
+    width: 100%;              /* 確保容器撐滿寬度才能置中 */
+    clear: both;              /* 避免被上方浮動元素影響 */
+}
+
 .cute-world-back-button {
     display: inline-flex;
     justify-content: center;
@@ -200,7 +210,16 @@ h2.world-title-center {
     border: none;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(165, 214, 242, 0.4);
+    transition: all 0.3s ease;
+    outline: none;            /* 移除點擊時的藍色外框 */
 }
+
+.cute-world-back-button:hover {
+    background-color: #a5d6f2;
+    color: #fff;
+    transform: translateY(-3px); /* 滑過時往上飄一點點，更有質感 */
+}
+
 
 /* =============================================================
    8. 折疊選單 (Accordion)
