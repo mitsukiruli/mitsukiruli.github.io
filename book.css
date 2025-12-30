@@ -5,13 +5,6 @@ body {
   line-height: 1.6;
 }
 
-/* 確保上一頁/下一頁連結沒有底線且顏色統一 */
-#main-footer-nav a {
-    text-decoration: none !important;
-    font-size: 1.1rem !important; /* 同步放大導航文字 */
-}
-
-
 /* 字體與基本配色 */
 .world-title-font {
     font-family: "Shippori Mincho B1", serif;
@@ -345,3 +338,10 @@ h2.world-title-center {
 .chapter-list li a {
     text-decoration: none !important;
 }
+
+/* 確保上一頁/下一頁連結沒有底線且顏色統一 */
+#main-footer-nav a {
+    text-decoration: none !important;
+    font-size: 1.1rem !important; /* 同步放大導航文字 */
+}
+
