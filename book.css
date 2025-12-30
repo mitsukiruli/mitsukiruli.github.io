@@ -323,6 +323,38 @@ h2.world-title-center {
     to { opacity: 1; transform: translateY(0); }
 
 
+
+
+/* 針對 book 內部的文字清單 (如果有出現底線) 也可以一併處理 */
+.chapter-list li a {
+    text-decoration: none !important;
+}
+
+/* 世界 Banner 容器 */
+.world-banner-container {
+    width: 100%;
+    max-width: 800px; /* 限制最大寬度與你的大地圖容器一致 */
+    margin: 0 auto 30px auto; /* 底部留白 30px 與選單隔開 */
+    overflow: hidden;
+   /* border-radius: 15px;  圓角質感 */
+    box-shadow: 0 4px 15px rgba(165, 214, 242, 0.2); /* 淺藍色陰影 */
+}
+
+/* 圖片本身 */
+#world-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* 確保圖片填滿容器不變形 */
+    transition: opacity 0.4s ease; /* 切換時的淡入效果 */
+}
+
+
+/* 確保上一頁/下一頁連結沒有底線且顏色統一 */
+#main-footer-nav a {
+    text-decoration: none !important;
+    font-size: 1.1rem !important; /* 同步放大導航文字 */
+}
 /* 強制取消 book 頁面連結的底線，並統一顏色 */
 .footer-nav a {
     color: #a5d6f2 !important;
@@ -332,16 +364,5 @@ h2.world-title-center {
 .footer-nav a:hover {
     color: #c2dff0 !important;
     text-decoration: none !important;
-}
-
-/* 針對 book 內部的文字清單 (如果有出現底線) 也可以一併處理 */
-.chapter-list li a {
-    text-decoration: none !important;
-}
-
-/* 確保上一頁/下一頁連結沒有底線且顏色統一 */
-#main-footer-nav a {
-    text-decoration: none !important;
-    font-size: 1.1rem !important; /* 同步放大導航文字 */
 }
 
