@@ -189,7 +189,7 @@ h2.world-title-center {
     padding: 30px;
     line-height: 2.0; /* 稍微調高，閱讀較不吃力 */
     color: #333;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     border-radius: 15px;
     border: 1px solid #e1f2fb; /* 淺藍邊框 */
     margin-top: 20px;
@@ -263,6 +263,58 @@ h2.world-title-center {
     display: block;
     margin: 15px auto;
 }
+
+/* --- 世界設定：折疊選單樣式 --- */
+.accordion-item {
+    border-bottom: 1px solid #e1f2fb !important;
+    padding: 0 !important; /* 覆蓋原本 li 的 padding */
+    display: block !important; /* 覆蓋原本的 flex */
+}
+
+.accordion-header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: bold;
+    color: #173b6c;
+}
+
+.accordion-header:hover {
+    background: #f5f8fd;
+}
+
+.accordion-header i {
+    transition: transform 0.3s;
+}
+
+/* 展開時箭頭旋轉 */
+.accordion-item.active .accordion-header i {
+    transform: rotate(180deg);
+}
+
+/* 折疊內容區塊 */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    background-color: #fffcfc;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 1000px; /* 給一個足夠大的高度 */
+    border-top: 1px dashed #e1f2fb;
+}
+
+.accordion-body {
+    padding: 20px;
+    font-size: 1.2rem; /* 比照你要求的大字體 */
+    line-height: 2;
+    color: #4a4a4a;
+}
+
 
 /* 確保 fadeIn 動畫存在 */
 @keyframes fadeIn {
