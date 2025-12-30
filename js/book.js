@@ -1,39 +1,53 @@
-let currentStep = 'lobby'; 
-let worldData = null; 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 獲取所有互動卡片
+    const emojiCards = document.querySelectorAll('.interactive-gallery .emoji-card');
+    // 獲取內容展示區
+    const contentArea = document.getElementById('expanded-content-area');
 
-// 1. 初始載入 JSON 數據
-fetch('data.json')
-    .then(response => response.json())
-    .then(data => { 
-        worldData = data; 
-        console.log("JSON 資料載入成功");
-    })
-    .catch(err => console.error("無法讀取 JSON 資料:", err));
+    emojiCards.forEach(card => {
+        // 監聽 summary 點擊事件
+        const summary = card.querySelector('summary');
+        
+        summary.addEventListener('click', (event) => {
+            // 阻止 <details> 標籤預設的開合行為
+            event.preventDefault(); 
+            
+            const contentId = card.getAttribute('data-content-id');
+            const templateContent = document.getElementById(contentId);
+            const isActive = card.classList.contains('active');
 
-// 2. 切換世界大地圖 -> 進入概覽
-function switchWorld(target) {
-    // 檢查是否為外部跳轉連結
-    if (target.endsWith('.html')) {
-        window.location.href = target;
-        return;
-    }
-
-    // --- 關鍵修改：隱藏最外層導航 (picture.html/calendar.html 那排) ---
-    const mainNav = document.getElementById('main-footer-nav');
-    if (mainNav) mainNav.style.display = 'none';
-
-    currentStep = 'overview';
-    document.getElementById('world-lobby').style.display = 'none';
-    document.getElementById('world-detail-page').style.display = 'block';
-    document.getElementById('overview-grid').style.display = 'grid';
-    document.getElementById('chapter-view').style.display = 'none';
-    document.getElementById('article-reader').style.display = 'none';
-    
-    document.getElementById('display-world-name').innerText = target;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// 3. 顯示章節目錄
+            // 1. 清除所有活動狀態和內容
+            emojiCards.forEach(c => c.classList.remove('active'));
+            contentArea.innerHTML = '';
+            
+            // 2. 決定是關閉還是展開新的內容
+            if (!isActive) {
+                // 如果目前是關閉狀態，則展開新的內容
+                
+                card.classList.add('active'); // 標記為活動狀態 (用於 CSS 樣式)
+                
+                if (templateContent) {
+                    // 複製模板內容並添加到展示區
+                    const newContent = templateContent.cloneNode(true);
+                    newContent.removeAttribute('id'); // 移除 ID 避免重複
+                    
+                    // 設置動畫
+                    newContent.style.opacity = 0; 
+                    contentArea.appendChild(newContent);
+                    
+                    setTimeout(() => {
+                        newContent.style.opacity = 1;
+                    }, 50);
+                }
+                
+                // (可選) 滾動到內容區
+                contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+});
+</script>
 function showChapters(category) {
     currentStep = 'chapters';
     const worldName = document.getElementById('display-world-name').innerText;
