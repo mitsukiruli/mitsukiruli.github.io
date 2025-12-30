@@ -1,21 +1,47 @@
 let currentStep = 'lobby'; 
+let currentStep = 'lobby'; 
 let worldData = null; 
 
-// 1. 初始載入 JSON 數據
-fetch('data.json')
-    .then(response => response.json())
-    .then(data => { 
-        worldData = data; 
-        console.log("JSON 資料載入成功");
-    })
-    .catch(err => console.error("無法讀取 JSON 資料:", err));
+// 1. 初始載入 JSON 數據並檢查網址 Hash
+window.onload = function() {
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => { 
+            worldData = data; 
+            console.log("JSON 資料載入成功");
+            
+            // ⚡️ 核心：檢查網址是否有 # 號，如果有就自動跳轉
+            handleUrlHash();
+        })
+        .catch(err => console.error("無法讀取 JSON 資料:", err));
+};
 
-// 2. 切換世界大地圖 -> 進入概覽
-function switchWorld(target) {
+// ⚡️ 監聽網址變化 (當使用者按瀏覽器上一頁/下一頁時也能運作)
+window.onhashchange = handleUrlHash;
+
+function handleUrlHash() {
+    const hash = decodeURIComponent(window.location.hash.substring(1));
+    if (!hash || !worldData) return;
+
+    // 解析 Hash 格式：世界|分類|索引 (例如：獵人...|主線劇情|0)
+    const parts = hash.split('|');
+    if (parts.length === 1) {
+        switchWorld(parts[0], false); // 只跳轉到世界概覽
+    } else if (parts.length === 3) {
+        switchWorld(parts[0], false);
+        showChapters(parts[1], false);
+        displayArticle(parts[0], parts[1], parseInt(parts[2]), false);
+    }
+}
+// 2. 切換世界大地圖 (updateHash 參數用來防止無限迴圈)
+function switchWorld(target, updateHash = true) {
     if (target.endsWith('.html')) {
         window.location.href = target;
         return;
     }
+
+    if (updateHash) window.location.hash = encodeURIComponent(target);
+
 
     // ⚡️ 動態切換 Banner 圖片路徑
     const bannerImg = document.getElementById('world-banner-img');
