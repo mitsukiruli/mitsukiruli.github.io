@@ -197,20 +197,34 @@ h2.world-title-center {
 }
 
 /* JSON 抓出來的文章標題 */
-.article-inner-title {
-    text-align: center;
-    color: #173b6c; /* 模板深藍色 */
-    font-family: "Shippori Mincho B1", serif;
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #a5d6f2; /* 水藍色裝飾線 */
-    padding-bottom: 15px;
-}
 
-/* 文章內文的字體樣式 */
 .article-body-text {
     font-family: "Shippori Mincho B1", serif;
-    white-space: pre-wrap; /* ⚡️ 關鍵：保留 JSON 裡的換行 */
+    font-size: 1.25rem !important; /* ⚡️ 再次放大！這會比一般文字大 25% */
+    line-height: 2.2 !important;  /* ⚡️ 增加行距，避免字多時擠在一起 */
+    color: #4a4a4a;               /* 使用 yume.css 的深灰色，閱讀更柔和 */
+    white-space: pre-wrap;        /* 保留 JSON 換行 */
+    letter-spacing: 0.02em;       /* 增加一點字距，更有文學感 */
+}
+
+/* 文章內部的標題也要跟著變大 */
+.article-inner-title {
+    font-family: "Shippori Mincho B1", serif;
+    font-size: 1.8rem !important;
+    color: #173b6c;               /* 模板深藍色 */
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e1f2fb; /* 水藍色裝飾線 */
+}
+
+/* 如果文章裡面有圖片，確保比例也好看 */
+.article-body-text img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* --- 補上：世界線內部專用的返回按鈕樣式 --- */
