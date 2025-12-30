@@ -37,7 +37,7 @@ h2.world-title-center {
     object-fit: cover;
 }
 /*=============================================================
-   3. 第一層：大地圖卡片
+   3. 第一層：大地圖卡片 - 修正標題跑位問題
    ============================================================= */
 .world-timeline-container {
     display: flex;
@@ -57,6 +57,10 @@ h2.world-title-center {
     border: 1px solid #eef7fd;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: 0.3s;
+    /* ⚡️ 確保內容垂直置中對齊 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
 }
 
 .world-card-entry:hover {
@@ -65,12 +69,25 @@ h2.world-title-center {
     border-color: #a5d6f2;
 }
 
+/* ⚡️ 修正標題容器：確保標題在底部且有漸層遮罩 */
+.world-card-info {
+    width: 100%;
+    padding: 20px 25px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 40%, transparent 100%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+}
+
 .world-card-info h3 {
     margin: 0; 
     font-size: 1.4rem; 
     color: #173b6c;
     font-family: "Shippori Mincho B1", serif;
+    text-align: left; /* 若想置中可改 center */
 }
+
 
 /* =============================================================
    4. 第二層：概覽格線 (手機版已優化)
