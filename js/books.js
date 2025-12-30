@@ -1,61 +1,55 @@
-let currentStep = 'lobby'; // lobby -> overview -> chapters
+let currentStep = 'lobby'; 
+let worldData = null; 
 
+// 1. 初始載入 JSON 數據
+fetch('data.json')
+    .then(response => response.json())
+    .then(data => { 
+        worldData = data; 
+        console.log("JSON 資料載入成功");
+    })
+    .catch(err => console.error("無法讀取 JSON 資料:", err));
+
+// 2. 切換世界大地圖 -> 進入概覽
 function switchWorld(target) {
-    // 檢查目標是否為外部 HTML 連結
-    if (target.endsWith('.html') || target.startsWith('http')) {
+    // 檢查是否為外部跳轉連結
+    if (target.endsWith('.html')) {
         window.location.href = target;
-        return; // 直接跳轉，不執行後續邏輯
+        return;
     }
 
-    // 原有的內部切換邏輯
+    // --- 關鍵修改：隱藏最外層導航 (picture.html/calendar.html 那排) ---
+    const mainNav = document.getElementById('main-footer-nav');
+    if (mainNav) mainNav.style.display = 'none';
+
     currentStep = 'overview';
     document.getElementById('world-lobby').style.display = 'none';
     document.getElementById('world-detail-page').style.display = 'block';
     document.getElementById('overview-grid').style.display = 'grid';
     document.getElementById('chapter-view').style.display = 'none';
+    document.getElementById('article-reader').style.display = 'none';
     
     document.getElementById('display-world-name').innerText = target;
-    document.getElementById('back-text').innerText = '返回大地圖';
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ... 剩下的 showChapters 和 handleBack 函數維持不變 ...
-
-
-
-
+// 3. 顯示章節目錄
 function showChapters(category) {
     currentStep = 'chapters';
+    const worldName = document.getElementById('display-world-name').innerText;
+    const list = document.getElementById('chapter-data');
+    
     document.getElementById('overview-grid').style.display = 'none';
     document.getElementById('chapter-view').style.display = 'block';
     document.getElementById('category-title').innerText = category;
-    document.getElementById('back-text').innerText = '返回分組';
 
-    // 模擬章節資料 - 你之後可以根據各個世界線擴充此處
-    const list = document.getElementById('chapter-data');
-    if (category === '主線劇情') {
-        list.innerHTML = `
-            <li onclick="alert('跳轉到文章頁面')"><span>序章：時空啟程</span><small>Vol.01</small></li>
-            <li onclick="alert('跳轉到文章頁面')"><span>第一章：水藍色的約定</span><small>Vol.02</small></li>
-        `;
-    } else {
-        list.innerHTML = `<li>該分類尚無內容...</li>`;
-    }
-}
+    // 從 JSON 中抓取對應分類的文章
+    let chapters = (worldData && worldData[worldName]) ? worldData[worldName][category] : null;
+    let html = "";
 
-function handleBack() {
-    if (currentStep === 'chapters') {
-        // 從章節返回三區塊概覽
-        document.getElementById('chapter-view').style.display = 'none';
-        document.getElementById('overview-grid').style.display = 'grid';
-        document.getElementById('back-text').innerText = '返回大地圖';
-        currentStep = 'overview';
-    } else if (currentStep === 'overview') {
-        // 從概覽返回大地圖
-        document.getElementById('world-detail-page').style.display = 'none';
-        document.getElementById('world-lobby').style.display = 'block';
-        currentStep = 'lobby';
-    }
-}
-
-
+    if (chapters) {
+        chapters.forEach((item, index) => {
+            html += `<li onclick="displayArticle('${worldName}', '${category}', ${index})">
+                        <span>${item.title}</span>
+                     </li>`;
+        });
