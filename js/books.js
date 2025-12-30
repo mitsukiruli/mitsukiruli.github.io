@@ -1,16 +1,28 @@
 let currentStep = 'lobby'; // lobby -> overview -> chapters
 
-function switchWorld(worldName) {
+function switchWorld(target) {
+    // 檢查目標是否為外部 HTML 連結
+    if (target.endsWith('.html') || target.startsWith('http')) {
+        window.location.href = target;
+        return; // 直接跳轉，不執行後續邏輯
+    }
+
+    // 原有的內部切換邏輯
     currentStep = 'overview';
     document.getElementById('world-lobby').style.display = 'none';
     document.getElementById('world-detail-page').style.display = 'block';
     document.getElementById('overview-grid').style.display = 'grid';
     document.getElementById('chapter-view').style.display = 'none';
     
-    document.getElementById('display-world-name').innerText = worldName;
+    document.getElementById('display-world-name').innerText = target;
     document.getElementById('back-text').innerText = '返回大地圖';
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// ... 剩下的 showChapters 和 handleBack 函數維持不變 ...
+
+
+
 
 function showChapters(category) {
     currentStep = 'chapters';
@@ -45,3 +57,5 @@ function handleBack() {
         currentStep = 'lobby';
     }
 }
+
+
