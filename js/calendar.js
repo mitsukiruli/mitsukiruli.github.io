@@ -141,3 +141,8 @@ document.addEventListener('click', () => {
     const dropdown = document.getElementById('year-dropdown');
     if (dropdown) dropdown.style.display = 'none';
 });
+
+// 頁面載入後自動執行切換到 2026 的邏輯
+document.addEventListener('DOMContentLoaded', () => {
+    selectYear('2026'); 
+});
