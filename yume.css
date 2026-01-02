@@ -200,15 +200,7 @@ h1 {
 
 
 /* 外層排版 */
-.counter-layout {
-  display: grid;
-  grid-template-columns: 1fr auto; /* 左右：左邊置中, 右邊靠右 */
-  align-items: center;
-  gap: 10px;
-  margin: 40px auto;
-  max-width: 1000px;
-  padding: 20px;
-}
+
 
 /* 記日器保持置中 */
 .center-counter {
