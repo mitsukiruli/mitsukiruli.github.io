@@ -476,8 +476,8 @@ h1 {
     }
 
     .counter-character {
-        width: 150px;       /* 手機版縮小圖片 */
-        bottom: 82%;
+        width: 220px;       /* 手機版縮小圖片 */
+        bottom: 70%;
     }
 
     #love-counter-card {
