@@ -415,7 +415,11 @@ h1 {
     /* 核心定位設定 */
     position: relative; 
     overflow: visible !important; /* ⚡️ 必備：允許角色圖片超出邊框往上長 */
-    margin-top: 120px;            /* ⚡️ 給上方角色留出的空間，避免壓到內容 */
+    margin-top: 100px;            /* ⚡️ 給上方角色留出的空間，避免壓到內容 */
+    transform: translateY(-60px); 
+    
+    /* ⚡️ 補償空間：因為往上移了，給原本的位置留一點 margin 防止下方元素貼上來 */
+    margin-bottom: -40px;
 }
 
 /* 3. 角色插圖定位 */
