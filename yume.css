@@ -403,7 +403,7 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 40px auto;
+    margin: -40px auto 40px;
     max-width: 1000px;
     padding: 20px;
 }
