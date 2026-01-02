@@ -197,35 +197,8 @@ h1 {
 /*--------------------------------------------------------------
 # 記日器
 --------------------------------------------------------------*/
-/* 1. 確保父容器是定位基準 */
-#love-counter-card {
-    position: relative; /* 必備：讓圖片相對於卡片定位 */
-    padding-top: 40px;  /* 增加上方內邊距，幫角色留空間 */
-    overflow: visible;  /* 必備：允許角色超出卡片邊界 */
-}
 
-/* 2. 設定角色的擺放位置 */
-.counter-character {
-    position: absolute;
-    bottom: 85%;       /* 從卡片底部往上推，讓角色坐在邊框上 */
-    left: 50%;         /* 置中基準 */
-    transform: translateX(-50%); /* 修正置中偏移 */
-    width: 200px;      /* 電腦版圖片寬度 */
-    z-index: 10;       /* 確保蓋在卡片上面 */
-    pointer-events: none; /* ⚡️重要：讓滑鼠穿透圖片，才點得到底下的選單 */
-}
 
-/* 3. 手機版自動縮小 (螢幕小於 480px 時) */
-@media (max-width: 480px) {
-    .counter-character {
-        width: 140px;  /* 手機版圖片縮小 */
-        bottom: 80%;   /* 稍微調整上下位置 */
-    }
-    
-    #love-counter-card {
-        padding-top: 30px; /* 手機版間距也縮小一點 */
-    }
-}
 /* 外層排版 */
 .counter-layout {
   display: grid;
@@ -1218,7 +1191,35 @@ section {
   }
 }
 
+/* 1. 確保外層卡片是定位基準 */
+#love-counter-card {
+    position: relative; /* 必備 */
+    overflow: visible;  /* 必備：允許圖片超出邊框往上長 */
+    margin-top: 100px;  /* 增加上方間距，避免角色碰到上面的文字 */
+}
 
+/* 2. 設定角色圖片的定位 */
+.counter-character {
+    position: absolute;
+    /* 調整 bottom 值，讓角色看起來是坐在卡片頂端 */
+    bottom: 90%;       
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;      /* 電腦版寬度 */
+    z-index: 100;      /* 確保在最上層 */
+    pointer-events: none; /* 滑鼠穿透，才點得到底下的計數器 */
+}
+
+/* 3. 手機版自動縮小 */
+@media (max-width: 768px) {
+    .counter-character {
+        width: 160px;  /* 手機版縮小圖片 */
+        bottom: 85%;   /* 手機版微調高度 */
+    }
+    #love-counter-card {
+        margin-top: 80px; /* 手機版間距縮小 */
+    }
+}
 
 /*--------------------------------------------------------------
 # Footer
