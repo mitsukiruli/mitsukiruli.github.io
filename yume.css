@@ -407,7 +407,7 @@ h1 {
   font-family: "Comic Sans MS", "Segoe UI", sans-serif;
   box-shadow: 0 6px 15px rgba(235, 242, 247, 0.5);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 #love-counter-card h3 {
