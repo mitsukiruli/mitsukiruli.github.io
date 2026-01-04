@@ -57,7 +57,7 @@ function switchWorld(target, updateHash = true) {
     if (target === '獵人vanilLa✕吸血鬼瑠璃') {
         bannerImg.src = 'img/testimonials/v/無標題306_20251230221312.jpg';
     } else if (target === '鷹院三年級生vanilLa✕鷹院一年級生瑠璃') {
-        bannerImg.src = 'img/testimonials/v/無標題306_20251230221312.jpg';
+        bannerImg.src = 'img/testimonials/v/無標題306_20260105011536.png';
     }
 
     const mainNav = document.getElementById('main-footer-nav');
