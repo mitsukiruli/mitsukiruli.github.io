@@ -64,7 +64,7 @@
     ]
   },
 
-  "abo 學pa":{
+  "abo✕學pa":{
     "主線劇情":[],
     "世界日常":[],
     "世界設定":[
@@ -72,7 +72,7 @@
       "title":"制服",
       "content":"<img src='img/testimonials/v/IMG_1872.jpeg' class='setting-char-img'><img src='img/testimonials/IMG_1872.jpeg' class='setting-char-img'>",
       }
-    ],
+    ]
     
   }
 }
