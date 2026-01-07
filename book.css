@@ -284,3 +284,32 @@ h2.world-title-center {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+
+/* 世界設定人設圖樣式 */
+.setting-char-img {
+    display: block;
+    width: 280px;            /* 設定圖片寬度 */
+    height: auto;
+    margin: 0 auto 20px auto; /* 置中顯示，並留下方間距 */
+    border-radius: 15px;      /* 圓角美化 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 輕微陰影 */
+}
+
+/* 如果您希望文字環繞圖片（圖片在右側） */
+@media (min-width: 768px) {
+    .setting-char-img {
+        float: right;         /* 平板電腦以上向右浮動 */
+        width: 250px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+/* 確保浮動後內容不會跑位 */
+.accordion-body::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
