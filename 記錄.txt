@@ -1,0 +1,3 @@
+story123 是對應oc的世界觀 使用style2.css、js/books.js
+
+story&books.js是給ruli的 book.html裡面是story.html
