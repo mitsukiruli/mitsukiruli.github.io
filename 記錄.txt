@@ -1,3 +1,25 @@
 story123 是對應oc的世界觀 使用style2.css、js/books.js
 
 story&books.js是給ruli的 book.html裡面是story.html
+
+
+便利貼格式
+
+<div class="teacher-memo mt-4">
+  <div class="memo-header">
+    <i class="bi bi-chat-heart-fill"></i> 委託需求備註 (給老師參考)
+  </div>
+  <div class="memo-body">
+    <p><b>✨ 委託重點：</b></p>
+    <ul>
+      <li>希望表情可以偏向「冷淡但帶點溫柔」的感覺。</li>
+      <li>服裝請參考「第一套」或是「學者」設定。</li>
+      <li>細節注意：嘴角的一顆痣，以及髮尾的銀色漸層。</li>
+      <li>配件：可以自由發揮加上一些魔法書或藥水瓶。</li>
+    </ul>
+    
+    <div class="memo-footer">
+      如有任何問題歡迎隨時私訊討論！
+    </div>
+  </div>
+</div>
