@@ -1,0 +1,45 @@
+/* 委託備註小卡 */
+.teacher-memo {
+  border: 2px solid #986db2;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(152, 109, 178, 0.1);
+}
+
+.memo-header {
+  background: #986db2;
+  color: #fff;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.memo-body {
+  padding: 20px;
+  color: #444;
+  line-height: 1.8;
+}
+
+.memo-body b {
+  color: #986db2;
+}
+
+.memo-body ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.memo-body li {
+  margin-bottom: 8px;
+  list-style-type: '🌙 '; /* 用月亮當清單圖示，呼應你的角色 */
+}
+
+.memo-footer {
+  font-size: 0.9rem;
+  color: #888;
+  border-top: 1px dashed #eee;
+  padding-top: 10px;
+  text-align: right;
+  font-style: italic;
+}
