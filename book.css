@@ -312,4 +312,23 @@ h2.world-title-center {
     display: table;
     clear: both;
 }
+/* 微調後的 Notion 風格引用區塊 */
+.notion-quote {
+    border-left: 4px solid #a5d6f2; /* ⚡️ 改用你網站的主色調：水藍色 */
+    padding: 10px 20px;            /* 增加內距，讓文字更有呼吸感 */
+    margin: 25px 0;                /* 增加上下間距，區隔劇情段落 */
+    color: #4a4a4a;                /* 深灰色文字，閱讀不刺眼 */
+    font-family: "Shippori Mincho B1", serif !important;
+    font-size: 1.1rem;             /* 稍微縮小一點點，做出層次感 */
+    line-height: 1.8;              /* 適中的行高 */
+}
+
+/* 📱 手機版微調 */
+@media (max-width: 768px) {
+    .notion-quote {
+        padding: 8px 15px;         /* 手機版縮小內距，節省空間 */
+        margin: 15px 0;            /* 縮小上下間距 */
+        font-size: 1rem;           /* 手機版文字適度縮小 */
+    }
+}
 
