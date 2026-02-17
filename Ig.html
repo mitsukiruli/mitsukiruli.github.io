@@ -232,31 +232,42 @@
         </div>
 
     </div>
+<script>
+    const filters = document.querySelectorAll('.highlight-item');
+const posts = document.querySelectorAll('.post');
 
-    <script>
-        const filters = document.querySelectorAll('.highlight-item');
-        const posts = document.querySelectorAll('.post');
+filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+        // 1. 切換 active 樣式
+        filters.forEach(f => f.classList.remove('active'));
+        filter.classList.add('active');
 
-        filters.forEach(filter => {
-            filter.addEventListener('click', () => {
-                // 1. 切換 active 樣式
-                filters.forEach(f => f.classList.remove('active'));
-                filter.classList.add('active');
+        // 2. 獲取點擊的目標分類
+        const target = filter.getAttribute('data-target');
 
-                // 2. 獲取分類名稱
-                const target = filter.getAttribute('data-target');
+        // 3. 過濾圖片
+        posts.forEach(post => {
+            const category = post.getAttribute('data-category');
+            const isSecret = post.hasAttribute('data-secret'); // 檢查是否有秘密屬性
 
-                // 3. 過濾圖片
-                posts.forEach(post => {
-                    const category = post.getAttribute('data-category');
-                    if (target === 'all' || category === target) {
-                        post.classList.remove('hidden');
-                    } else {
-                        post.classList.add('hidden');
-                    }
-                });
-            });
+            if (target === 'all') {
+                // 如果是「全部展示」，隱藏帶有 data-secret 的照片，顯示其他的
+                if (isSecret) {
+                    post.classList.add('hidden');
+                } else {
+                    post.classList.remove('hidden');
+                }
+            } else {
+                // 如果是特定角色，只顯示該角色的照片（包含秘密照片）
+                if (category === target) {
+                    post.classList.remove('hidden');
+                } else {
+                    post.classList.add('hidden');
+                }
+            }
         });
+    });
+});
     </script>
 </body>
 </html>
