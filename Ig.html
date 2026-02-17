@@ -9,6 +9,7 @@
             --bg-color: #fafafa;
             --border-color: #dbdbdb;
             --text-main: #262626;
+            --ig-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
         }
 
         body {
@@ -18,7 +19,6 @@
             color: var(--text-main);
         }
 
-        /* 導覽列 */
         nav {
             background: white;
             border-bottom: 1px solid var(--border-color);
@@ -37,7 +37,6 @@
             padding: 30px 20px;
         }
 
-        /* 個人檔案 */
         .header {
             display: flex;
             align-items: center;
@@ -53,11 +52,7 @@
             object-fit: cover;
         }
 
-        .user-info h2 {
-            font-weight: 300;
-            font-size: 28px;
-            margin: 0;
-        }
+        .user-info h2 { font-weight: 300; font-size: 28px; margin: 0; }
 
         /* 精選動態 */
         .highlights {
@@ -66,7 +61,6 @@
             padding: 10px 0 40px;
             overflow-x: auto;
             border-bottom: 1px solid var(--border-color);
-            margin-bottom: 0;
         }
 
         .highlight-item {
@@ -86,12 +80,18 @@
             background: white;
             margin-bottom: 5px;
             object-fit: cover;
+            transition: all 0.2s;
         }
 
-        .highlight-name {
-            font-size: 12px;
-            font-weight: 600;
+        /* 選中時的 IG 彩虹邊框效果 */
+        .highlight-item.active .highlight-circle {
+            border: 2px solid transparent;
+            background-image: linear-gradient(white, white), var(--ig-gradient);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
         }
+
+        .highlight-name { font-size: 12px; font-weight: 600; }
 
         /* 貼文網格 */
         .post-grid {
@@ -116,11 +116,9 @@
             transition: filter 0.3s;
         }
 
-        .post:hover img {
-            filter: brightness(0.8);
-        }
+        /* 隱藏邏輯 */
+        .post.hidden { display: none; }
 
-        /* 手機版調整 */
         @media (max-width: 735px) {
             .profile-pic { width: 80px; height: 80px; margin-right: 30px; }
             .post-grid { gap: 3px; }
@@ -143,29 +141,53 @@
         </header>
 
         <div class="highlights">
-            <div class="highlight-item">
-                <img src="https://via.placeholder.com/80" class="highlight-circle">
+            <div class="highlight-item active" data-target="all">
+                <div class="highlight-circle" style="display: flex; align-items: center; justify-content: center; background: #eee;">全</div>
+                <span class="highlight-name">全部</span>
+            </div>
+            <div class="highlight-item" data-target="char-a">
+                <img src="https://via.placeholder.com/80/FFB6C1" class="highlight-circle">
                 <span class="highlight-name">角色 A</span>
             </div>
-            <div class="highlight-item">
-                <img src="https://via.placeholder.com/80" class="highlight-circle">
+            <div class="highlight-item" data-target="char-b">
+                <img src="https://via.placeholder.com/80/ADD8E6" class="highlight-circle">
                 <span class="highlight-name">角色 B</span>
             </div>
-            <div class="highlight-item">
-                <img src="https://via.placeholder.com/80" class="highlight-circle">
-                <span class="highlight-name">角色 C</span>
-            </div>
-            </div>
+        </div>
 
         <div class="post-grid">
-            <div class="post"><img src="https://via.placeholder.com/300" alt="週邊1"></div>
-            <div class="post"><img src="https://via.placeholder.com/300" alt="週邊2"></div>
-            <div class="post"><img src="https://via.placeholder.com/300" alt="週邊3"></div>
-            <div class="post"><img src="https://via.placeholder.com/300" alt="週邊4"></div>
-            <div class="post"><img src="https://via.placeholder.com/300" alt="週邊5"></div>
-            <div class="post"><img src="https://via.placeholder.com/300" alt="週邊6"></div>
+            <div class="post" data-category="char-a"><img src="https://via.placeholder.com/300/FFB6C1?text=A-1"></div>
+            <div class="post" data-category="char-b"><img src="https://via.placeholder.com/300/ADD8E6?text=B-1"></div>
+            <div class="post" data-category="char-a"><img src="https://via.placeholder.com/300/FFB6C1?text=A-2"></div>
+            <div class="post" data-category="char-b"><img src="https://via.placeholder.com/300/ADD8E6?text=B-2"></div>
+            <div class="post" data-category="char-a"><img src="https://via.placeholder.com/300/FFB6C1?text=A-3"></div>
         </div>
     </div>
 
+    <script>
+        const filters = document.querySelectorAll('.highlight-item');
+        const posts = document.querySelectorAll('.post');
+
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // 1. 切換按鈕的高亮狀態
+                filters.forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+
+                // 2. 取得要過濾的角色標籤
+                const target = filter.getAttribute('data-target');
+
+                // 3. 顯示或隱藏貼文
+                posts.forEach(post => {
+                    const category = post.getAttribute('data-category');
+                    if (target === 'all' || category === target) {
+                        post.classList.remove('hidden');
+                    } else {
+                        post.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
