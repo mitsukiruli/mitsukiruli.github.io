@@ -142,7 +142,23 @@ document.addEventListener('click', () => {
     if (dropdown) dropdown.style.display = 'none';
 });
 
-// 頁面載入後自動執行切換到 2026 的邏輯
+// 頁面載入後自動執行
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. 先初始化 2026 年的按鈕連結
     selectYear('2026'); 
+
+    // 2. 取得目前的月份 (0 = 1月, 1 = 2月...)
+    const now = new Date();
+    const currentMonthIndex = now.getMonth(); 
+    
+    // 3. 取得所有的月份按鈕
+    const monthButtons = document.querySelectorAll('.month-btn');
+
+    // 4. 自動點擊對應當前月份的按鈕
+    if (monthButtons[currentMonthIndex]) {
+        monthButtons[currentMonthIndex].click();
+    } else {
+        // 如果找不到對應按鈕（例如測試未來月份），預設點擊第一個
+        monthButtons[0].click();
+    }
 });
