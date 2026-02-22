@@ -59,6 +59,10 @@
           <details class="emoji-card" data-content-id="story6">
                 <summary class="emoji-trigger"><span role="img" aria-label="圍巾">圍巾</span></summary>
           </details>
+
+          <details class="emoji-card" data-content-id="questionnaire">
+    <summary class="emoji-trigger"><span role="img" aria-label="問卷">表單</span></summary>
+</details>
           
         </div>
         
@@ -415,6 +419,39 @@ VanilLa沒有躲，只是步伐放慢了半拍，像是在配合她。
             </p>
       </div>
 
+      <div class="content-box" id="questionnaire">
+    <h4>問卷調查</h4>
+    <p>這裡記錄了我們一起填過的各種問卷與挑戰 ✨</p>
+      
+    <div class="question-grid">
+
+      <div class="question-group">
+        <a href="img/question_B_1.jpg" class="glightbox question-item" data-gallery="group-B">
+            <div class="question-folder">
+                <img src="img/question_B_1.jpg" alt="封面" loading="lazy">
+                <span class="folder-label">食用指南</span>
+            </div>
+        </a>
+        <a href="img/question_B_2.jpg" class="glightbox" data-gallery="group-B" style="display:none;"></a>
+    </div>
+</div>
+      
+        <a href="img/your-question-2.jpg" class="glightbox question-item" data-gallery="questions">
+            <div class="question-folder">
+                <img src="img/your-question-2.jpg" alt="問卷2" loading="lazy">
+                <span class="folder-label">cp說明書</span>
+            </div>
+        </a>
+
+        <a href="img/your-question-3.jpg" class="glightbox question-item" data-gallery="questions">
+            <div class="question-folder">
+                <img src="img/your-question-3.jpg" alt="問卷3" loading="lazy">
+                <span class="folder-label">角色 20 問</span>
+            </div>
+        </a>
+    </div>
+</div>
+
     </div>
    
     
@@ -547,6 +584,54 @@ document.addEventListener('DOMContentLoaded', () => {
   .character-cards .card {
     min-width: 250px;
   }
+  /* 問卷網格佈局 */
+.question-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 強制兩兩一排 */
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.question-item {
+    text-decoration: none !important;
+    display: block;
+}
+
+.question-folder {
+    position: relative;
+    aspect-ratio: 1 / 1; /* 強制正方形 */
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.question-folder:hover {
+    transform: translateY(-5px);
+}
+
+.question-folder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 讓圖片填滿正方形 */
+    border-bottom: 30px solid #eee; /* 模擬資料夾底部標籤感 */
+}
+
+.folder-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background: rgba(238, 238, 238, 0.9);
+    color: #555;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+}
 </style>
 
 </body>
