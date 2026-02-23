@@ -419,37 +419,36 @@ VanilLa沒有躲，只是步伐放慢了半拍，像是在配合她。
             </p>
       </div>
 
-      <div class="content-box" id="questionnaire">
+<div class="content-box" id="questionnaire">
     <h4>表單</h4>
-    <p></p>
-      
     <div class="question-grid">
+        <div class="question-group">
+            <a href="img/testimonials/v/IMG_2020.png" class="glightbox question-item" data-gallery="group-B">
+                <div class="question-folder">
+                    <img src="img/testimonials/v/IMG_2020.png" alt="封面" loading="lazy">
+                    <span class="folder-label">食用指南</span>
+                </div>
+            </a>
+            <a href="img/testimonials/v/無標題24_20260221235834.png" class="glightbox" data-gallery="group-B" style="display:none;"></a>
+        </div>
 
-      <div class="question-group">
-        <a href="img/testimonials/v/IMG_2020.png" class="glightbox question-item" data-gallery="group-B">
-            <div class="question-folder">
-                <img src="img/testimonials/v/IMG_2020.png" alt="封面" loading="lazy">
-                <span class="folder-label">食用指南</span>
-            </div>
-        </a>
-        <a href="img/testimonials/v/無標題24_20260221235834.png" class="glightbox" data-gallery="group-B" style="display:none;"></a>
-    </div>
+        <div class="question-group">
+            <a href="img/testimonials/v/IMG_1180.jpg" class="glightbox question-item" data-gallery="group-CP">
+                <div class="question-folder">
+                    <img src="img/testimonials/v/IMG_1180.jpg" alt="問卷2" loading="lazy">
+                    <span class="folder-label">cp說明書</span>
+                </div>
+            </a>
+        </div>
 
-      
-        <a href="img/testimonials/v/IMG_1180.jpg" class="glightbox question-item" data-gallery="questions">
-            <div class="question-folder">
-                <img src="img/testimonials/v/IMG_1180.jpg" alt="問卷2" loading="lazy">
-                <span class="folder-label">cp說明書</span>
-            </div>
-        </a>
-
-        <a href="img/your-question-3.jpg" class="glightbox question-item" data-gallery="questions">
-            <div class="question-folder">
-                <img src="img/your-question-3.jpg" alt="問卷3" loading="lazy">
-                <span class="folder-label">角色 20 問</span>
-            </div>
-        </a>
-      
+        <div class="question-group">
+            <a href="img/your-question-3.jpg" class="glightbox question-item" data-gallery="group-20">
+                <div class="question-folder">
+                    <img src="img/your-question-3.jpg" alt="問卷3" loading="lazy">
+                    <span class="folder-label">角色 20 問</span>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 
@@ -574,6 +573,43 @@ document.addEventListener('DOMContentLoaded', () => {
             // 如果 isActive 為 true，則點擊會執行上面的清除，達到關閉效果。
 
             // (可選) 滾動到內容區
+            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+});
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const emojiCards = document.querySelectorAll('.interactive-gallery .emoji-card');
+    const contentArea = document.getElementById('expanded-content-area');
+
+    // 先宣告一個全域的 lightbox 變數
+    let storyLightbox = GLightbox({ selector: '.glightbox' });
+
+    emojiCards.forEach(card => {
+        card.addEventListener('click', (event) => {
+            event.preventDefault(); 
+            const contentId = card.getAttribute('data-content-id');
+            const templateContent = document.getElementById(contentId);
+            const isActive = card.classList.contains('active');
+
+            emojiCards.forEach(c => c.classList.remove('active'));
+            contentArea.innerHTML = '';
+            
+            if (!isActive) {
+                card.classList.add('active');
+                if (templateContent) {
+                    const newContent = templateContent.cloneNode(true);
+                    newContent.removeAttribute('id'); 
+                    newContent.style.opacity = 0; 
+                    contentArea.appendChild(newContent);
+                    
+                    setTimeout(() => {
+                        newContent.style.opacity = 1;
+                        // ★ 關鍵：內容生成後，叫 Lightbox 重新掃描新加入的圖片
+                        storyLightbox.reload();
+                    }, 50);
+                }
+            }
             contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
