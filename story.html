@@ -422,33 +422,33 @@ VanilLa沒有躲，只是步伐放慢了半拍，像是在配合她。
 <div class="content-box" id="questionnaire">
     <h4>表單</h4>
     <div class="question-grid">
+        
         <div class="question-group">
-            <a href="img/testimonials/v/IMG_2020.png" class="glightbox question-item" data-gallery="group-B">
+            <div class="question-item" style="cursor:pointer;" onclick="openGallery('group-B')">
                 <div class="question-folder">
-                    <img src="img/testimonials/v/IMG_2020.png" alt="封面" loading="lazy">
+                    <img src="img/testimonials/v/IMG_2020.png" alt="封面">
                     <span class="folder-label">食用指南</span>
                 </div>
-            </a>
-            <a href="img/testimonials/v/無標題24_20260221235834.png" class="glightbox" data-gallery="group-B" style="display:none;"></a>
+            </div>
+            
+            <div id="gallery-group-B" style="display:none;">
+                <a href="img/testimonials/v/IMG_2020.png" class="glightbox" data-gallery="group-B"></a>
+                <a href="img/testimonials/v/無標題24_20260221235834.png" class="glightbox" data-gallery="group-B"></a>
+            </div>
         </div>
 
         <div class="question-group">
-            <a href="img/testimonials/v/IMG_1180.jpg" class="glightbox question-item" data-gallery="group-CP">
+            <div class="question-item" style="cursor:pointer;" onclick="openGallery('group-CP')">
                 <div class="question-folder">
-                    <img src="img/testimonials/v/IMG_1180.jpg" alt="問卷2" loading="lazy">
+                    <img src="img/testimonials/v/IMG_1180.jpg" alt="封面">
                     <span class="folder-label">cp說明書</span>
                 </div>
-            </a>
+            </div>
+            <div id="gallery-group-CP" style="display:none;">
+                <a href="img/testimonials/v/IMG_1180.jpg" class="glightbox" data-gallery="group-CP"></a>
+            </div>
         </div>
 
-        <div class="question-group">
-            <a href="img/your-question-3.jpg" class="glightbox question-item" data-gallery="group-20">
-                <div class="question-folder">
-                    <img src="img/your-question-3.jpg" alt="問卷3" loading="lazy">
-                    <span class="folder-label">角色 20 問</span>
-                </div>
-            </a>
-        </div>
     </div>
 </div>
 
@@ -495,9 +495,11 @@ VanilLa沒有躲，只是步伐放慢了半拍，像是在配合她。
 <script src="vendor/swiper/swiper-bundle.min.js"></script>
 <script src="main.js"></script> 
   <script>
+let storyLightbox;
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 初始化 GLightbox (全域共用一個實例)
-    const storyLightbox = GLightbox({
+    // 初始化 Lightbox
+    storyLightbox = GLightbox({
         selector: '.glightbox',
         touchNavigation: true,
         loop: true
@@ -559,6 +561,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+    function openGallery(galleryId) {
+    // 找到該組畫廊中的第一張隱藏連結
+    const firstImage = document.querySelector(`[data-gallery="${galleryId}"]`);
+    if (firstImage) {
+        firstImage.click(); // 觸發 Lightbox
+    }
+}
 </script>
 
 <style>
