@@ -490,47 +490,64 @@ VanilLa沒有躲，只是步伐放慢了半拍，像是在配合她。
   <!-- Template Main JS File -->
    <script src="main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script>
-  const lightbox = GLightbox({
-    selector: '.glightbox'
-  });
-  new Swiper('.character-cards', {
-  slidesPerView: 1.2,
-  spaceBetween: 20,
-  loop: false,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  breakpoints: {
-    768: {
-      slidesPerView: 2.2,
-    },
-    992: {
-      slidesPerView: 3.2,
-    },
-  }
-});
-
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const lightbox = GLightbox({
-      selector: '.glightbox'
-    });
-  });
-</script>
-  
-<script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/glightbox/js/glightbox.min.js"></script>
+<script src="vendor/swiper/swiper-bundle.min.js"></script>
+<script src="main.js"></script> 
+  <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 初始化 Lightbox
-    let storyLightbox = GLightbox({
+    // 1. 初始化 GLightbox (全域共用一個實例)
+    const storyLightbox = GLightbox({
         selector: '.glightbox',
         touchNavigation: true,
         loop: true
     });
 
-    // 2. 初始化 Swiper (如果你頁面其他地方有用到)
+    // 2. 處理 Emoji 點擊邏輯 (故事 + 問卷共用)
+    const emojiCards = document.querySelectorAll('.interactive-gallery .emoji-card');
+    const contentArea = document.getElementById('expanded-content-area');
+
+    emojiCards.forEach(card => {
+        card.addEventListener('click', function(event) {
+            // 阻止 details 標籤預設行為
+            event.preventDefault();
+            event.stopPropagation();
+
+            const contentId = this.getAttribute('data-content-id');
+            const templateContent = document.getElementById(contentId);
+            
+            // 檢查目前是否為活動狀態
+            const isActive = this.classList.contains('active');
+
+            // 先重置所有 Emoji 狀態與清空內容區
+            emojiCards.forEach(c => c.classList.remove('active'));
+            contentArea.innerHTML = '';
+
+            // 如果點擊前不是活動的，則展開新內容
+            if (!isActive) {
+                this.classList.add('active');
+                
+                if (templateContent) {
+                    const newContent = templateContent.cloneNode(true);
+                    newContent.removeAttribute('id'); // 避免重複 ID
+                    newContent.style.opacity = 0;
+                    contentArea.appendChild(newContent);
+                    
+                    // 動畫顯示
+                    setTimeout(() => {
+                        newContent.style.opacity = 1;
+                        // ★ 核心：確保問卷出現後，Lightbox 能抓到圖片
+                        storyLightbox.reload();
+                    }, 50);
+
+                    // 滾動到內容區
+                    contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+
+    // 3. Swiper 初始化 (如果有的話)
     if (document.querySelector('.character-cards')) {
         new Swiper('.character-cards', {
             slidesPerView: 1.2,
@@ -541,48 +558,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // 3. 控制 Emoji 點擊展開內容
-    const emojiCards = document.querySelectorAll('.interactive-gallery .emoji-card');
-    const contentArea = document.getElementById('expanded-content-area');
-
-    emojiCards.forEach(card => {
-        card.addEventListener('click', (event) => {
-            event.preventDefault(); 
-            
-            const contentId = card.getAttribute('data-content-id');
-            const templateContent = document.getElementById(contentId);
-            const isActive = card.classList.contains('active');
-
-            // 清除狀態
-            emojiCards.forEach(c => c.classList.remove('active'));
-            contentArea.innerHTML = '';
-            
-            if (!isActive) {
-                card.classList.add('active');
-                
-                if (templateContent) {
-                    const newContent = templateContent.cloneNode(true);
-                    newContent.removeAttribute('id'); 
-                    newContent.style.opacity = 0; 
-                    contentArea.appendChild(newContent);
-                    
-                    setTimeout(() => {
-                        newContent.style.opacity = 1;
-                        
-                        // ★ 關鍵：內容產生後，重新載入 Lightbox 偵測新圖片
-                        storyLightbox.reload();
-                    }, 50);
-                }
-            }
-
-            // 滾動到內容區
-            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
 });
 </script>
-  
 
 <style>
   .character-cards .card {
