@@ -449,6 +449,22 @@ VanilLa沒有躲，只是步伐放慢了半拍，像是在配合她。
             </div>
         </div>
 
+      <div class="question-group">
+            <a href="img/testimonials/v/IMG_1180.jpg" class="glightbox question-item" data-gallery="group-20">
+                <div class="question-folder transparent-folder">
+                    <img src="img/testimonials/v/IMG_2031.png" alt="角色20問去背圖">
+                    </div>
+            </a>
+        </div>
+
+      <div class="question-group">
+            <a href="img/your-question-3.jpg" class="glightbox question-item" data-gallery="group-20">
+                <div class="question-folder transparent-folder">
+                    <img src="img/testimonials/v/IMG_2042.png" alt="角色20問去背圖">
+                    </div>
+            </a>
+        </div>
+
     </div>
 </div>
 
@@ -622,6 +638,23 @@ document.addEventListener('DOMContentLoaded', () => {
     font-size: 12px;
     text-align: center;
     font-weight: bold;
+}
+  /* 針對去背圖片格的特殊處理 */
+.question-folder.transparent-folder {
+    background: transparent !important; /* 移除白色底色 */
+    border: none !important;           /* 移除邊框 */
+    box-shadow: none !important;        /* 移除陰影 */
+    overflow: visible !important;       /* 確保去背圖若有超出邊界不會被切掉 */
+}
+
+.question-folder.transparent-folder img {
+    object-fit: contain;               /* 確保去背圖完整顯示，不被裁切 */
+    border-bottom: none !important;    /* 移除模擬資料夾的底部灰色條 */
+}
+
+/* 懸浮效果微調：讓去背圖縮放就好，不需要陰影變換 */
+.question-folder.transparent-folder:hover {
+    transform: scale(1.05);             /* 稍微放大感 */
 }
 </style>
 
