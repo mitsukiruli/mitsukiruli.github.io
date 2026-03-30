@@ -73,7 +73,7 @@
       "content":"<img src='img/testimonials/v/IMG_1872.jpeg' class='setting-char-img'><img src='img/testimonials/IMG_1872.jpeg' class='setting-char-img'>"
       }
     ]
-  }
+  },
   "樂團": {
     "主線劇情": [
       {
@@ -92,4 +92,5 @@
       }
     ],
     "世界設定":[]
+  }
 }
