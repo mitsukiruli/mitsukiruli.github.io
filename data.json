@@ -74,5 +74,22 @@
       }
     ]
   }
-  
+  "樂團": {
+    "主線劇情": [
+      {
+        "title": "think about you",
+        "content": ""
+      }
+      {
+        "title": "coma",
+        "content": "這是第一章的內容故事。"
+      }
+    ],
+    "世界日常":[
+      {
+      "title": "chocolate",
+      "cintent":""
+      }
+    ],
+    "世界設定":[]
 }
