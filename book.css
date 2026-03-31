@@ -346,7 +346,7 @@ h2.world-title-center {
 /* 讓世界標題變色 */
 #display-world-name, .article-inner-title, #category-title {
     
-    color: #173b6c
+    color: #173b6c;
     transition: color 0.3s ease;
 }
 
