@@ -41,10 +41,10 @@ function handleUrlHash() {
 
 // 2. 切換世界大地圖 (含配色)
 const worldColors = {
-    '獵人vanilLa✕吸血鬼瑠璃': { primary: '#eb4536', secondary: '#4a60a5' },
-    '樂團': { primary: '#7f8182', secondary: '#262626' },
-    '鷹院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' },
-    'abo✕學pa': { primary: '#7d5947', secondary: '#3b2c25' }
+    '獵人vanilLa✕吸血鬼瑠璃': { primary: '#eb4536', secondary: '#4a60a5' }, // 紅色標題
+    '樂團': { primary: '#7f8182', secondary: '#262626' },                  // 灰色標題
+    '鷹院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' }, // 淺藍標題
+    'abo✕學pa': { primary: '#7d5947', secondary: '#3b2c25' }               // 咖啡色標題
 };
 
 function switchWorld(target, updateHash = true) {
