@@ -204,7 +204,7 @@ h2.world-title-center {
     /* 邊框與文字顏色會根據 JS 變數變動 */
     border: 2px solid var(--world-primary) !important;
     color: var(--world-primary) !important;
-    border-radius: 50px;
+    border-radius: 50%;
     padding: 10px 25px;
     transition: all 0.3s ease;
     /* 加入陰影 */
