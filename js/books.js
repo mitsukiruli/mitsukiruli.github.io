@@ -42,18 +42,32 @@ function handleUrlHash() {
 }
 
 // 2. 切換世界大地圖
+// 定義配色資料表
+const worldColors = {
+    '獵人vanilLa✕吸血鬼瑠璃': { primary: '#eb4536', secondary: '#4a60a5' },
+    '樂團': { primary: '#7f8182', secondary: '#262626' },
+    '鷹院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' },
+    'abo✕學pa': { primary: '#7d5947', secondary: '#3b2c25' }
+};
+
 function switchWorld(target, updateHash = true) {
     if (target.endsWith('.html')) {
         window.location.href = target;
         return;
     }
 
-    if (updateHash) window.location.hash = encodeURIComponent(target);
+    // --- 新增：切換主題色 ---
+    const colors = worldColors[target];
+    if (colors) {
+        document.documentElement.style.setProperty('--world-primary', colors.primary);
+        document.documentElement.style.setProperty('--world-secondary', colors.secondary);
+    }
+    // ----------------------
 
-    const bannerImg = document.getElementById('world-banner-img');
-    const bannerContainer = document.querySelector('.world-banner-container');
+    if (updateHash) window.location.hash = encodeURIComponent(target);
     
-    // 設定對應 Banner 圖片
+    // ... 妳原本處理 Banner 的程式碼 ...
+        // 設定對應 Banner 圖片
     if (target === '獵人vanilLa✕吸血鬼瑠璃') {
         bannerImg.src = 'img/testimonials/v/無標題306_20251230221312.jpg';
     } else if (target === '鷹院三年級生vanilLa✕鷹院一年級生瑠璃') {
@@ -142,6 +156,26 @@ function displayArticle(world, cat, index, updateHash = true) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+
+// 監聽音樂播放點擊（更新圖示）
+document.getElementById('music-toggle-btn').addEventListener('click', function() {
+    const audioTag = document.getElementById('bgm-audio');
+    const icon = document.getElementById('music-icon');
+    
+    if (audioTag.paused) {
+        audioTag.play();
+        icon.classList.remove('bi-music-note-beamed');
+        icon.classList.add('bi-pause-circle'); // 切換為暫停圖示
+        this.classList.add('music-playing');
+    } else {
+        audioTag.pause();
+        icon.classList.remove('bi-pause-circle');
+        icon.classList.add('bi-play-circle'); // 切換為播放圖示
+        this.classList.remove('music-playing');
+    }
+});
+    
+
 // 5. 統一返回邏輯
 function handleBack() {
     const bannerContainer = document.querySelector('.world-banner-container');
@@ -173,35 +207,3 @@ function renderArticle(chapter) {
     const audioTag = document.getElementById('bgm-audio');
     const statusText = document.getElementById('music-status');
 
-    // 1. 檢查該章節是否有音樂
-    if (chapter.audio) {
-        playerContainer.style.display = 'block'; // 顯示播放按鈕
-        audioTag.src = chapter.audio;
-        audioTag.pause(); // 預設不自動播放（瀏覽器政策通常不允許自動播放）
-        statusText.innerText = "OFF";
-    } else {
-        // 2. 沒音樂就隱藏按鈕並關閉音樂
-        playerContainer.style.display = 'none';
-        audioTag.pause();
-        audioTag.src = "";
-    }
-
-    // 更新文章內容...
-    document.getElementById('article-content').innerHTML = chapter.content;
-}
-
-// 綁定按鈕點擊事件
-document.getElementById('music-toggle-btn').addEventListener('click', function() {
-    const audioTag = document.getElementById('bgm-audio');
-    const statusText = document.getElementById('music-status');
-    
-    if (audioTag.paused) {
-        audioTag.play();
-        statusText.innerText = "ON";
-        this.classList.add('music-playing');
-    } else {
-        audioTag.pause();
-        statusText.innerText = "OFF";
-        this.classList.remove('music-playing');
-    }
-});
