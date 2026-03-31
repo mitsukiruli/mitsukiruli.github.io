@@ -332,20 +332,41 @@ h2.world-title-center {
     }
 }
 :root {
-    /* 預設顏色 */
-    --world-primary: #7f8182;
-    --world-secondary: #262626;
+    /* 預設的淺藍色 (妳原本的基調) */
+    --world-primary: #a4b4de; 
+    --world-secondary: #f8f9fa; /* 輕微的灰色背景給按鈕用 */
 }
 
-/* 套用配色到現有元素（範例，請根據妳的類別名調整） */
-.world-title-center, .world-box h4, .article-inner-title {
+/* 保持大背景永遠是白色或原本的淺色 */
+.section-bg {
+    background-color: #ffffff !important; 
+}
+
+/* 讓世界標題變色 */
+#display-world-name, .article-inner-title, #category-title {
+    color: var(--world-primary) !important;
+    transition: color 0.3s ease;
+}
+
+/* 讓那三個方塊按鈕 (主線/日常/設定) 變色 */
+.world-box {
+    border: 2px solid var(--world-primary) !important;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.world-box h4 {
     color: var(--world-primary) !important;
 }
 
-.section-bg {
-    background-color: var(--world-secondary) !important;
-    transition: background-color 0.5s ease; /* 換色時有漸變感 */
+/* 滑鼠移上去方塊時，背景填滿主題色 */
+.world-box:hover {
+    background-color: var(--world-primary) !important;
 }
+.world-box:hover h4 {
+    color: #ffffff !important;
+}
+
 
 /* 音樂圖示按鈕 */
 .music-icon-btn {
