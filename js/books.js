@@ -1,7 +1,7 @@
 let currentStep = 'lobby'; 
 let worldData = null; 
 
-// 1. 初始載入 JSON 數據並檢查網址 Hash
+// 1. 初始載入
 window.onload = function() {
     fetch('data.json')
         .then(response => response.json())
@@ -17,7 +17,6 @@ window.onhashchange = handleUrlHash;
 
 function handleUrlHash() {
     const hash = decodeURIComponent(window.location.hash.substring(1));
-    
     if (!hash) {
         if (currentStep !== 'lobby') {
             document.getElementById('world-detail-page').style.display = 'none';
@@ -28,7 +27,6 @@ function handleUrlHash() {
         }
         return;
     }
-
     if (!worldData) return; 
 
     const parts = hash.split('|');
@@ -41,8 +39,7 @@ function handleUrlHash() {
     }
 }
 
-// 2. 切換世界大地圖
-// 定義配色資料表
+// 2. 切換世界大地圖 (含配色)
 const worldColors = {
     '獵人vanilLa✕吸血鬼瑠璃': { primary: '#eb4536', secondary: '#4a60a5' },
     '樂團': { primary: '#7f8182', secondary: '#262626' },
@@ -56,23 +53,23 @@ function switchWorld(target, updateHash = true) {
         return;
     }
 
-    // --- 新增：切換主題色 ---
+    // 切換主題色
     const colors = worldColors[target];
     if (colors) {
         document.documentElement.style.setProperty('--world-primary', colors.primary);
         document.documentElement.style.setProperty('--world-secondary', colors.secondary);
     }
-    // ----------------------
 
     if (updateHash) window.location.hash = encodeURIComponent(target);
     
-    // ... 妳原本處理 Banner 的程式碼 ...
-        // 設定對應 Banner 圖片
+    const bannerImg = document.getElementById('world-banner-img');
+    const bannerContainer = document.querySelector('.world-banner-container');
+    
     if (target === '獵人vanilLa✕吸血鬼瑠璃') {
         bannerImg.src = 'img/testimonials/v/無標題306_20251230221312.jpg';
     } else if (target === '鷹院三年級生vanilLa✕鷹院一年級生瑠璃') {
         bannerImg.src = 'img/無標題306_20260105011536.png';
-    }else if (target === '樂團') {
+    } else if (target === '樂團') {
         bannerImg.src = 'img/testimonials/v/無標題306_20260331033921.png';
     }
 
@@ -87,12 +84,11 @@ function switchWorld(target, updateHash = true) {
     document.getElementById('article-reader').style.display = 'none';
     
     if (bannerContainer) bannerContainer.style.display = 'block';
-    
     document.getElementById('display-world-name').innerText = target;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// 3. 顯示章節目錄
+// 3. 章節目錄
 function showChapters(category, updateHash = true) {
     currentStep = 'chapters';
     const worldName = document.getElementById('display-world-name').innerText;
@@ -134,7 +130,7 @@ function toggleAccordion(element) {
     item.classList.toggle('active');
 }
 
-// 4. 顯示文章內容
+// 4. 顯示文章內容 (包含音樂偵測)
 function displayArticle(world, cat, index, updateHash = true) {
     currentStep = 'reader';
     const article = worldData[world][cat][index];
@@ -149,6 +145,24 @@ function displayArticle(world, cat, index, updateHash = true) {
     document.getElementById('chapter-view').style.display = 'none';
     document.getElementById('article-reader').style.display = 'block';
     
+    // --- 音樂邏輯控制 ---
+    const playerContainer = document.getElementById('music-player-container');
+    const audioTag = document.getElementById('bgm-audio');
+    const icon = document.getElementById('music-icon');
+    const toggleBtn = document.getElementById('music-toggle-btn');
+
+    if (article.audio) {
+        playerContainer.style.display = 'block';
+        audioTag.src = article.audio;
+        audioTag.pause(); // 重置播放
+        icon.className = 'bi bi-music-note-beamed'; // 回歸音符圖示
+        if(toggleBtn) toggleBtn.classList.remove('music-playing');
+    } else {
+        playerContainer.style.display = 'none';
+        audioTag.pause();
+        audioTag.src = "";
+    }
+
     document.getElementById('article-content').innerHTML = `
         <h3 class="article-inner-title">${article.title}</h3>
         <div class="article-body-text">${article.content}</div>
@@ -156,30 +170,17 @@ function displayArticle(world, cat, index, updateHash = true) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-
-// 監聽音樂播放點擊（更新圖示）
-document.getElementById('music-toggle-btn').addEventListener('click', function() {
-    const audioTag = document.getElementById('bgm-audio');
-    const icon = document.getElementById('music-icon');
-    
-    if (audioTag.paused) {
-        audioTag.play();
-        icon.classList.remove('bi-music-note-beamed');
-        icon.classList.add('bi-pause-circle'); // 切換為暫停圖示
-        this.classList.add('music-playing');
-    } else {
-        audioTag.pause();
-        icon.classList.remove('bi-pause-circle');
-        icon.classList.add('bi-play-circle'); // 切換為播放圖示
-        this.classList.remove('music-playing');
-    }
-});
-    
-
-// 5. 統一返回邏輯
+// 5. 統一返回邏輯 (包含停止音樂)
 function handleBack() {
     const bannerContainer = document.querySelector('.world-banner-container');
     const worldName = document.getElementById('display-world-name').innerText;
+    
+    // 返回時關閉音樂
+    const audioTag = document.getElementById('bgm-audio');
+    if (audioTag) {
+        audioTag.pause();
+        audioTag.src = "";
+    }
 
     if (currentStep === 'reader') {
         window.location.hash = encodeURIComponent(worldName);
@@ -202,8 +203,19 @@ function handleBack() {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-function renderArticle(chapter) {
-    const playerContainer = document.getElementById('music-player-container');
-    const audioTag = document.getElementById('bgm-audio');
-    const statusText = document.getElementById('music-status');
 
+// 6. 音樂播放點擊事件
+document.getElementById('music-toggle-btn').addEventListener('click', function() {
+    const audioTag = document.getElementById('bgm-audio');
+    const icon = document.getElementById('music-icon');
+    
+    if (audioTag.paused) {
+        audioTag.play();
+        icon.className = 'bi bi-pause-circle'; 
+        this.classList.add('music-playing');
+    } else {
+        audioTag.pause();
+        icon.className = 'bi bi-play-circle'; 
+        this.classList.remove('music-playing');
+    }
+});
