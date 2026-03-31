@@ -19,11 +19,7 @@ function handleUrlHash() {
     const hash = decodeURIComponent(window.location.hash.substring(1));
     if (!hash) {
         if (currentStep !== 'lobby') {
-            document.getElementById('world-detail-page').style.display = 'none';
-            document.getElementById('world-lobby').style.display = 'block';
-            const mainNav = document.getElementById('main-footer-nav');
-            if (mainNav) mainNav.style.display = 'flex';
-            currentStep = 'lobby';
+            resetToLobby(); // 抽離成一個函式，確保重置乾淨
         }
         return;
     }
@@ -41,10 +37,10 @@ function handleUrlHash() {
 
 // 2. 切換世界大地圖 (含配色)
 const worldColors = {
-    '獵人vanilLa✕吸血鬼瑠璃': { primary: '#eb4536', secondary: '#4a60a5' }, // 紅色標題
-    '樂團': { primary: '#7f8182', secondary: '#262626' },                  // 灰色標題
-    '鷹院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' }, // 淺藍標題
-    'abo✕學pa': { primary: '#7d5947', secondary: '#3b2c25' }               // 咖啡色標題
+    '獵人vanilLa✕吸血鬼瑠璃': { primary: '#eb4536', secondary: '#4a60a5' },
+    '樂團': { primary: '#7f8182', secondary: '#262626' },
+    '鷹院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' },
+    'abo✕學pa': { primary: '#7d5947', secondary: '#3b2c25' }
 };
 
 function switchWorld(target, updateHash = true) {
@@ -53,7 +49,7 @@ function switchWorld(target, updateHash = true) {
         return;
     }
 
-    // 切換主題色
+    // --- 切換主題色 ---
     const colors = worldColors[target];
     if (colors) {
         document.documentElement.style.setProperty('--world-primary', colors.primary);
@@ -65,12 +61,15 @@ function switchWorld(target, updateHash = true) {
     const bannerImg = document.getElementById('world-banner-img');
     const bannerContainer = document.querySelector('.world-banner-container');
     
-    if (target === '獵人vanilLa✕吸血鬼瑠璃') {
-        bannerImg.src = 'img/testimonials/v/無標題306_20251230221312.jpg';
-    } else if (target === '鷹院三年級生vanilLa✕鷹院一年級生瑠璃') {
-        bannerImg.src = 'img/無標題306_20260105011536.png';
-    } else if (target === '樂團') {
-        bannerImg.src = 'img/testimonials/v/無標題306_20260331033921.png';
+    // 設定對應 Banner
+    if (bannerImg) {
+        if (target === '獵人vanilLa✕吸血鬼瑠璃') {
+            bannerImg.src = 'img/testimonials/v/無標題306_20251230221312.jpg';
+        } else if (target === '鷹院三年級生vanilLa✕鷹院一年級生瑠璃') {
+            bannerImg.src = 'img/無標題306_20260105011536.png';
+        } else if (target === '樂團') {
+            bannerImg.src = 'img/testimonials/v/無標題306_20260331033921.png';
+        }
     }
 
     const mainNav = document.getElementById('main-footer-nav');
@@ -145,18 +144,15 @@ function displayArticle(world, cat, index, updateHash = true) {
     document.getElementById('chapter-view').style.display = 'none';
     document.getElementById('article-reader').style.display = 'block';
     
-    // --- 音樂邏輯控制 ---
     const playerContainer = document.getElementById('music-player-container');
     const audioTag = document.getElementById('bgm-audio');
     const icon = document.getElementById('music-icon');
-    const toggleBtn = document.getElementById('music-toggle-btn');
 
     if (article.audio) {
         playerContainer.style.display = 'block';
         audioTag.src = article.audio;
-        audioTag.pause(); // 重置播放
-        icon.className = 'bi bi-music-note-beamed'; // 回歸音符圖示
-        if(toggleBtn) toggleBtn.classList.remove('music-playing');
+        audioTag.pause(); 
+        icon.className = 'bi bi-music-note-beamed'; 
     } else {
         playerContainer.style.display = 'none';
         audioTag.pause();
@@ -170,17 +166,14 @@ function displayArticle(world, cat, index, updateHash = true) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// 5. 統一返回邏輯 (包含停止音樂)
+// 5. 統一返回邏輯
 function handleBack() {
     const bannerContainer = document.querySelector('.world-banner-container');
     const worldName = document.getElementById('display-world-name').innerText;
     
-    // 返回時關閉音樂
+    // 每次點返回都先暫停音樂
     const audioTag = document.getElementById('bgm-audio');
-    if (audioTag) {
-        audioTag.pause();
-        audioTag.src = "";
-    }
+    if (audioTag) { audioTag.pause(); }
 
     if (currentStep === 'reader') {
         window.location.hash = encodeURIComponent(worldName);
@@ -194,14 +187,27 @@ function handleBack() {
         if (bannerContainer) bannerContainer.style.display = 'block';
         currentStep = 'overview';
     } else if (currentStep === 'overview') {
-        window.location.hash = ""; 
-        document.getElementById('world-detail-page').style.display = 'none';
-        document.getElementById('world-lobby').style.display = 'block';
-        const mainNav = document.getElementById('main-footer-nav');
-        if (mainNav) mainNav.style.display = 'flex';
-        currentStep = 'lobby';
+        resetToLobby();
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 重置回首頁的配色與狀態
+function resetToLobby() {
+    window.location.hash = ""; 
+    document.getElementById('world-detail-page').style.display = 'none';
+    document.getElementById('world-lobby').style.display = 'block';
+    const mainNav = document.getElementById('main-footer-nav');
+    if (mainNav) mainNav.style.display = 'flex';
+    
+    // --- 重置為原本的淺藍色基調 ---
+    document.documentElement.style.setProperty('--world-primary', '#a4b4de');
+    document.documentElement.style.setProperty('--world-secondary', '#435d71');
+    
+    const audioTag = document.getElementById('bgm-audio');
+    if (audioTag) { audioTag.pause(); audioTag.src = ""; }
+    
+    currentStep = 'lobby';
 }
 
 // 6. 音樂播放點擊事件
