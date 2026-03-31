@@ -199,18 +199,25 @@ function resetToLobby() {
     window.location.hash = ""; 
     document.getElementById('world-detail-page').style.display = 'none';
     document.getElementById('world-lobby').style.display = 'block';
+    
     const mainNav = document.getElementById('main-footer-nav');
     if (mainNav) mainNav.style.display = 'flex';
     
-    // --- 重置為原本的淺藍色基調 ---
-    document.documentElement.style.setProperty('--world-primary', '#a4b4de');
+    // --- 修改：回到大地圖，背景變回淺藍色 ---
+    const section = document.getElementById('world-system');
+    if (section) section.style.backgroundColor = "#a4b4de"; 
+    
+    // 同時重置其他顏色變數（例如按鈕顏色）
+    document.documentElement.style.setProperty('--world-primary', '#ffffff'); // 首頁文字可以設為白色比較清楚
     document.documentElement.style.setProperty('--world-secondary', '#435d71');
+    // ------------------------------------
     
     const audioTag = document.getElementById('bgm-audio');
     if (audioTag) { audioTag.pause(); audioTag.src = ""; }
     
     currentStep = 'lobby';
 }
+    
 
 // 6. 音樂播放點擊事件
 document.getElementById('music-toggle-btn').addEventListener('click', function() {
