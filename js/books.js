@@ -55,6 +55,8 @@ function switchWorld(target, updateHash = true) {
         document.documentElement.style.setProperty('--world-primary', colors.primary);
         document.documentElement.style.setProperty('--world-secondary', colors.secondary);
     }
+    const section = document.getElementById('world-system');
+    if (section) section.style.backgroundColor = "#ffffff";
 
     if (updateHash) window.location.hash = encodeURIComponent(target);
     
