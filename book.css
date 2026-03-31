@@ -199,24 +199,32 @@ h2.world-title-center {
 }
 
 /* --- 1. 返回鍵樣式 --- */
-.cute-world-back-button {
+..cute-world-back-button {
     background-color: #ffffff;
-    /* 邊框與文字顏色會根據 JS 變數變動 */
     border: 2px solid var(--world-primary) !important;
     color: var(--world-primary) !important;
-    border-radius: 50%;
-    padding: 10px 25px;
+    
+    /* ⚡️ 關鍵修改：設定相等的寬高 */
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%; /* 保持 50% 就是正圓 */
+    
+    /* ⚡️ 移除原本的左右 padding，改用 flex 讓圖示居中 */
+    padding: 0 !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     transition: all 0.3s ease;
-    /* 加入陰影 */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    font-size: 1.2rem; /* 調整箭頭大小 */
 }
 
 .cute-world-back-button:hover {
-    /* 移上去時背景填滿主題色，文字變白 */
     background-color: var(--world-primary) !important;
     color: #ffffff !important;
-    transform: translateY(-2px); /* 微微浮起 */
+    transform: scale(1.1); /* 圓形按鈕適合用縮放效果 */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
