@@ -331,4 +331,42 @@ h2.world-title-center {
         font-size: 1rem;           /* 手機版文字適度縮小 */
     }
 }
+:root {
+    /* 預設顏色 */
+    --world-primary: #7f8182;
+    --world-secondary: #262626;
+}
 
+/* 套用配色到現有元素（範例，請根據妳的類別名調整） */
+.world-title-center, .world-box h4, .article-inner-title {
+    color: var(--world-primary) !important;
+}
+
+.section-bg {
+    background-color: var(--world-secondary) !important;
+    transition: background-color 0.5s ease; /* 換色時有漸變感 */
+}
+
+/* 音樂圖示按鈕 */
+.music-icon-btn {
+    font-size: 1.8rem;
+    color: var(--world-primary); /* 圖示顏色跟隨主題色 */
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.music-icon-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* 播放時的小動畫（選用） */
+.music-playing {
+    animation: music-rotate 3s linear infinite;
+}
+
+@keyframes music-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
