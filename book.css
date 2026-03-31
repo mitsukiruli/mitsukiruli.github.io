@@ -199,7 +199,7 @@ h2.world-title-center {
 }
 
 /* --- 1. 返回鍵樣式 --- */
-..cute-world-back-button {
+.cute-world-back-button {
     background-color: #ffffff;
     border: 2px solid var(--world-primary) !important;
     color: var(--world-primary) !important;
