@@ -198,27 +198,28 @@ h2.world-title-center {
     clear: both;              /* 避免被上方浮動元素影響 */
 }
 
+/* --- 1. 返回鍵樣式 --- */
 .cute-world-back-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 55px; 
-    height: 55px; 
-    border-radius: 50%; 
-    background-color: #e1f2fb;
-    color: #173b6c; 
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(165, 214, 242, 0.4);
+    background-color: #ffffff;
+    /* 邊框與文字顏色會根據 JS 變數變動 */
+    border: 2px solid var(--world-primary) !important;
+    color: var(--world-primary) !important;
+    border-radius: 50px;
+    padding: 10px 25px;
     transition: all 0.3s ease;
-    outline: none;            /* 移除點擊時的藍色外框 */
+    /* 加入陰影 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .cute-world-back-button:hover {
-    background-color: #a5d6f2;
-    color: #fff;
-    transform: translateY(-3px); /* 滑過時往上飄一點點，更有質感 */
+    /* 移上去時背景填滿主題色，文字變白 */
+    background-color: var(--world-primary) !important;
+    color: #ffffff !important;
+    transform: translateY(-2px); /* 微微浮起 */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
+
 
 
 /* =============================================================
@@ -314,7 +315,7 @@ h2.world-title-center {
 }
 /* 微調後的 Notion 風格引用區塊 */
 .notion-quote {
-    border-left: 4px solid #a5d6f2; /* ⚡️ 改用你網站的主色調：水藍色 */
+    border-left: 4px solid var(--world-primary) !important; /* ⚡️ 改用你網站的主色調：水藍色 */
     padding: 10px 20px;            /* 增加內距，讓文字更有呼吸感 */
     margin: 25px 0;                /* 增加上下間距，區隔劇情段落 */
     color: #4a4a4a;                /* 深灰色文字，閱讀不刺眼 */
@@ -344,27 +345,42 @@ h2.world-title-center {
 
 /* 讓世界標題變色 */
 #display-world-name, .article-inner-title, #category-title {
-    color: var(--world-primary) !important;
+    
+    color: #173b6c
     transition: color 0.3s ease;
 }
 
 /* 讓那三個方塊按鈕 (主線/日常/設定) 變色 */
+
 .world-box {
-    border: 2px solid var(--world-primary) !important;
     background-color: #ffffff;
+    border: 1px solid #eeeeee; /* 淡淡的邊框 */
+    border-left: 5px solid var(--world-primary) !important; /* 左側粗邊線增加設計感 */
+    border-radius: 12px;
+    padding: 20px;
     transition: all 0.3s ease;
+    cursor: pointer;
+    /* 加入比較明顯的柔和陰影 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .world-box h4 {
     color: var(--world-primary) !important;
+    margin: 0;
+    transition: color 0.3s ease;
 }
 
-/* 滑鼠移上去方塊時，背景填滿主題色 */
 .world-box:hover {
-    background-color: var(--world-primary) !important;
+    transform: translateY(-5px); /* 懸浮感 */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    background-color: var(--world-secondary) !important; /* 移上去變成輔色 */
 }
+
 .world-box:hover h4 {
-    color: #ffffff !important;
+    color: #ffffff !important; /* 移上去字變白 */
 }
 
 
