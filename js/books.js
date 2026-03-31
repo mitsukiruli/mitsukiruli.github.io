@@ -168,3 +168,40 @@ function handleBack() {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+function renderArticle(chapter) {
+    const playerContainer = document.getElementById('music-player-container');
+    const audioTag = document.getElementById('bgm-audio');
+    const statusText = document.getElementById('music-status');
+
+    // 1. 檢查該章節是否有音樂
+    if (chapter.audio) {
+        playerContainer.style.display = 'block'; // 顯示播放按鈕
+        audioTag.src = chapter.audio;
+        audioTag.pause(); // 預設不自動播放（瀏覽器政策通常不允許自動播放）
+        statusText.innerText = "OFF";
+    } else {
+        // 2. 沒音樂就隱藏按鈕並關閉音樂
+        playerContainer.style.display = 'none';
+        audioTag.pause();
+        audioTag.src = "";
+    }
+
+    // 更新文章內容...
+    document.getElementById('article-content').innerHTML = chapter.content;
+}
+
+// 綁定按鈕點擊事件
+document.getElementById('music-toggle-btn').addEventListener('click', function() {
+    const audioTag = document.getElementById('bgm-audio');
+    const statusText = document.getElementById('music-status');
+    
+    if (audioTag.paused) {
+        audioTag.play();
+        statusText.innerText = "ON";
+        this.classList.add('music-playing');
+    } else {
+        audioTag.pause();
+        statusText.innerText = "OFF";
+        this.classList.remove('music-playing');
+    }
+});
