@@ -187,6 +187,8 @@ h6 {
     z-index: 2500;
     box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     font-size: 0.85rem;
+    max-height: 300px; /* 限制最高高度 */
+    overflow-y: auto;  /* 超過時內容可以自訂捲動 */
     text-align: center;
     color: #333;
     white-space: normal;
@@ -203,11 +205,6 @@ h6 {
 }
 
 
-.entry-content {
-    /* ... 保持原本設定 ... */
-    max-height: 300px; /* 限制最高高度 */
-    overflow-y: auto;  /* 超過時內容可以自訂捲動 */
-}
 
 /* 讓捲軸漂亮一點（淺藍色系） */
 .entry-content::-webkit-scrollbar {
@@ -384,4 +381,24 @@ h6 {
     font-size: 0.75rem; /* 字體調小 */
     font-weight: bold;
     animation: marquee 8s linear infinite;
+}
+
+/* --- 建議加入在 CSS 最後面 --- */
+
+/* 手機版優化：防止音樂按鈕太靠邊或擋到文字 */
+@media (max-width: 480px) {
+    .music-container {
+        top: 10px;
+        left: 10px;
+    }
+    /* 在小螢幕讓跑馬燈窄一點，避免遮住月份按鈕 */
+    .music-marquee {
+        width: 100px; 
+    }
+}
+
+/* 修正：確保彈出框內的文字不會因為 max-height 而被切掉一半 */
+.entry-content {
+    box-sizing: border-box;
+    scrollbar-width: thin; /* Firefox 捲軸優化 */
 }
