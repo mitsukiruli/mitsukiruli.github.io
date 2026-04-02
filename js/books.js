@@ -54,6 +54,7 @@ function switchWorld(target, updateHash = true) {
     if (colors) {
         document.documentElement.style.setProperty('--world-primary', colors.primary);
         document.documentElement.style.setProperty('--world-secondary', colors.secondary);
+        document.documentElement.style.setProperty('--world-bg', '#ffffff');
     }
     const section = document.getElementById('world-system');
     if (section) section.style.backgroundColor = "#ffffff";
@@ -201,7 +202,6 @@ function handleBack() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// 重置回首頁的配色與狀態
 function resetToLobby() {
     window.location.hash = ""; 
     document.getElementById('world-detail-page').style.display = 'none';
@@ -210,20 +210,19 @@ function resetToLobby() {
     const mainNav = document.getElementById('main-footer-nav');
     if (mainNav) mainNav.style.display = 'flex';
     
-    // --- 修改：回到大地圖，背景變回淺藍色 ---
-    const section = document.getElementById('world-system');
-    if (section) section.style.backgroundColor = "#a4b4de"; 
+    // ⚡️ 核心修正：回到大廳，背景變回淺藍色 (#a4b4de)
+    document.documentElement.style.setProperty('--world-bg', '#a4b4de');
     
-    // 同時重置其他顏色變數（例如按鈕顏色）
-    document.documentElement.style.setProperty('--world-primary', '#ffffff'); // 首頁文字可以設為白色比較清楚
+    // 重置其他顏色變數
+    document.documentElement.style.setProperty('--world-primary', '#ffffff'); 
     document.documentElement.style.setProperty('--world-secondary', '#435d71');
-    // ------------------------------------
     
+    // 音樂清理 (加上上一題建議的隱藏)
     const audioTag = document.getElementById('bgm-audio');
-    const playerContainer = document.getElementById('music-player-container'); 
-
+    const playerContainer = document.getElementById('music-player-container');
     if (audioTag) { audioTag.pause(); audioTag.src = ""; }
     if (playerContainer) { playerContainer.style.display = 'none'; }
+    
     currentStep = 'lobby';
 }
     
