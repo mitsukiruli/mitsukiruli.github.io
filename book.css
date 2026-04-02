@@ -346,9 +346,10 @@ h2.world-title-center {
     --world-secondary: #f8f9fa; /* 輕微的灰色背景給按鈕用 */
 }
 
-/* 保持大背景永遠是白色或原本的淺色 */
-.section-bg {
-    background-color: #ffffff !important; 
+#world-system {
+    /* 使用變數，預設為淺藍色 */
+    background-color: var(--world-bg, #a4b4de) !important; 
+    transition: background-color 0.4s ease; /* 增加過場動畫比較美 */
 }
 
 /* 讓世界標題變色 */
