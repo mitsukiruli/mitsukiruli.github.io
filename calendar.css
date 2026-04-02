@@ -202,6 +202,22 @@ h6 {
     animation: fadeInBottom 0.3s ease-out forwards;
 }
 
+
+.entry-content {
+    /* ... 保持原本設定 ... */
+    max-height: 300px; /* 限制最高高度 */
+    overflow-y: auto;  /* 超過時內容可以自訂捲動 */
+}
+
+/* 讓捲軸漂亮一點（淺藍色系） */
+.entry-content::-webkit-scrollbar {
+    width: 4px;
+}
+.entry-content::-webkit-scrollbar-thumb {
+    background: var(--yume-blue-primary);
+    border-radius: 10px;
+}
+
 @keyframes fadeInBottom {
     from { opacity: 0; transform: translateX(-50%) translateY(10px); }
     to { opacity: 1; transform: translateX(-50%) translateY(0); }
