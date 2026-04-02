@@ -102,7 +102,34 @@ document.addEventListener('touchend', (e) => {
         closeHandler();
     }
 });
+function showEntry(tdElement) {
+    const content = tdElement.querySelector('.entry-content');
+    if (!content) return;
 
+    // 1. 先顯示它（display: block），CSS 預設透明度為 1
+    content.style.display = 'block';
+    content.classList.remove('is-flipped');
+
+    // 2. 計算位置
+    const rect = content.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // 3. 如果底部距離視窗邊緣不到 20px，則加上 flip 類別往上彈
+    if (rect.bottom > windowHeight - 20) {
+        content.classList.add('is-flipped');
+    }
+}
+
+/**
+ * 隱藏回憶框並清除狀態
+ */
+function hideEntry(tdElement) {
+    const content = tdElement.querySelector('.entry-content');
+    if (content) {
+        content.style.display = 'none';
+        content.classList.remove('is-flipped');
+    }
+}
 /**
  * 選擇年份並更新介面
  */
@@ -209,30 +236,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 假設你有一個顯示內容的 function
-function showEntry(tdElement) {
-    const content = tdElement.querySelector('.entry-content');
-    if (!content) return;
-
-    // 1. 先顯示它（但透明度為0），這樣才能取得正確的高度
-    content.style.display = 'block';
-    content.classList.remove('is-flipped');
-
-    // 2. 計算位置
-    const rect = content.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    // 3. 如果彈出框的底部超過了視窗高度，或者距離底部不到 20px
-    if (rect.bottom > windowHeight - 20) {
-        content.classList.add('is-flipped');
-    }
-}
-
-// 隱藏時記得移除 class
-function hideEntry(tdElement) {
-    const content = tdElement.querySelector('.entry-content');
-    if (content) {
-        content.style.display = 'none';
-        content.classList.remove('is-flipped');
-    }
-}
