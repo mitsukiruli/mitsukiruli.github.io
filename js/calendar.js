@@ -32,18 +32,33 @@ function switchMonth(event, monthId, labelText) {
 /**
  * 顯示/隱藏日期詳細內容 (回憶框)
  */
+/**
+ * 顯示/隱藏日期詳細內容 (回憶框) - 加入自動翻轉判斷
+ */
 function toggleEntry(event) {
     const cell = event.currentTarget;
     const entry = cell.querySelector('.entry-content');
     
-    // 關閉其他開啟中的框
+    if (!entry) return;
+
+    // 1. 關閉其他開啟中的框
     document.querySelectorAll('.entry-content').forEach(el => {
-        if (el !== entry) el.style.display = 'none';
+        if (el !== entry) {
+            el.style.display = 'none';
+            el.classList.remove('is-flipped'); // 關閉時重置狀態
+        }
     });
 
-    // 切換當前狀態
+    // 2. 切換當前狀態
     const isVisible = entry.style.display === 'block';
-    entry.style.display = isVisible ? 'none' : 'block';
+    
+    if (!isVisible) {
+        // 如果是要「開啟」，則呼叫計算邏輯
+        showEntry(cell); 
+    } else {
+        // 如果是要「關閉」
+        hideEntry(cell);
+    }
     
     event.stopPropagation();
 }
