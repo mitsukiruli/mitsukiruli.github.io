@@ -220,8 +220,10 @@ function resetToLobby() {
     // ------------------------------------
     
     const audioTag = document.getElementById('bgm-audio');
+    const playerContainer = document.getElementById('music-player-container'); 
+
     if (audioTag) { audioTag.pause(); audioTag.src = ""; }
-    
+    if (playerContainer) { playerContainer.style.display = 'none'; }
     currentStep = 'lobby';
 }
     
