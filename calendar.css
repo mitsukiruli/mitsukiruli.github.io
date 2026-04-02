@@ -361,26 +361,29 @@ h6 {
 
 /* 跑馬燈外框：配合按鈕縮小高度 */
 .music-marquee {
-    background-color: var(--yume-blue-light);
-    border: 1.5px solid var(--yume-blue-primary);
+    background-color: #edf2f2;
     border-radius: 15px;
     padding: 3px 12px;
     margin-left: 8px;
-    display: none; /* 預設隱藏，由 JS 控制 */
+    display: none; /* 初始隱藏 */
     vertical-align: middle;
     overflow: hidden;
     white-space: nowrap;
-    width: 150px; /* 稍微縮短寬度，避免佔據太多空間 */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    width: 150px;
 }
 
-/* 跑馬燈文字 */
 .marquee-content {
-    display: inline-block;
+    display: inline-block; /* 必須是 inline-block */
     color: var(--yume-blue-text);
-    font-size: 0.75rem; /* 字體調小 */
+    font-size: 0.75rem;
     font-weight: bold;
-    animation: marquee 8s linear infinite;
+    /* 確保動畫時長足夠，linear 確保均速 */
+    animation: marquee 8s linear infinite; 
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
 }
 
 /* --- 建議加入在 CSS 最後面 --- */
