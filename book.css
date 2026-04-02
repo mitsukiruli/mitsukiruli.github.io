@@ -348,7 +348,7 @@ h2.world-title-center {
 
 #world-system {
     /* 使用變數，預設為淺藍色 */
-    background-color: var(--world-bg, #a4b4de) !important; 
+    background-color:  #f0f8ff  !important; 
     transition: background-color 0.4s ease; /* 增加過場動畫比較美 */
 }
 
