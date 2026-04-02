@@ -73,6 +73,10 @@ function switchWorld(target, updateHash = true) {
             bannerImg.src = 'img/testimonials/v/無標題306_20260331033921.png';
         }
     }
+    const playerContainer = document.getElementById('music-player-container');
+    const audioTag = document.getElementById('bgm-audio');
+    if (audioTag) { audioTag.pause(); audioTag.src = ""; }
+    if (playerContainer) { playerContainer.style.display = 'none'; }
 
     const mainNav = document.getElementById('main-footer-nav');
     if (mainNav) mainNav.style.display = 'none';
@@ -174,8 +178,11 @@ function handleBack() {
     const worldName = document.getElementById('display-world-name').innerText;
     
     // 每次點返回都先暫停音樂
+    const playerContainer = document.getElementById('music-player-container');
     const audioTag = document.getElementById('bgm-audio');
-    if (audioTag) { audioTag.pause(); }
+    
+    if (audioTag) { audioTag.pause(); audioTag.src = ""; }
+    if (playerContainer) { playerContainer.style.display = 'none'; }
 
     if (currentStep === 'reader') {
         window.location.hash = encodeURIComponent(worldName);
@@ -234,3 +241,20 @@ document.getElementById('music-toggle-btn').addEventListener('click', function()
         this.classList.remove('music-playing');
     }
 });
+
+function stopAndHideMusic() {
+    const playerContainer = document.getElementById('music-player-container');
+    const audioTag = document.getElementById('bgm-audio');
+    const icon = document.getElementById('music-icon');
+
+    if (audioTag) {
+        audioTag.pause();
+        audioTag.src = "";
+    }
+    if (playerContainer) {
+        playerContainer.style.display = 'none';
+    }
+    if (icon) {
+        icon.className = 'bi bi-music-note-beamed';
+    }
+}
