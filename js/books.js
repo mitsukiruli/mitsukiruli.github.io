@@ -210,8 +210,8 @@ function resetToLobby() {
     const mainNav = document.getElementById('main-footer-nav');
     if (mainNav) mainNav.style.display = 'flex';
     
-    // ⚡️ 核心修正：回到大廳，背景變回淺藍色 (#a4b4de)
-    document.documentElement.style.setProperty('--world-bg', '#a4b4de');
+    // ⚡️ 核心修正：回到大廳，背景變回淺藍色 (#f0f8ff)
+    document.documentElement.style.setProperty('--world-bg', '##f0f8ff');
     
     // 重置其他顏色變數
     document.documentElement.style.setProperty('--world-primary', '#ffffff'); 
