@@ -167,13 +167,17 @@ h6 {
 /* ==========================================================================
    5. 日期彈出框 (修正頂部、左右以及圖片超出問題)
    ========================================================================== */
+/* --- 修改原本的 5. 日期彈出框 部分 --- */
+
 .entry-content {
     display: none;
     position: absolute;
+    /* 預設往下彈 */
     top: 100%; 
     margin-top: 10px;
     left: 50%;
     transform: translateX(-50%);
+    
     width: 220px; 
     max-width: 85vw; 
     padding: 12px;
@@ -188,42 +192,29 @@ h6 {
     white-space: normal;
 }
 
-/* 圖片適應 */
-.entry-content img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin-top: 10px;
-    border-radius: 8px;
-}
-
-/* 最後一排往上彈 */
-.pixel-calendar tr:last-child .entry-content {
+/* ⚡️ 自動往上彈的樣式 */
+.entry-content.is-flipped {
     top: auto;
     bottom: 100%;
     margin-top: 0;
     margin-bottom: 10px;
+    /* 動畫稍微改一下，從下往上冒 */
+    animation: fadeInBottom 0.3s ease-out forwards;
 }
 
-/* 左右邊界修正 */
-.pixel-calendar td:nth-child(-n+3) .entry-content {
-    left: 0;
-    transform: translateX(0);
-}
-.pixel-calendar td:nth-child(n+6) .entry-content {
-    left: auto;
-    right: 0;
-    transform: translateX(0);
+@keyframes fadeInBottom {
+    from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
+/* 確保圖片在長對話框中不會爆開 */
 .entry-content img {
-    width: 100%;       /* 強制圖片寬度等於彈出框寬度 */
-    height: auto;      /* 高度自動縮放，不變形 */
-    display: block;
-    margin-top: 10px;
+    max-height: 150px; /* 限制圖片最大高度，避免撐得太誇張 */
+    object-fit: cover;
+    width: 100%;
     border-radius: 8px;
+    margin-top: 8px;
 }
-
 
 
 /* ==========================================================================
