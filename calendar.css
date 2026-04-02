@@ -313,3 +313,53 @@ h6 {
     clear: both;
 }
 
+/* 淺藍色主題變數 */
+:root {
+  --yume-blue-light: #e0f2fe;
+  --yume-blue-primary: #7dd3fc;
+  --yume-blue-text: #0369a1;
+}
+
+/* 播放按鈕樣式 */
+.btn-music {
+  background-color: var(--yume-blue-primary);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-music:hover {
+  transform: scale(1.1);
+}
+
+/* 跑馬燈外框 */
+.music-marquee {
+  background-color: var(--yume-blue-light);
+  border: 1px solid var(--yume-blue-primary);
+  border-radius: 20px;
+  padding: 5px 15px;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden; /* 隱藏溢出內容 */
+  white-space: nowrap;
+  width: 200px; /* 可根據需求調整寬度 */
+}
+
+/* 跑馬燈文字動畫 */
+.marquee-content {
+  display: inline-block;
+  color: var(--yume-blue-text);
+  font-size: 0.9rem;
+  font-weight: bold;
+  animation: marquee 8s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
