@@ -162,3 +162,34 @@ document.addEventListener('DOMContentLoaded', () => {
         monthButtons[0].click();
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('bgMusic');
+    const toggleButton = document.getElementById('musicToggle');
+    const toggleIcon = toggleButton ? toggleButton.querySelector('i') : null;
+    const marquee = document.getElementById('musicMarquee'); // 跑馬燈元素
+
+    if (!music || !toggleButton || !toggleIcon || !marquee) return;
+
+    toggleButton.addEventListener('click', () => {
+        if (music.paused) {
+            // 嘗試播放
+            music.play().then(() => {
+                toggleIcon.className = 'bi bi-pause-fill';
+                
+                // 顯示跑馬燈
+                marquee.style.display = 'inline-block';
+                console.log('音樂播放中，跑馬燈已開啟');
+            }).catch(error => {
+                console.error("播放被阻止:", error);
+            });
+        } else {
+            // 暫停播放
+            music.pause();
+            toggleIcon.className = 'bi bi-play-fill';
+            
+            // 隱藏跑馬燈
+            marquee.style.display = 'none';
+        }
+    });
+});
