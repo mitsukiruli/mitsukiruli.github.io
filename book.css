@@ -395,11 +395,21 @@ h2.world-title-center {
 
 /* 音樂圖示按鈕 */
 .music-icon-btn {
-    font-size: 1.8rem;
-    color: var(--world-primary); /* 圖示顏色跟隨主題色 */
+    /* ⚡️ 關鍵：背景顏色必須使用 var() 讀取剛才 JS 設定的變數 */
+    background-color: var(--world-primary, #a5d6f2) !important; 
+    
+    /* 其他樣式維持不變 */
+    font-size: 2.5rem; 
+    width: 65px;
+    height: 65px;
+    color: #ffffff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     cursor: pointer;
-    transition: 0.3s;
-    opacity: 0.7;
+    transition: all 0.4s ease; /* 變色時會有平滑過渡感 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .music-icon-btn:hover {
@@ -411,7 +421,13 @@ h2.world-title-center {
 .music-playing {
     animation: music-rotate 3s linear infinite;
 }
-
+@media (max-width: 768px) {
+    .music-icon-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+}
 @keyframes music-rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
