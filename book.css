@@ -331,6 +331,19 @@ h2.world-title-center {
     font-size: 1.1rem;             /* 稍微縮小一點點，做出層次感 */
     line-height: 1.8;              /* 適中的行高 */
 }
+.quote-author {
+    display: block;             /* 確保它獨佔一行 */
+    text-align: right;          /* ⚡️ 關鍵：文字靠右對齊 */
+    margin-top: 10px;           /* 與上方內容保持一點距離 */
+    font-size: 0.9rem;          /* 字體稍微縮小一點點 */
+    color: #888;                /* 使用較淺的灰色 */
+    font-family: "Shippori Mincho B1", serif;
+}
+
+/* 在作者名字前面自動加上破折號（可選，很有質感） */
+.quote-author::before {
+    content: "—— ";
+}
 
 /* 📱 手機版微調 */
 @media (max-width: 768px) {
