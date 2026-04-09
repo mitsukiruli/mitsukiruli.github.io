@@ -39,8 +39,8 @@ function handleUrlHash() {
 const worldColors = {
     '獵人vanilLa✕吸血鬼瑠璃': { primary: '#eb4536', secondary: '#4a60a5' },
     '樂團': { primary: '#7f8182', secondary: '#262626' },
-    '鷹院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' },
-    'abo✕學pa': { primary: '#7d5947', secondary: '#3b2c25' }
+    '獅院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' },
+    '男公關': { primary: '#7d5947', secondary: '#3b2c25' }
 };
 
 function switchWorld(target, updateHash = true) {
@@ -68,7 +68,7 @@ function switchWorld(target, updateHash = true) {
     if (bannerImg) {
         if (target === '獵人vanilLa✕吸血鬼瑠璃') {
             bannerImg.src = 'img/testimonials/v/無標題306_20251230221312.jpg';
-        } else if (target === '鷹院三年級生vanilLa✕鷹院一年級生瑠璃') {
+        } else if (target === '獅院三年級生vanilLa✕鷹院一年級生瑠璃') {
             bannerImg.src = 'img/testimonials/v/無標題306_20260409213857.png';
         } else if (target === '樂團') {
             bannerImg.src = 'img/testimonials/v/無標題306_20260331033921.png';
