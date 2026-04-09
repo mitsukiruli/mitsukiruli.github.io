@@ -172,6 +172,36 @@ function displayArticle(world, cat, index, updateHash = true) {
     `;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+// --- 延時重播功能 ---
+const audioTag = document.getElementById('bgm-audio');
+const musicBtn = document.getElementById('music-toggle-btn');
+const icon = document.getElementById('music-icon');
+
+if (audioTag) {
+    audioTag.addEventListener('ended', function() {
+        console.log("播放結束，30秒冷卻中...");
+
+        // 1. 播放結束時，先移除旋轉動畫與更改圖示
+        if (musicBtn) musicBtn.classList.remove('music-playing');
+        if (icon) icon.className = 'bi bi-hourglass-split'; // 變成沙漏圖示（可選，增加氛圍）
+
+        // 2. 設定 30 秒計時器 (30000 毫秒)
+        setTimeout(() => {
+            // 檢查是否還在閱讀器頁面 (currentStep === 'reader') 且有音源
+            if (currentStep === 'reader' && audioTag.src !== "") {
+                audioTag.currentTime = 0; // 回到開頭
+                audioTag.play().then(() => {
+                    // 重新播放後，加回旋轉動畫與圖示
+                    if (musicBtn) musicBtn.classList.add('music-playing');
+                    if (icon) icon.className = 'bi bi-pause-circle';
+                    console.log("30秒到，開始重播");
+                }).catch(err => {
+                    console.log("自動重播被瀏覽器攔截");
+                });
+            }
+        }, 30000); 
+    });
+}
 
 // 5. 統一返回邏輯
 function handleBack() {
