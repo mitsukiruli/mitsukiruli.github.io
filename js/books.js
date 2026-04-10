@@ -66,14 +66,13 @@ function switchWorld(target, updateHash = true) {
     
     // 設定對應 Banner
     if (bannerImg) {
-        if (target === '獵人vanilLa✕吸血鬼瑠璃') {
-            bannerImg.src = 'img/testimonials/v/無標題306_20251230221312.jpg';
-        } else if (target === '獅院三年級生vanilLa✕鷹院一年級生瑠璃') {
-            bannerImg.src = 'img/testimonials/v/無標題306_20260409213857.png';
-        } else if (target === '樂團') {
-            bannerImg.src = 'img/testimonials/v/無標題306_20260331033921.png';
-        } else if (target === '男公關') {
-            bannerImg.src = 'img/testimonials/v/無標題306_20260410150748.png';
+        const banners = {
+            '獵人vanilLa✕吸血鬼瑠璃': 'img/testimonials/v/無標題306_20251230221312.jpg',
+            '獅院三年級生vanilLa✕鷹院一年級生瑠璃': 'img/testimonials/v/無標題306_20260409213857.png',
+            '樂團': 'img/testimonials/v/無標題306_20260331033921.png',
+            '男公關': 'img/testimonials/v/無標題306_20260410150748.png'
+        };
+        bannerImg.src = banners[target] || ''; 
     }
     
     const playerContainer = document.getElementById('music-player-container');
