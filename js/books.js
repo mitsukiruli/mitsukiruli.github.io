@@ -75,7 +75,7 @@ function switchWorld(target, updateHash = true) {
         } else if (target === '男公關') {
             bannerImg.src = 'img/testimonials/v/無標題306_20260410150748.png';
     }
-    }
+    
     const playerContainer = document.getElementById('music-player-container');
     const audioTag = document.getElementById('bgm-audio');
     if (audioTag) { audioTag.pause(); audioTag.src = ""; }
