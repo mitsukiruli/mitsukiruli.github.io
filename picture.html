@@ -401,6 +401,7 @@
     <div class="sort-row" id="sortRow">
       <span>排序</span>
       <select class="sort-select" id="sortSelect">
+        <option value="default">默認排序</option>
         <option value="date-desc">新到舊</option>
         <option value="date-asc">舊到新</option>
         <option value="artist-az">繪師 A-Z</option>
@@ -749,6 +750,13 @@
 
 <script>
 // ── Tab 切換 ──
+const grid = document.getElementById('galleryGrid');
+// 在最一開始就先記住 HTML 裡圖片原本出現的順序
+const originalOrder = Array.from(grid.querySelectorAll('.gallery-card'));
+
+const tabBtns = document.querySelectorAll('.tab-btn');
+const sortRow = document.getElementById('sortRow');
+let currentTab = 'commission';
 const tabBtns = document.querySelectorAll('.tab-btn');
 const sortRow = document.getElementById('sortRow');
 let currentTab = 'commission';
@@ -763,35 +771,47 @@ tabBtns.forEach(btn => {
   });
 });
 
-// ── 排序 ──
+// ── 排序功能修改 ──
 const sortSelect = document.getElementById('sortSelect');
 sortSelect.addEventListener('change', applyFilter);
 
 function applyFilter() {
-  const grid = document.getElementById('galleryGrid');
   const cards = Array.from(grid.querySelectorAll('.gallery-card'));
 
-  // 先分類
+  // 1. 先分類：找出目前 Tab 該顯示的
   const visible = cards.filter(c => c.dataset.tab === currentTab);
   const hidden  = cards.filter(c => c.dataset.tab !== currentTab);
 
   hidden.forEach(c => c.classList.add('hidden'));
 
-  // 排序（僅委託）
+  // 2. 排序（僅在委託頁面且不是預設時排序）
   if (currentTab === 'commission') {
     const sort = sortSelect.value;
-    visible.sort((a, b) => {
-      if (sort === 'date-desc') return b.dataset.date.localeCompare(a.dataset.date);
-      if (sort === 'date-asc')  return a.dataset.date.localeCompare(b.dataset.date);
-      if (sort === 'artist-az') return a.dataset.artist.localeCompare(b.dataset.artist, 'zh-TW');
-      if (sort === 'artist-za') return b.dataset.artist.localeCompare(a.dataset.artist, 'zh-TW');
-    });
+    
+    if (sort === 'default') {
+      // 如果選預設，則依照當初 originalOrder 的順序排回 visible
+      visible.sort((a, b) => {
+        return originalOrder.indexOf(a) - originalOrder.indexOf(b);
+      });
+    } else {
+      // 其他排序邏輯
+      visible.sort((a, b) => {
+        if (sort === 'date-desc') return b.dataset.date.localeCompare(a.dataset.date);
+        if (sort === 'date-asc')  return a.dataset.date.localeCompare(b.dataset.date);
+        if (sort === 'artist-az') return a.dataset.artist.localeCompare(b.dataset.artist, 'zh-TW');
+        if (sort === 'artist-za') return b.dataset.artist.localeCompare(a.dataset.artist, 'zh-TW');
+      });
+    }
   }
 
-  visible.forEach(c => { c.classList.remove('hidden'); grid.appendChild(c); });
+  // 3. 重新插入 DOM
+  visible.forEach(c => { 
+    c.classList.remove('hidden'); 
+    grid.appendChild(c); 
+  });
 }
 
-// 初始套用
+// 初始執行
 applyFilter();
 
 // ── Lightbox ──
