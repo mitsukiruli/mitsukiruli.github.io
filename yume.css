@@ -1271,3 +1271,22 @@ section {
     padding-right: 20px 15px;
   }
 }
+
+/* ── 頁首 ── */
+ .site-header {
+    padding: 2rem 2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #4a4a4a;
+  }
+  .site-header a {
+    font-family: 'Noto Serif TC', sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+  .site-header a:hover { color: var(--ink); }
+  .header-nav { display: flex; gap: 1.5rem; }
