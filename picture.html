@@ -763,173 +763,105 @@ video.lightbox-img {
 </div>
 
 <script>
-// ── 1. 初始化與變數 ──
 const grid = document.getElementById('galleryGrid');
-// 記住 HTML 初始寫死的圖片順序（包含自繪與委託）
 const originalOrder = Array.from(grid.querySelectorAll('.gallery-card'));
-
 const tabBtns = document.querySelectorAll('.tab-btn');
 const sortRow = document.getElementById('sortRow');
 const sortSelect = document.getElementById('sortSelect');
 let currentTab = 'commission';
 
-// ── 2. Tab 切換邏輯 ──
 tabBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     tabBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentTab = btn.dataset.tab;
-    
-    // 只有在「委託」標籤下才顯示排序選單
     sortRow.style.display = currentTab === 'commission' ? 'flex' : 'none';
-    
     applyFilter();
   });
 });
 
-// ── 3. 排序與篩選核心功能 ──
 sortSelect.addEventListener('change', applyFilter);
 
 function applyFilter() {
-  // 每次篩選都從所有卡片中挑選
-  const allCards = originalOrder;
-
-  // 根據 data-tab 分出要顯示 (visible) 與要隱藏 (hidden) 的
-  const visible = allCards.filter(c => c.dataset.tab === currentTab);
-  const hidden  = allCards.filter(c => c.dataset.tab !== currentTab);
-
-  // 執行隱藏
+  const visible = originalOrder.filter(c => c.dataset.tab === currentTab);
+  const hidden = originalOrder.filter(c => c.dataset.tab !== currentTab);
   hidden.forEach(c => c.classList.add('hidden'));
 
-  // 如果在委託標籤，執行排序邏輯
   if (currentTab === 'commission') {
     const sort = sortSelect.value;
     if (sort === 'default') {
-      // 照原始順序排回
       visible.sort((a, b) => originalOrder.indexOf(a) - originalOrder.indexOf(b));
     } else {
       visible.sort((a, b) => {
         if (sort === 'date-desc') return b.dataset.date.localeCompare(a.dataset.date);
-        if (sort === 'date-asc')  return a.dataset.date.localeCompare(b.dataset.date);
+        if (sort === 'date-asc') return a.dataset.date.localeCompare(b.dataset.date);
         if (sort === 'artist-az') return a.dataset.artist.localeCompare(b.dataset.artist, 'zh-TW');
         if (sort === 'artist-za') return b.dataset.artist.localeCompare(a.dataset.artist, 'zh-TW');
         return 0;
       });
     }
   } else {
-    // 自繪標籤：固定使用 HTML 原始順序
     visible.sort((a, b) => originalOrder.indexOf(a) - originalOrder.indexOf(b));
   }
 
-  // 重新將排好序的圖片放回畫面並顯示
   visible.forEach(c => {
     c.classList.remove('hidden');
     grid.appendChild(c);
   });
 }
 
-// 初始套用一次
 applyFilter();
 
-// ── 4. Lightbox 邏輯 (維持原樣) ──
+// ── Lightbox 核心 ──
 let lbItems = [];
 let lbIdx = 0;
 
-function renderLb() {
-  const item = lbItems[lbIdx];
-  const lbInner = document.querySelector('.lightbox-inner');
-  const isVideo = item.full.toLowerCase().endsWith('.mp4') || item.full.toLowerCase().endsWith('.mov');
-// 清除舊內容
-  const oldMedia = document.getElementById('lbImg');
-  if (oldMedia) oldMedia.remove();
+function openLightbox(full, caption) {
+  const lb = document.getElementById('lightbox');
+  lbItems = Array.from(document.querySelectorAll('.gallery-card:not(.hidden)'))
+    .map(c => ({ full: c.dataset.full, caption: c.dataset.caption }));
+  lbIdx = lbItems.findIndex(i => i.full === full);
+  if (lbIdx < 0) lbIdx = 0;
+  renderLb();
+  lb.classList.add('open');
+}
 
-  let newMedia;
-  if (isVideo) {
-    // 建立影片標籤
-    newMedia = document.createElement('video');
-    newMedia.src = item.full;
-    newMedia.controls = true; // 顯示播放條
-    newMedia.autoplay = true;
-    newMedia.className = 'lightbox-img'; // 沿用原本圖片的 CSS 樣式
-  } else {
-    // 建立圖片標籤
-    newMedia = document.createElement('img');
-    newMedia.src = item.full;
-    newMedia.className = 'lightbox-img';
-  }
 function renderLb() {
   const item = lbItems[lbIdx];
   const lbInner = document.querySelector('.lightbox-inner');
   const isVideo = item.full.toLowerCase().endsWith('.mp4') || item.full.toLowerCase().endsWith('.mov');
 
-  // 清除舊內容
-  const oldMedia = document.getElementById('lbImg');
-  if (oldMedia) oldMedia.remove();
-
-  let newMedia;
-  if (isVideo) {
-    // 建立影片標籤
-    newMedia = document.createElement('video');
-    newMedia.src = item.full;
-    newMedia.controls = true; // 顯示播放條
-    newMedia.autoplay = true;
-    newMedia.className = 'lightbox-img'; // 沿用原本圖片的 CSS 樣式
-  } else {
-    // 建立圖片標籤
-    newMedia = document.createElement('img');
-    newMedia.src = item.full;
-    newMedia.className = 'lightbox-img';
-  }
-  
-function renderLb() {
-  const item = lbItems[lbIdx];
-  const lbInner = document.querySelector('.lightbox-inner');
-  
-  // 判斷副檔名是否為影片格式
-  const isVideo = item.full.toLowerCase().endsWith('.mp4') || item.full.toLowerCase().endsWith('.mov');
-
-  // 1. 移除舊的媒體元素 (不管是 img 還是 video)
   const currentMedia = document.getElementById('lbImg');
   if (currentMedia) currentMedia.remove();
 
   let newMedia;
-
   if (isVideo) {
-    // 2. 如果是影片，建立 <video>
     newMedia = document.createElement('video');
     newMedia.src = item.full;
-    newMedia.id = 'lbImg';
-    newMedia.className = 'lightbox-img';
-    newMedia.controls = true;   // 顯示播放控制條
-    newMedia.autoplay = true;   // 自動播放
-    newMedia.muted = false;     // 如果有音樂，記得不要靜音
+    newMedia.controls = true;
+    newMedia.autoplay = true;
+    newMedia.muted = false;
   } else {
-    // 3. 如果是圖片，建立 <img>
     newMedia = document.createElement('img');
     newMedia.src = item.full;
-    newMedia.id = 'lbImg';
-    newMedia.className = 'lightbox-img';
   }
-
-  // 4. 將新元素插入到標題之前
-  const captionWrap = document.getElementById('lbCaption').parentNode;
-  lbInner.insertBefore(newMedia, captionWrap);
-
+  
+  newMedia.id = 'lbImg';
+  newMedia.className = 'lightbox-img';
+  lbInner.insertBefore(newMedia, document.getElementById('lbCaption').parentNode);
   document.getElementById('lbCaption').textContent = item.caption;
 }
-  
+
 document.querySelectorAll('.gallery-card').forEach(card => {
-  card.addEventListener('click', () => {
-    openLightbox(card.dataset.full, card.dataset.caption);
-  });
+  card.addEventListener('click', () => openLightbox(card.dataset.full, card.dataset.caption));
 });
 
+// 精選區點擊
 document.querySelectorAll('.feat-item').forEach(item => {
   item.addEventListener('click', () => {
-    document.getElementById('lbImg').src = item.dataset.full;
-    document.getElementById('lbCaption').textContent = item.dataset.caption;
     lbItems = [{ full: item.dataset.full, caption: item.dataset.caption }];
     lbIdx = 0;
+    renderLb();
     document.getElementById('lightbox').classList.add('open');
   });
 });
