@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>甜食組 — 夢圖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Raleway:wght@300;400;500&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f3ef;
+    --surface: #fff9f5;
+    --ink: #2a2320;
+    --ink-light: #7a6e6a;
+    --accent: #8fb8c8;
+    --accent2: #c8a8b8;
+    --accent3: #b8c8a8;
+    --border: rgba(42,35,32,0.1);
+    --card-shadow: 0 2px 20px rgba(42,35,32,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Raleway', 'Noto Serif TC', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── 頁首 ── */
+  .site-header {
+    padding: 2rem 2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .site-header a {
+    font-family: 'Zen Kurenaido', sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+  .site-header a:hover { color: var(--ink); }
+  .header-nav { display: flex; gap: 1.5rem; }
+
+  /* ── 標題 ── */
+  .page-title {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+  }
+  .page-title h1 {
+    font-family: 'Zen Kurenaido', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .page-title .subtitle {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    letter-spacing: 0.3em;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  /* ── 精選橫幅 ── */
+  .featured-section {
+    padding: 2rem 2rem 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .featured-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .featured-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 180px;
+    gap: 8px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .featured-grid .feat-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .featured-grid .feat-item:nth-child(1) {
+    grid-row: 1 / 3;
+  }
+  .featured-grid .feat-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .featured-grid .feat-item:hover img {
+    transform: scale(1.05);
+  }
+  .feat-item .feat-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.2rem 1rem 0.8rem;
+    background: linear-gradient(transparent, rgba(42,35,32,0.5));
+    color: #fff;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .feat-item:hover .feat-overlay { opacity: 1; }
+
+  /* ── Tab 區 ── */
+  .gallery-section {
+    padding: 2.5rem 2rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .tabs-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    font-family: 'Zen Kurenaido', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    padding: 0.5rem 1.4rem;
+    border-radius: 99px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--ink-light);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .tab-btn:hover { border-color: var(--accent); color: var(--ink); }
+  .tab-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+
+  .sort-row {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+  }
+  .sort-select {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.72rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    outline: none;
+  }
+  .sort-select:focus { border-color: var(--accent); }
+
+  /* ── 圖片格 ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+  }
+
+  .gallery-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    background: #e8e2dc;
+  }
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    display: block;
+  }
+  .gallery-card:hover img { transform: scale(1.06); }
+  .gallery-card .card-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.5rem 0.8rem 0.7rem;
+    background: linear-gradient(transparent, rgba(42,35,32,0.6));
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    transform: translateY(4px);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .gallery-card:hover .card-info { opacity: 1; transform: translateY(0); }
+  .card-info .artist { font-weight: 500; }
+  .card-info .date { opacity: 0.75; font-size: 0.62rem; margin-top: 1px; }
+
+  /* hidden */
+  .gallery-card.hidden { display: none; }
+
+  /* ── Lightbox ── */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20,15,12,0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    backdrop-filter: blur(6px);
+  }
+  .lightbox-overlay.open { display: flex; }
+
+  .lightbox-inner {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    animation: lbIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @keyframes lbIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .lightbox-img {
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 10px;
+    display: block;
+  }
+  .lightbox-caption {
+    margin-top: 0.8rem;
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+  }
+  .lightbox-caption .lb-artist { color: #fff; font-weight: 500; }
+
+  .lb-close {
+    position: absolute;
+    top: -2.5rem; right: 0;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .lb-close:hover { color: #fff; }
+
+  .lb-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    backdrop-filter: blur(4px);
+  }
+  .lb-nav:hover { background: rgba(255,255,255,0.25); }
+  .lb-prev { left: -3.5rem; }
+  .lb-next { right: -3.5rem; }
+
+  /* 手機版 nav 在圖片下方 */
+  @media (max-width: 700px) {
+    .lb-prev, .lb-next { display: none; }
+    .lb-mobile-nav {
+      display: flex; justify-content: center; gap: 1rem; margin-top: 0.8rem;
+    }
+    .lb-mobile-nav button {
+      background: rgba(255,255,255,0.15);
+      border: none; color: #fff;
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .featured-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 180px 120px 120px;
+    }
+    .featured-grid .feat-item:nth-child(1) {
+      grid-column: 1 / 3;
+      grid-row: 1;
+    }
+  }
+  @media (min-width: 701px) {
+    .lb-mobile-nav { display: none; }
+  }
+
+  /* ── 底部導航 ── */
+  .page-nav {
+    text-align: center;
+    padding: 1rem 2rem 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .page-nav a {
+    font-family: 'Zen Kurenaido', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .page-nav a:hover { color: var(--ink); }
+
+  /* 裝飾點 */
+  .dot-divider {
+    text-align: center;
+    color: var(--accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    padding: 0.5rem 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- 頁首 -->
+<header class="site-header">
+  <a href="https://mitsukiruli.github.io/Ruli.html">🐾 夢の置き所</a>
+  <nav class="header-nav">
+    <a href="https://mitsukiruli.github.io/love.html">服設</a>
+    <a href="https://mitsukiruli.github.io/story.html">故事</a>
+    <a href="https://mitsukiruli.github.io/calendar.html">回憶</a>
+  </nav>
+</header>
+
+<!-- 標題 -->
+<div class="page-title">
+  <h1>甜食組</h1>
+  <p class="subtitle">Commission &amp; Original Art</p>
+</div>
+
+<!-- 精選區 -->
+<section class="featured-section">
+  <div class="featured-label">精選</div>
+  <div class="featured-grid" id="featuredGrid">
+    <!-- 精選圖片：把 src 換成你想展示的圖 -->
+    <div class="feat-item" data-full="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 커미션.jpg" data-caption="삐루루시 — Hashita">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 커미션.jpg" alt="精選1" loading="lazy">
+      <div class="feat-overlay">삐루루시</div>
+    </div>
+    <div class="feat-item" data-full="https://mitsukiruli.github.io/img/testimonials/v/10-夏-1-d2.jpg" data-caption="全麥">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/10-夏-1-d2.jpg" alt="精選2" loading="lazy">
+      <div class="feat-overlay">全麥</div>
+    </div>
+    <div class="feat-item" data-full="https://mitsukiruli.github.io/img/testimonials/v/1000099329.jpg" data-caption="李川玉">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/1000099329.jpg" alt="精選3" loading="lazy">
+      <div class="feat-overlay">李川玉</div>
+    </div>
+    <div class="feat-item" data-full="https://mitsukiruli.github.io/img/testimonials/v/plurk_img_1764727872097.jpg" data-caption="Reika">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/plurk_img_1764727872097.jpg" alt="精選4" loading="lazy">
+      <div class="feat-overlay">Reika</div>
+    </div>
+    <div class="feat-item" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_0599.jpg" data-caption="自繪 — 最喜歡vani了！">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_0599.jpg" alt="精選5" loading="lazy">
+      <div class="feat-overlay">自繪</div>
+    </div>
+  </div>
+</section>
+
+<div class="dot-divider">· · ·</div>
+
+<!-- Gallery Section -->
+<section class="gallery-section">
+  <div class="tabs-row">
+    <button class="tab-btn active" data-tab="commission">委託</button>
+    <button class="tab-btn" data-tab="original">自繪</button>
+    <div class="sort-row" id="sortRow">
+      <span>排序</span>
+      <select class="sort-select" id="sortSelect">
+        <option value="date-desc">新到舊</option>
+        <option value="date-asc">舊到新</option>
+        <option value="artist-az">繪師 A-Z</option>
+        <option value="artist-za">繪師 Z-A</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- ════ 委託圖 ════
+         data-tab="commission"
+         data-artist="繪師名"
+         data-date="YYYY-MM-DD"（排序用，越新越前）
+         data-full="大圖路徑"
+         data-caption="顯示說明"
+    -->
+    <div class="gallery-card" data-tab="commission" data-artist="Hashita" data-date="2025-10-29" data-full="https://mitsukiruli.github.io/img/testimonials/v/25 10 29 hashita님.jpg" data-caption="님 — Hashita">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/25 10 29 hashita님.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">Hashita</div><div class="date">2025-10-29</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="Hashita" data-date="2025-06-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 커미션.jpg" data-caption="삐루루시 — Hashita">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 커미션.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">Hashita</div><div class="date">2025-06-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="Hashita" data-date="2026-01-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 최종본.png" data-caption="秋日復古 — 베베">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 최종본.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">베베</div><div class="date">2026-01-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="全麥" data-date="2025-09-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/10-夏-1-d2.jpg" data-caption="全麥">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/10-夏-1-d2.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">全麥</div><div class="date">2025-09-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="李川玉" data-date="2025-08-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/1000099329.jpg" data-caption="李川玉">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/1000099329.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">李川玉</div><div class="date">2025-08-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="Reika" data-date="2025-07-15" data-full="https://mitsukiruli.github.io/img/testimonials/v/plurk_img_1764727872097.jpg" data-caption="Reika">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/plurk_img_1764727872097.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">Reika</div><div class="date">2025-07-15</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="文森森" data-date="2025-07-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/未命名的作品.png (1) (1).jpg" data-caption="文森森">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/未命名的作品.png (1) (1).jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">文森森</div><div class="date">2025-07-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="Ao Ao" data-date="2025-06-15" data-full="https://mitsukiruli.github.io/img/testimonials/v/拍貼機4X6_1 (1).jpg" data-caption="Ao Ao">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/拍貼機4X6_1 (1).jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">Ao Ao</div><div class="date">2025-06-15</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="夏米" data-date="2025-06-10" data-full="https://mitsukiruli.github.io/img/testimonials/v/無標題498 (1).jpg" data-caption="夏米">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題498 (1).jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">夏米</div><div class="date">2025-06-10</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="Kuma Rikaa" data-date="2025-05-20" data-full="https://mitsukiruli.github.io/img/testimonials/v/200.jpg" data-caption="Kuma Rikaa">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/200.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">Kuma Rikaa</div><div class="date">2025-05-20</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="Henakei Mori" data-date="2025-05-10" data-full="https://mitsukiruli.github.io/img/testimonials/v/陳半鈴 (1).jpg" data-caption="Henakei Mori">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/陳半鈴 (1).jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">Henakei Mori</div><div class="date">2025-05-10</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="Henakei Mori" data-date="2025-05-11" data-full="https://mitsukiruli.github.io/img/testimonials/v/陳半鈴補 (1).jpg" data-caption="Henakei Mori（補）">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/陳半鈴補 (1).jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">Henakei Mori</div><div class="date">2025-05-11</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="CINJ" data-date="2026-02-14" data-full="https://mitsukiruli.github.io/img/testimonials/v/無標題311_20260214232310.jpg" data-caption="CINJ">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題311_20260214232310.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">CINJ</div><div class="date">2026-02-14</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="潘小宇" data-date="2025-12-20" data-full="https://mitsukiruli.github.io/img/testimonials/v/無標題3313_20251220230130.jpg" data-caption="潘小宇">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題3313_20251220230139.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">潘小宇</div><div class="date">2025-12-20</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="毛絨小晴" data-date="2025-11-09" data-full="https://mitsukiruli.github.io/img/testimonials/v/20251109215523.jpg" data-caption="毛絨小晴">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/20251109215523.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">毛絨小晴</div><div class="date">2025-11-09</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="薛丁赤" data-date="2025-10-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_2398.jpg" data-caption="薛丁赤（有授權二改）">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_2398.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">薛丁赤</div><div class="date">2025-10-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="유화" data-date="2025-09-15" data-full="https://mitsukiruli.github.io/img/testimonials/v/Hashita LD 낙서 2인 커미션.jpg" data-caption="유화">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/Hashita LD 낙서 2인 커미션.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">유화</div><div class="date">2025-09-15</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="海萊茵" data-date="2025-09-05" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_5804.png" data-caption="海萊茵">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_5804.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">海萊茵</div><div class="date">2025-09-05</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="nancy" data-date="2025-08-20" data-full="https://mitsukiruli.github.io/img/testimonials/v/扁Q_半.png" data-caption="nancy">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/扁Q_半.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">nancy</div><div class="date">2025-08-20</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="宅蝦貓貓魚" data-date="2025-08-10" data-full="https://mitsukiruli.github.io/img/testimonials/v/image0 (2).png" data-caption="宅蝦貓貓魚">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/image0 (2).png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">宅蝦貓貓魚</div><div class="date">2025-08-10</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="몬디" data-date="2025-07-20" data-full="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 컴숑2.png" data-caption="몬디">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 컴숑2.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">몬디</div><div class="date">2025-07-20</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="몬디" data-date="2025-07-10" data-full="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 컴숑.png" data-caption="몬디">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 컴숑.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">몬디</div><div class="date">2025-07-10</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="융키" data-date="2026-02-02" data-full="https://mitsukiruli.github.io/img/testimonials/v/無標題310_20260202160334.png" data-caption="융키">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題310_20260202160334.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">융키</div><div class="date">2026-02-02</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="라임맛개" data-date="2025-06-28" data-full="https://mitsukiruli.github.io/img/testimonials/v/179.png" data-caption="라임맛개🌿">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/179.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">라임맛개</div><div class="date">2025-06-28</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="藍天貓" data-date="2025-06-05" data-full="https://mitsukiruli.github.io/img/testimonials/v/image0.jpeg" data-caption="藍天貓">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/image0.jpeg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">藍天貓</div><div class="date">2025-06-05</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="吧噗" data-date="2025-05-13" data-full="https://mitsukiruli.github.io/img/testimonials/v/無標題1275_20250513000136.png" data-caption="吧噗">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題1275_20250513000136.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">吧噗</div><div class="date">2025-05-13</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="麑龗" data-date="2025-05-16" data-full="https://mitsukiruli.github.io/img/testimonials/v/無標題638_20250516140839.png" data-caption="麑龗">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題638_20250516140839.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">麑龗</div><div class="date">2025-05-16</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="麑龗" data-date="2025-05-13" data-full="https://mitsukiruli.github.io/img/testimonials/v/無標題235_20250513005945.png" data-caption="麑龗">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題235_20250513005945.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">麑龗</div><div class="date">2025-05-13</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="吹雪小番茄" data-date="2025-09-22" data-full="https://mitsukiruli.github.io/img/testimonials/v/20250922-中秋.jpg" data-caption="吹雪小番茄">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/20250922-中秋.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">吹雪小番茄</div><div class="date">2025-09-22</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="白米米" data-date="2025-05-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/未命名的作品.png.jpg" data-caption="白米米">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/未命名的作品.png.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">白米米</div><div class="date">2025-05-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="穆熠宸" data-date="2025-07-25" data-full="https://mitsukiruli.github.io/img/testimonials/v/FB_IMG_1753496624429.jpg" data-caption="穆熠宸（無償）">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/FB_IMG_1753496624429.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">穆熠宸</div><div class="date">2025-07-25</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="朋友贈圖" data-date="2025-07-23" data-full="https://mitsukiruli.github.io/img/testimonials/v/1756045068787.jpg" data-caption="朋友贈圖（無償）">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/1756045068787.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">朋友贈圖</div><div class="date">2025-07-23</div></div>
+    </div>
+    <div class="gallery-card" data-tab="commission" data-artist="七一" data-date="2025-07-05" data-full="https://mitsukiruli.github.io/img/testimonials/v/插圖312.jpg" data-caption="七一">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/插圖312.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">七一</div><div class="date">2025-07-05</div></div>
+    </div>
+
+    <!-- ════ 自繪 ════ -->
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2026-04-07" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_2392.jpg" data-caption="💙">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_2392.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2026-04-07</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2026-02-14" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_2051.jpg" data-caption="生氣記得哄（有參考模板）">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_2051.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2026-02-14</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2026-02-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_2072.jpg" data-caption="元宵節快樂！">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_2072.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2026-02-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-12-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1960.jpg" data-caption="推し活">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1960.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-12-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-11-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1943.jpg" data-caption="幸福圈">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1943.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-11-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-10-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1800.jpg" data-caption="視訊">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1800.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-10-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-09-22" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_0599.jpg" data-caption="最喜歡vani了！">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_0599.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-09-22</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-09-15" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1583.jpg" data-caption="在看魔法史？">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1583.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-09-15</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-09-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_0654.png" data-caption="最近流行的那個">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_0654.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-09-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-08-20" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_0621.jpg" data-caption="なに！？（有參考模板）">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_0621.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-08-20</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-08-10" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_0717.png" data-caption="嘴饞吸血鬼小姐和吸血鬼獵人">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_0717.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-08-10</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-08-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1456.png" data-caption="女僕">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1456.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-08-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-07-15" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1483.jpg" data-caption="夏日">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1483.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-07-15</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-07-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1223.png" data-caption="秋日穿搭">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1223.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-07-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-06-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1197.jpg" data-caption="包子！？">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1197.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-06-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-10-15" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1662.png" data-caption="好冷">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1662.png" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-10-15</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-11-20" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1703.jpg" data-caption="模型">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1703.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-11-20</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2026-03-01" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_2391.jpg" data-caption="推し！？">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_2391.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2026-03-01</div></div>
+    </div>
+    <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-05-13" data-full="https://mitsukiruli.github.io/img/testimonials/v/IMG_1798.jpg" data-caption="海族館">
+      <img src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1798.jpg" alt="" loading="lazy">
+      <div class="card-info"><div class="artist">自繪</div><div class="date">2025-05-13</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 底部導航 -->
+<nav class="page-nav">
+  <a href="https://mitsukiruli.github.io/love.html">← 上一頁</a>
+  <a href="https://mitsukiruli.github.io/Ruli.html">🐾</a>
+  <a href="https://mitsukiruli.github.io/book.html">下一頁 →</a>
+</nav>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lb-close" id="lbClose">✕</button>
+    <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+    <div class="lightbox-caption">
+      <span class="lb-artist" id="lbCaption"></span>
+    </div>
+    <button class="lb-nav lb-next" id="lbNext">›</button>
+    <div class="lb-mobile-nav">
+      <button id="lbPrevMob">‹</button>
+      <button id="lbNextMob">›</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Tab 切換 ──
+const tabBtns = document.querySelectorAll('.tab-btn');
+const sortRow = document.getElementById('sortRow');
+let currentTab = 'commission';
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTab = btn.dataset.tab;
+    sortRow.style.display = currentTab === 'commission' ? 'flex' : 'none';
+    applyFilter();
+  });
+});
+
+// ── 排序 ──
+const sortSelect = document.getElementById('sortSelect');
+sortSelect.addEventListener('change', applyFilter);
+
+function applyFilter() {
+  const grid = document.getElementById('galleryGrid');
+  const cards = Array.from(grid.querySelectorAll('.gallery-card'));
+
+  // 先分類
+  const visible = cards.filter(c => c.dataset.tab === currentTab);
+  const hidden  = cards.filter(c => c.dataset.tab !== currentTab);
+
+  hidden.forEach(c => c.classList.add('hidden'));
+
+  // 排序（僅委託）
+  if (currentTab === 'commission') {
+    const sort = sortSelect.value;
+    visible.sort((a, b) => {
+      if (sort === 'date-desc') return b.dataset.date.localeCompare(a.dataset.date);
+      if (sort === 'date-asc')  return a.dataset.date.localeCompare(b.dataset.date);
+      if (sort === 'artist-az') return a.dataset.artist.localeCompare(b.dataset.artist, 'zh-TW');
+      if (sort === 'artist-za') return b.dataset.artist.localeCompare(a.dataset.artist, 'zh-TW');
+    });
+  }
+
+  visible.forEach(c => { c.classList.remove('hidden'); grid.appendChild(c); });
+}
+
+// 初始套用
+applyFilter();
+
+// ── Lightbox ──
+let lbItems = [];
+let lbIdx = 0;
+
+function openLightbox(full, caption) {
+  const lb = document.getElementById('lightbox');
+  // 取得目前 tab 可見項目列表
+  lbItems = Array.from(document.querySelectorAll('.gallery-card:not(.hidden)'))
+    .map(c => ({ full: c.dataset.full, caption: c.dataset.caption }));
+  lbIdx = lbItems.findIndex(i => i.full === full);
+  if (lbIdx < 0) lbIdx = 0;
+  renderLb();
+  lb.classList.add('open');
+}
+
+function renderLb() {
+  const item = lbItems[lbIdx];
+  document.getElementById('lbImg').src = item.full;
+  document.getElementById('lbCaption').textContent = item.caption;
+}
+
+document.querySelectorAll('.gallery-card').forEach(card => {
+  card.addEventListener('click', () => {
+    openLightbox(card.dataset.full, card.dataset.caption);
+  });
+});
+
+// 精選圖
+document.querySelectorAll('.feat-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.getElementById('lbImg').src = item.dataset.full;
+    document.getElementById('lbCaption').textContent = item.dataset.caption;
+    lbItems = [{ full: item.dataset.full, caption: item.dataset.caption }];
+    lbIdx = 0;
+    document.getElementById('lightbox').classList.add('open');
+  });
+});
+
+function lbPrev() { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; renderLb(); }
+function lbNext() { lbIdx = (lbIdx + 1) % lbItems.length; renderLb(); }
+
+document.getElementById('lbClose').addEventListener('click', () => document.getElementById('lightbox').classList.remove('open'));
+document.getElementById('lbPrev').addEventListener('click', lbPrev);
+document.getElementById('lbNext').addEventListener('click', lbNext);
+document.getElementById('lbPrevMob').addEventListener('click', lbPrev);
+document.getElementById('lbNextMob').addEventListener('click', lbNext);
+
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target === document.getElementById('lightbox')) document.getElementById('lightbox').classList.remove('open');
+});
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft')  lbPrev();
+  if (e.key === 'ArrowRight') lbNext();
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+});
+</script>
+</body>
+</html>
