@@ -865,7 +865,34 @@ document.querySelectorAll('.feat-item').forEach(item => {
     document.getElementById('lightbox').classList.add('open');
   });
 });
+// 建立一個統一的關閉函數
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  const container = document.querySelector('.lb-media-container');
+  
+  lb.classList.remove('open');
+  
+  // 重點：關閉時把裡面的影片/圖片全部清空，聲音就會立刻停止
+  if (container) {
+    container.innerHTML = '';
+  }
+}
 
+// 綁定到原本的點擊事件上
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+
+// 點擊背景關閉
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target.id === 'lightbox') closeLightbox();
+});
+
+// 按下 Escape 鍵關閉
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') lbPrev();
+  if (e.key === 'ArrowRight') lbNext();
+  if (e.key === 'Escape') closeLightbox(); // 使用統一的關閉函數
+});
 function lbPrev() { if(lbItems.length > 0) { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; renderLb(); } }
 function lbNext() { if(lbItems.length > 0) { lbIdx = (lbIdx + 1) % lbItems.length; renderLb(); } }
 
