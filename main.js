@@ -266,3 +266,31 @@
 const photoWallLightbox = GLightbox({
   selector: '.glightbox'
 });
+
+  // 禁止圖片右鍵選單（電腦）
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
+  // 禁止長按選單（行動裝置）
+  // 注意：不能用 preventDefault 在 touchstart，否則會干擾點擊
+  // 改用計時器偵測長按
+  let pressTimer;
+
+  document.addEventListener('touchstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+      pressTimer = setTimeout(function() {
+        // 長按時什麼都不做，但阻止預設選單
+      }, 500);
+    }
+  });
+
+  document.addEventListener('touchend', function(e) {
+    clearTimeout(pressTimer);
+  });
+
+  document.addEventListener('touchmove', function(e) {
+    clearTimeout(pressTimer);
+  });
