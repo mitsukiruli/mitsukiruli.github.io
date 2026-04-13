@@ -226,7 +226,14 @@
   object-fit: cover; /* 確保影片填滿格子 */
   display: block;
 }
-
+video.lightbox-img {
+  width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+  outline: none;
+}
   /* hidden */
   .gallery-card.hidden { display: none; }
 
@@ -578,7 +585,7 @@
       <div class="card-info"><div class="artist">最喜歡vani了！</div></div>
     </div>
      <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-05-14" data-full="MP4/copy_CD162705-1424-412A-ABBB-1EFF82233D81.mov" data-caption="チューリングラブ">
-      <img src="MP4/copy_CD162705-1424-412A-ABBB-1EFF82233D81.mov" alt="" loading="lazy">
+      <video src="MP4/copy_CD162705-1424-412A-ABBB-1EFF82233D81.mov" alt="" loading="lazy">
       <div class="card-info"><div class="artist">チューリングラブ</div></div>
     </div>
      <div class="gallery-card" data-tab="original" data-artist="自繪" data-date="2025-05-18" data-full="img/testimonials/v/IMG_1583.jpg" data-caption="在看魔法史？">
@@ -876,10 +883,41 @@ function renderLb() {
   
 function renderLb() {
   const item = lbItems[lbIdx];
-  document.getElementById('lbImg').src = item.full;
+  const lbInner = document.querySelector('.lightbox-inner');
+  
+  // 判斷副檔名是否為影片格式
+  const isVideo = item.full.toLowerCase().endsWith('.mp4') || item.full.toLowerCase().endsWith('.mov');
+
+  // 1. 移除舊的媒體元素 (不管是 img 還是 video)
+  const currentMedia = document.getElementById('lbImg');
+  if (currentMedia) currentMedia.remove();
+
+  let newMedia;
+
+  if (isVideo) {
+    // 2. 如果是影片，建立 <video>
+    newMedia = document.createElement('video');
+    newMedia.src = item.full;
+    newMedia.id = 'lbImg';
+    newMedia.className = 'lightbox-img';
+    newMedia.controls = true;   // 顯示播放控制條
+    newMedia.autoplay = true;   // 自動播放
+    newMedia.muted = false;     // 如果有音樂，記得不要靜音
+  } else {
+    // 3. 如果是圖片，建立 <img>
+    newMedia = document.createElement('img');
+    newMedia.src = item.full;
+    newMedia.id = 'lbImg';
+    newMedia.className = 'lightbox-img';
+  }
+
+  // 4. 將新元素插入到標題之前
+  const captionWrap = document.getElementById('lbCaption').parentNode;
+  lbInner.insertBefore(newMedia, captionWrap);
+
   document.getElementById('lbCaption').textContent = item.caption;
 }
-
+  
 document.querySelectorAll('.gallery-card').forEach(card => {
   card.addEventListener('click', () => {
     openLightbox(card.dataset.full, card.dataset.caption);
