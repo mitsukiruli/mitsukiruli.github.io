@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>服設 — 夢の置き所</title>
+ <title>about us</title>
+  <meta content="" name="description"> <meta content="" name="keywords"> 
+  <link href="img/testimonials/v/無標題252_20250902222530.png" rel="icon"> 
+  <link href="img/testimonials/v/無標題252_20250902222530.png" rel="apple-touch-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Raleway:wght@300;400;500&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
-<style>
+ <link href="yume.css" rel="stylesheet">
+  <style>
   :root {
     --bg: #f0f6fb;
     --surface: #ffffff;
@@ -338,7 +342,7 @@
       data-outfit-id="對應 wardrobe 卡片的 id"
       把 src 換成服設概念圖縮圖
     -->
-    <div class="concept-card" data-name="初始" data-artist="henakei mori" data-outfit-id="outfit-shiro">
+    <div class="concept-card" data-name="初始" data-artist="henakei mori" data-outfit-id="outfit-1">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100813.png" alt="初始">
       <div class="concept-tooltip">
         <div class="outfit-name">初始</div>
@@ -346,7 +350,7 @@
         <div class="outfit-hint">點我開圖庫</div>
       </div>
     </div>
-    <div class="concept-card" data-name="春" data-artist="유화" data-outfit-id="outfit-spring">
+    <div class="concept-card" data-name="春" data-artist="유화" data-outfit-id="outfit-2">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100828.png" alt="春">
       <div class="concept-tooltip">
         <div class="outfit-name">春</div>
@@ -354,7 +358,7 @@
         <div class="outfit-hint">點我開圖庫</div>
       </div>
     </div>
-    <div class="concept-card" data-name="吸血鬼" data-artist="reika" data-outfit-id="outfit-vampire">
+    <div class="concept-card" data-name="吸血鬼" data-artist="reika" data-outfit-id="outfit-3">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100807.png" alt="吸血鬼">
       <div class="concept-tooltip">
         <div class="outfit-name">吸血鬼</div>
@@ -532,11 +536,18 @@
 </section>
 
 <!-- 底部導航 -->
-<nav class="page-nav">
-  <a href="https://mitsukiruli.github.io/mitsuki.html">← 上一頁</a>
-  <a href="https://mitsukiruli.github.io/Ruli.html">🐾</a>
-  <a href="https://mitsukiruli.github.io/picture.html">下一頁 →</a>
-</nav>
+<div class="footer-nav">
+    <a href="mitsuki.html">
+      <i class="bi bi-caret-left-fill"></i>
+     <span>上一頁</span>
+      </a>
+     <a href="Ruli.html" class="cute-back-up-button">
+    <span class="paw-print">🐾</span>
+    <a href="picture.html" >
+     <span>下一頁</span>
+      <i class="bi bi-caret-right-fill"></i>
+      </a></a>
+</div>
 
 <!-- 圖庫 Modal -->
 <div class="gallery-overlay" id="galleryOverlay">
