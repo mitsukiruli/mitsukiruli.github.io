@@ -749,78 +749,80 @@
 </div>
 
 <script>
-// ── Tab 切換 ──
+// ── 1. 初始化與變數 ──
 const grid = document.getElementById('galleryGrid');
-// 在最一開始就先記住 HTML 裡圖片原本出現的順序
+// 記住 HTML 初始寫死的圖片順序（包含自繪與委託）
 const originalOrder = Array.from(grid.querySelectorAll('.gallery-card'));
 
 const tabBtns = document.querySelectorAll('.tab-btn');
 const sortRow = document.getElementById('sortRow');
-let currentTab = 'commission';
-const tabBtns = document.querySelectorAll('.tab-btn');
-const sortRow = document.getElementById('sortRow');
+const sortSelect = document.getElementById('sortSelect');
 let currentTab = 'commission';
 
+// ── 2. Tab 切換邏輯 ──
 tabBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     tabBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentTab = btn.dataset.tab;
+    
+    // 只有在「委託」標籤下才顯示排序選單
     sortRow.style.display = currentTab === 'commission' ? 'flex' : 'none';
+    
     applyFilter();
   });
 });
 
-// ── 排序功能修改 ──
-const sortSelect = document.getElementById('sortSelect');
+// ── 3. 排序與篩選核心功能 ──
 sortSelect.addEventListener('change', applyFilter);
 
 function applyFilter() {
-  const cards = Array.from(grid.querySelectorAll('.gallery-card'));
+  // 每次篩選都從所有卡片中挑選
+  const allCards = originalOrder;
 
-  // 1. 先分類：找出目前 Tab 該顯示的
-  const visible = cards.filter(c => c.dataset.tab === currentTab);
-  const hidden  = cards.filter(c => c.dataset.tab !== currentTab);
+  // 根據 data-tab 分出要顯示 (visible) 與要隱藏 (hidden) 的
+  const visible = allCards.filter(c => c.dataset.tab === currentTab);
+  const hidden  = allCards.filter(c => c.dataset.tab !== currentTab);
 
+  // 執行隱藏
   hidden.forEach(c => c.classList.add('hidden'));
 
-  // 2. 排序（僅在委託頁面且不是預設時排序）
+  // 如果在委託標籤，執行排序邏輯
   if (currentTab === 'commission') {
     const sort = sortSelect.value;
-    
     if (sort === 'default') {
-      // 如果選預設，則依照當初 originalOrder 的順序排回 visible
-      visible.sort((a, b) => {
-        return originalOrder.indexOf(a) - originalOrder.indexOf(b);
-      });
+      // 照原始順序排回
+      visible.sort((a, b) => originalOrder.indexOf(a) - originalOrder.indexOf(b));
     } else {
-      // 其他排序邏輯
       visible.sort((a, b) => {
         if (sort === 'date-desc') return b.dataset.date.localeCompare(a.dataset.date);
         if (sort === 'date-asc')  return a.dataset.date.localeCompare(b.dataset.date);
         if (sort === 'artist-az') return a.dataset.artist.localeCompare(b.dataset.artist, 'zh-TW');
         if (sort === 'artist-za') return b.dataset.artist.localeCompare(a.dataset.artist, 'zh-TW');
+        return 0;
       });
     }
+  } else {
+    // 自繪標籤：固定使用 HTML 原始順序
+    visible.sort((a, b) => originalOrder.indexOf(a) - originalOrder.indexOf(b));
   }
 
-  // 3. 重新插入 DOM
-  visible.forEach(c => { 
-    c.classList.remove('hidden'); 
-    grid.appendChild(c); 
+  // 重新將排好序的圖片放回畫面並顯示
+  visible.forEach(c => {
+    c.classList.remove('hidden');
+    grid.appendChild(c);
   });
 }
 
-// 初始執行
+// 初始套用一次
 applyFilter();
 
-// ── Lightbox ──
+// ── 4. Lightbox 邏輯 (維持原樣) ──
 let lbItems = [];
 let lbIdx = 0;
 
 function openLightbox(full, caption) {
   const lb = document.getElementById('lightbox');
-  // 取得目前 tab 可見項目列表
   lbItems = Array.from(document.querySelectorAll('.gallery-card:not(.hidden)'))
     .map(c => ({ full: c.dataset.full, caption: c.dataset.caption }));
   lbIdx = lbItems.findIndex(i => i.full === full);
@@ -841,7 +843,6 @@ document.querySelectorAll('.gallery-card').forEach(card => {
   });
 });
 
-// 精選圖
 document.querySelectorAll('.feat-item').forEach(item => {
   item.addEventListener('click', () => {
     document.getElementById('lbImg').src = item.dataset.full;
@@ -852,8 +853,8 @@ document.querySelectorAll('.feat-item').forEach(item => {
   });
 });
 
-function lbPrev() { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; renderLb(); }
-function lbNext() { lbIdx = (lbIdx + 1) % lbItems.length; renderLb(); }
+function lbPrev() { if(lbItems.length > 0) { lbIdx = (lbIdx - 1 + lbItems.length) % lbItems.length; renderLb(); } }
+function lbNext() { if(lbItems.length > 0) { lbIdx = (lbIdx + 1) % lbItems.length; renderLb(); } }
 
 document.getElementById('lbClose').addEventListener('click', () => document.getElementById('lightbox').classList.remove('open'));
 document.getElementById('lbPrev').addEventListener('click', lbPrev);
@@ -867,10 +868,11 @@ document.getElementById('lightbox').addEventListener('click', e => {
 
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lightbox').classList.contains('open')) return;
-  if (e.key === 'ArrowLeft')  lbPrev();
+  if (e.key === 'ArrowLeft') lbPrev();
   if (e.key === 'ArrowRight') lbNext();
   if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
 });
 </script>
+
 </body>
 </html>
