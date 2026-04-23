@@ -33,7 +33,8 @@
     overflow-x: hidden;
   }
 
-  /* ── 頁首 ── */
+  
+   /* ── 頁首 ── */
   .site-header {
     padding: 2rem 2rem 1rem;
     display: flex; justify-content: space-between; align-items: center;
@@ -45,7 +46,7 @@
   }
   .site-header a:hover { color: var(--ink); }
   .header-nav { display: flex; gap: 1.5rem; }
-
+ 
   /* ── 標題 ── */
   .page-title {
     text-align: center; padding: 2rem 1rem 1.5rem;
@@ -59,7 +60,7 @@
     font-size: 0.8rem; color: var(--ink-light);
     letter-spacing: 0.3em; margin-top: 0.5rem; text-transform: uppercase;
   }
-
+ 
   /* ── 相處模式 ── */
   .about-section {
     max-width: 700px; margin: 0 auto; padding: 0 2rem 2rem;
@@ -73,7 +74,7 @@
     border-radius: 10px; object-fit: cover;
   }
   .about-section::after { content: ''; display: block; clear: both; }
-
+ 
   /* ── 服設概念圖區（六個框框） ── */
   .concept-section {
     max-width: 900px; margin: 0 auto; padding: 2rem 2rem;
@@ -84,13 +85,13 @@
     display: flex; align-items: center; gap: 0.8rem;
   }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
+ 
   .concept-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
     gap: 10px;
   }
-
+ 
   /* 概念卡 */
   .concept-card {
     position: relative;
@@ -112,7 +113,7 @@
     transition: transform 0.4s;
   }
   .concept-card:hover img { transform: scale(1.04); }
-
+ 
   /* 說明覆蓋層（第一下點擊顯示） */
   .concept-tooltip {
     position: absolute; inset: 0;
@@ -129,18 +130,19 @@
   .concept-tooltip .outfit-name {
     font-family: 'Zen Kurenaido', sans-serif;
     font-size: 1rem; letter-spacing: 0.1em;
-    color: var(--ink); margin-bottom: 0.4rem;
+    color: var(--ink); margin-bottom: 0.3rem;
   }
-  .concept-tooltip .outfit-artist {
-    font-size: 0.7rem; color: var(--ink-light);
-    letter-spacing: 0.08em; margin-bottom: 0.6rem;
+  .concept-tooltip .outfit-desc {
+    font-size: 0.68rem; color: var(--ink-light);
+    letter-spacing: 0.04em; line-height: 1.6;
+    margin-bottom: 0.6rem; font-family: 'Noto Serif TC', serif;
   }
   .concept-tooltip .outfit-hint {
-    font-size: 0.65rem; color: var(--accent);
+    font-size: 0.62rem; color: var(--accent);
     letter-spacing: 0.1em;
   }
   .concept-tooltip .outfit-hint::before { content: '✦ '; }
-
+ 
   /* ── 服設卡片列表（有完整展示圖的那種） ── */
   .wardrobe-section {
     max-width: 1000px; margin: 0 auto; padding: 0 2rem 4rem;
@@ -150,7 +152,7 @@
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 16px;
   }
-
+ 
   .wardrobe-card {
     border-radius: 14px; overflow: hidden;
     background: var(--surface);
@@ -193,7 +195,7 @@
   .wardrobe-card .wc-gallery-btn:hover {
     background: var(--accent); color: #fff;
   }
-
+ 
   /* ── 圖庫 Modal ── */
   .gallery-overlay {
     display: none; position: fixed; inset: 0;
@@ -203,7 +205,7 @@
     backdrop-filter: blur(8px);
   }
   .gallery-overlay.open { display: flex; }
-
+ 
   .gallery-modal {
     position: relative; max-width: 820px; width: 100%;
     animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
@@ -212,7 +214,7 @@
     from { opacity: 0; transform: scale(0.9) translateY(10px); }
     to   { opacity: 1; transform: scale(1) translateY(0); }
   }
-
+ 
   .gallery-header {
     display: flex; justify-content: space-between; align-items: baseline;
     margin-bottom: 0.8rem; padding: 0 0.2rem;
@@ -229,7 +231,7 @@
     font-size: 1.4rem; cursor: pointer; transition: color 0.2s; line-height: 1;
   }
   .modal-close:hover { color: #fff; }
-
+ 
   /* 大圖顯示 */
   .modal-main {
     position: relative;
@@ -250,7 +252,7 @@
   .modal-nav:hover { background: rgba(255,255,255,0.28); }
   .modal-prev { left: 0.6rem; }
   .modal-next { right: 0.6rem; }
-
+ 
   /* 縮圖列 */
   .modal-thumbs {
     display: flex; gap: 6px; margin-top: 10px;
@@ -265,13 +267,13 @@
   }
   .modal-thumb.active { opacity: 1; border-color: rgba(255,255,255,0.6); }
   .modal-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
+ 
   /* 圖片數量指示 */
   .modal-counter {
     text-align: center; margin-top: 0.5rem;
     font-size: 0.7rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em;
   }
-
+ 
   /* ── 底部導航 ── */
   .page-nav {
     text-align: center; padding: 1rem 2rem 3rem;
@@ -283,12 +285,12 @@
     text-decoration: none; transition: color 0.2s;
   }
   .page-nav a:hover { color: var(--ink); }
-
+ 
   .dot-divider {
     text-align: center; color: var(--accent); font-size: 0.6rem;
     letter-spacing: 0.5em; padding: 0.5rem 0;
   }
-
+ 
   @media (max-width: 600px) {
     .concept-grid { grid-template-columns: repeat(3, 1fr); }
     .wardrobe-grid { grid-template-columns: repeat(2, 1fr); }
@@ -297,7 +299,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- 頁首 -->
 <header class="site-header">
   <a href="https://mitsukiruli.github.io/Ruli.html">🐾 夢の置き所</a>
@@ -307,13 +309,13 @@
     <a href="https://mitsukiruli.github.io/calendar.html">回憶</a>
   </nav>
 </header>
-
+ 
 <!-- 標題 -->
 <div class="page-title">
   <h1>服設</h1>
   <p class="subtitle">About us &amp; Wardrobe</p>
 </div>
-
+ 
 <!-- 相處模式 -->
 <section class="about-section">
   <img class="about-img" src="https://mitsukiruli.github.io/img/testimonials/v/IMG_1746.jpg" alt="示意圖">
@@ -326,88 +328,119 @@
     兩人都會料理，不過瑠璃比較擅長甜食一點。
   </p>
 </section>
-
+ 
 <div class="dot-divider">· · ·</div>
-
-<!-- 服設概念圖（六個框框，可增加） -->
+ 
+<!-- 世界線區（上區，完全獨立於下方服設） -->
 <section class="concept-section">
-  <div class="section-label">服設概念圖</div>
+  <div class="section-label">世界線</div>
   <p style="font-size:0.72rem;color:var(--ink-light);margin-bottom:1rem;letter-spacing:0.05em;">
-    點一下查看說明 · 再點一下開啟圖庫
+    點一下查看說明 · 再點一下開啟該世界線的圖庫
   </p>
   <div class="concept-grid" id="conceptGrid">
     <!--
-      data-name="服設名稱"
-      data-artist="繪師"
-      data-outfit-id="對應 wardrobe 卡片的 id"
-      把 src 換成服設概念圖縮圖
+      【世界線框框說明】
+      ─────────────────────────────────────────
+      data-name     = 世界線名稱（顯示在 tooltip 標題）
+      data-desc     = 世界線簡短說明（一兩句）
+      data-images   = 這個世界線的圖庫，多張用 | 分隔
+                      例："img/a.jpg|img/b.jpg|img/c.jpg"
+      src           = 框框的封面縮圖
+      ─────────────────────────────────────────
+      新增世界線：複製一個 .concept-card 貼在下方即可
     -->
-    <div class="concept-card" data-name="初始" data-artist="henakei mori" data-outfit-id="outfit-1">
+ 
+    <div class="concept-card"
+         data-name="初始"
+         data-desc="最原始的世界線，一切的起點。"
+         data-images="https://mitsukiruli.github.io/img/testimonials/v/陳半鈴補 (1).jpg">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100813.png" alt="初始">
       <div class="concept-tooltip">
         <div class="outfit-name">初始</div>
-        <div class="outfit-artist">繪師：henakei mori</div>
+        <div class="outfit-desc">最原始的世界線，一切的起點。</div>
         <div class="outfit-hint">點我開圖庫</div>
       </div>
     </div>
-    <div class="concept-card" data-name="春" data-artist="유화" data-outfit-id="outfit-2">
+ 
+    <div class="concept-card"
+         data-name="春"
+         data-desc="春日裡相遇的兩人。"
+         data-images="https://mitsukiruli.github.io/img/testimonials/v/Hashita LD 낙서 2인 커미션.jpg">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100828.png" alt="春">
       <div class="concept-tooltip">
         <div class="outfit-name">春</div>
-        <div class="outfit-artist">繪師：유화</div>
+        <div class="outfit-desc">春日裡相遇的兩人。</div>
         <div class="outfit-hint">點我開圖庫</div>
       </div>
     </div>
-    <div class="concept-card" data-name="吸血鬼" data-artist="reika" data-outfit-id="outfit-3">
+ 
+    <div class="concept-card"
+         data-name="吸血鬼"
+         data-desc="暗夜中流轉的永恆故事。"
+         data-images="https://mitsukiruli.github.io/img/testimonials/v/plurk_img_1764727872097.jpg">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100807.png" alt="吸血鬼">
       <div class="concept-tooltip">
         <div class="outfit-name">吸血鬼</div>
-        <div class="outfit-artist">繪師：reika</div>
+        <div class="outfit-desc">暗夜中流轉的永恆故事。</div>
         <div class="outfit-hint">點我開圖庫</div>
       </div>
     </div>
-    <div class="concept-card" data-name="hp" data-artist="薛丁赤" data-outfit-id="outfit-hp">
+ 
+    <div class="concept-card"
+         data-name="hp"
+         data-desc="魔法世界的相遇與冒險。"
+         data-images="https://mitsukiruli.github.io/img/testimonials/v/IMG_1822.png|https://mitsukiruli.github.io/img/testimonials/v/IMG_1973.png">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100817.png" alt="hp">
       <div class="concept-tooltip">
         <div class="outfit-name">hp</div>
-        <div class="outfit-artist">繪師：薛丁赤</div>
+        <div class="outfit-desc">魔法世界的相遇與冒險。</div>
         <div class="outfit-hint">點我開圖庫</div>
       </div>
     </div>
-    <div class="concept-card" data-name="中華" data-artist="自繪" data-outfit-id="outfit-chinese">
+ 
+    <div class="concept-card"
+         data-name="中華"
+         data-desc="古風江湖裡的一段緣分。"
+         data-images="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100822.png">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100822.png" alt="中華">
       <div class="concept-tooltip">
         <div class="outfit-name">中華</div>
-        <div class="outfit-artist">自繪</div>
+        <div class="outfit-desc">古風江湖裡的一段緣分。</div>
         <div class="outfit-hint">點我開圖庫</div>
       </div>
     </div>
-    <div class="concept-card" data-name="執事" data-artist="自繪" data-outfit-id="outfit-butler">
+ 
+    <div class="concept-card"
+         data-name="執事"
+         data-desc="華美廳堂裡的主僕情誼。"
+         data-images="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100832.png">
       <img src="https://mitsukiruli.github.io/img/testimonials/v/無標題20_20251211100832.png" alt="執事">
       <div class="concept-tooltip">
         <div class="outfit-name">執事</div>
-        <div class="outfit-artist">自繪</div>
+        <div class="outfit-desc">華美廳堂裡的主僕情誼。</div>
         <div class="outfit-hint">點我開圖庫</div>
       </div>
     </div>
-    <!-- ▼ 往下新增概念圖框框，複製上面的 .concept-card 貼上就好 ▼ -->
+ 
+    <!-- ▼ 新增世界線：複製上面任一個 .concept-card 貼在這裡
+         記得改 data-name、data-desc、data-images、img src ▼ -->
   </div>
 </section>
-
+ 
 <div class="dot-divider">· · ·</div>
-
+ 
 <!-- 服設圖庫卡片列表 -->
 <section class="wardrobe-section">
   <div class="section-label">他們的衣櫥</div>
   <div class="wardrobe-grid" id="wardrobeGrid">
-
+ 
     <!--
       id 要對應上面 concept-card 的 data-outfit-id
       data-images="圖1路徑|圖2路徑|圖3路徑"（用 | 分隔多張圖）
       data-name="服設名"
       data-artist="服設繪師"
     -->
-
+ 
     <div class="wardrobe-card" id="outfit-shiro"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/陳半鈴補 (1).jpg"
          data-name="白無垢" data-artist="服設繪師：艾希莉">
@@ -418,7 +451,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-spring"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/Hashita LD 낙서 2인 커미션.jpg"
          data-name="牽牛花之戀" data-artist="服設繪師：多蘿">
@@ -429,7 +462,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-vampire"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/plurk_img_1764727872097.jpg"
          data-name="吸血鬼" data-artist="服設繪師：reika">
@@ -440,7 +473,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-hp"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/IMG_1822.png|https://mitsukiruli.github.io/img/testimonials/v/IMG_1973.png"
          data-name="hp" data-artist="服設繪師：薛丁赤">
@@ -451,7 +484,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-chinese"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/無標題282_20251108203325.jpg"
          data-name="紫藤和服" data-artist="服設繪師：吐籽">
@@ -462,7 +495,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-butler"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/IMG_1873.jpeg|https://mitsukiruli.github.io/img/testimonials/v/IMG_1872.png"
          data-name="制服" data-artist="">
@@ -473,7 +506,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-y2k"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/IMG_1822.png|https://mitsukiruli.github.io/img/testimonials/v/IMG_1973.png"
          data-name="y2k" data-artist="人體模板：茜子">
@@ -484,7 +517,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-autumn"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/Hashita님 최종본.png"
          data-name="秋日復古" data-artist="繪師：베베">
@@ -495,7 +528,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-summer"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/無標題281_20251102171525.png"
          data-name="夏天" data-artist="繪師：베베">
@@ -506,7 +539,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-forest"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/Camera_XHS_17604386818751040g2sg31n3oqv474sfg5p100amk4j9dq4f1v18.jpg"
          data-name="森林系" data-artist="繪師：森地林边">
@@ -517,7 +550,7 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <div class="wardrobe-card" id="outfit-valentine"
          data-images="https://mitsukiruli.github.io/img/testimonials/v/無標題11_20251020232342.png|https://mitsukiruli.github.io/img/testimonials/v/2025---.png"
          data-name="情人節" data-artist="繪師：莓帶錢">
@@ -528,27 +561,20 @@
         <button class="wc-gallery-btn">🎀 查看圖庫</button>
       </div>
     </div>
-
+ 
     <!-- ▼ 新增服設卡片：複製上面的 .wardrobe-card 貼在這裡 ▼
          記得給新的 id，data-images 用 | 分隔多圖路徑 -->
-
+ 
   </div>
 </section>
-
+ 
 <!-- 底部導航 -->
-<div class="footer-nav">
-    <a href="mitsuki.html">
-      <i class="bi bi-caret-left-fill"></i>
-     <span>上一頁</span>
-      </a>
-     <a href="Ruli.html" class="cute-back-up-button">
-    <span class="paw-print">🐾</span>
-    <a href="picture.html" >
-     <span>下一頁</span>
-      <i class="bi bi-caret-right-fill"></i>
-      </a></a>
-</div>
-
+<nav class="page-nav">
+  <a href="https://mitsukiruli.github.io/mitsuki.html">← 上一頁</a>
+  <a href="https://mitsukiruli.github.io/Ruli.html">🐾</a>
+  <a href="https://mitsukiruli.github.io/picture.html">下一頁 →</a>
+</nav>
+ 
 <!-- 圖庫 Modal -->
 <div class="gallery-overlay" id="galleryOverlay">
   <div class="gallery-modal">
@@ -568,74 +594,80 @@
     <div class="modal-counter" id="modalCounter"></div>
   </div>
 </div>
-
+ 
 <script>
-// ══ 概念圖框框互動（第一下 tooltip，第二下開圖庫） ══
+// ══════════════════════════════════════════
+// 上區：世界線框框
+// 第一下 → tooltip說明，第二下 → 開該世界線圖庫
+// ══════════════════════════════════════════
 document.querySelectorAll('.concept-card').forEach(card => {
   card.addEventListener('click', () => {
     const isOpen = card.classList.contains('tooltip-open');
     if (!isOpen) {
-      // 第一下：顯示說明
-      document.querySelectorAll('.concept-card.tooltip-open').forEach(c => c.classList.remove('tooltip-open'));
+      // 第一下：關掉其他、顯示自己的說明
+      document.querySelectorAll('.concept-card.tooltip-open')
+        .forEach(c => c.classList.remove('tooltip-open'));
       card.classList.add('tooltip-open');
     } else {
-      // 第二下：開啟對應的服設圖庫
-      const outfitId = card.dataset.outfitId;
-      const target = document.getElementById(outfitId);
-      if (target) {
-        openGallery(target);
+      // 第二下：用這個世界線自己的 data-images 開圖庫
+      const images = card.dataset.images || '';
+      const name   = card.dataset.name || '';
+      if (images) {
+        openModal(images, name, '');
         card.classList.remove('tooltip-open');
       }
     }
   });
 });
-
-// 點其他地方關閉 tooltip
+ 
+// 點空白處關閉 tooltip
 document.addEventListener('click', e => {
   if (!e.target.closest('.concept-card')) {
-    document.querySelectorAll('.concept-card.tooltip-open').forEach(c => c.classList.remove('tooltip-open'));
+    document.querySelectorAll('.concept-card.tooltip-open')
+      .forEach(c => c.classList.remove('tooltip-open'));
   }
 });
-
-// ══ 服設卡片「查看圖庫」按鈕 ══
+ 
+// ══════════════════════════════════════════
+// 下區：服設卡片圖庫
+// ══════════════════════════════════════════
 document.querySelectorAll('.wardrobe-card').forEach(card => {
-  card.querySelector('.wc-gallery-btn').addEventListener('click', (e) => {
+  card.querySelector('.wc-gallery-btn').addEventListener('click', e => {
     e.stopPropagation();
-    openGallery(card);
+    openModal(card.dataset.images || '', card.dataset.name || '', card.dataset.artist || '');
   });
-  // 點整張卡也可以開
-  card.addEventListener('click', () => openGallery(card));
+  card.addEventListener('click', () => {
+    openModal(card.dataset.images || '', card.dataset.name || '', card.dataset.artist || '');
+  });
 });
-
-// ══ 開圖庫 ══
+ 
+// ══════════════════════════════════════════
+// 共用：Modal 圖庫
+// ══════════════════════════════════════════
 let modalImages = [];
 let modalIdx = 0;
-
-function openGallery(card) {
-  const imagesStr = card.dataset.images || '';
+ 
+function openModal(imagesStr, name, artist) {
   modalImages = imagesStr.split('|').filter(Boolean);
   if (!modalImages.length) return;
-
   modalIdx = 0;
-  document.getElementById('modalTitle').textContent = card.dataset.name || '';
-  document.getElementById('modalArtist').textContent = card.dataset.artist || '';
-
+  document.getElementById('modalTitle').textContent  = name;
+  document.getElementById('modalArtist').textContent = artist;
   renderModalThumbs();
   renderModalImg();
   document.getElementById('galleryOverlay').classList.add('open');
 }
-
+ 
 function renderModalImg() {
   document.getElementById('modalImg').src = modalImages[modalIdx];
   document.getElementById('modalCounter').textContent = `${modalIdx + 1} / ${modalImages.length}`;
-  document.querySelectorAll('.modal-thumb').forEach((t, i) => {
-    t.classList.toggle('active', i === modalIdx);
-  });
-  // 隱藏前後按鈕（如果只有一張）
-  document.getElementById('modalPrev').style.display = modalImages.length > 1 ? '' : 'none';
-  document.getElementById('modalNext').style.display = modalImages.length > 1 ? '' : 'none';
+  document.querySelectorAll('.modal-thumb').forEach((t, i) =>
+    t.classList.toggle('active', i === modalIdx));
+  const show = modalImages.length > 1;
+  document.getElementById('modalPrev').style.display = show ? '' : 'none';
+  document.getElementById('modalNext').style.display = show ? '' : 'none';
 }
-
+ 
 function renderModalThumbs() {
   const container = document.getElementById('modalThumbs');
   container.innerHTML = '';
@@ -646,10 +678,9 @@ function renderModalThumbs() {
     t.addEventListener('click', () => { modalIdx = i; renderModalImg(); });
     container.appendChild(t);
   });
-  // 只有一張不顯示縮圖列
   container.style.display = modalImages.length > 1 ? 'flex' : 'none';
 }
-
+ 
 document.getElementById('modalPrev').addEventListener('click', () => {
   modalIdx = (modalIdx - 1 + modalImages.length) % modalImages.length;
   renderModalImg();
@@ -658,15 +689,14 @@ document.getElementById('modalNext').addEventListener('click', () => {
   modalIdx = (modalIdx + 1) % modalImages.length;
   renderModalImg();
 });
-document.getElementById('modalClose').addEventListener('click', () => {
-  document.getElementById('galleryOverlay').classList.remove('open');
-});
+document.getElementById('modalClose').addEventListener('click', () =>
+  document.getElementById('galleryOverlay').classList.remove('open'));
 document.getElementById('galleryOverlay').addEventListener('click', e => {
   if (e.target === document.getElementById('galleryOverlay'))
     document.getElementById('galleryOverlay').classList.remove('open');
 });
-
-// 觸控左右滑
+ 
+// 觸控滑動
 let touchStartX = 0;
 document.getElementById('galleryOverlay').addEventListener('touchstart', e => {
   touchStartX = e.changedTouches[0].clientX;
@@ -674,12 +704,13 @@ document.getElementById('galleryOverlay').addEventListener('touchstart', e => {
 document.getElementById('galleryOverlay').addEventListener('touchend', e => {
   const dx = e.changedTouches[0].clientX - touchStartX;
   if (Math.abs(dx) > 40) {
-    if (dx < 0) { modalIdx = (modalIdx + 1) % modalImages.length; }
-    else        { modalIdx = (modalIdx - 1 + modalImages.length) % modalImages.length; }
+    modalIdx = dx < 0
+      ? (modalIdx + 1) % modalImages.length
+      : (modalIdx - 1 + modalImages.length) % modalImages.length;
     renderModalImg();
   }
 });
-
+ 
 document.addEventListener('keydown', e => {
   if (!document.getElementById('galleryOverlay').classList.contains('open')) return;
   if (e.key === 'ArrowLeft')  { modalIdx = (modalIdx - 1 + modalImages.length) % modalImages.length; renderModalImg(); }
