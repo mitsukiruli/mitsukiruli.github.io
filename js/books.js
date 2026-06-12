@@ -40,7 +40,7 @@ const worldColors = {
     '獵人vanilLa✕吸血鬼瑠璃': { primary: '#eb4536', secondary: '#4a60a5' },
     '樂團': { primary: '#7f8182', secondary: '#262626' },
     '獅院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' },
-    '男公關': { primary: '#EFBB24', secondary: '#69b0ac' }
+    '男公關': { primary: '#EFBB24', secondary: '#69b0ac' },
     '酒吧': { primary: '#6681d8', secondary: '#8879b9' }
 };
 
