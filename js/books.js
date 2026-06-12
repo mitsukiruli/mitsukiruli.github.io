@@ -41,6 +41,7 @@ const worldColors = {
     '樂團': { primary: '#7f8182', secondary: '#262626' },
     '獅院三年級生vanilLa✕鷹院一年級生瑠璃': { primary: '#a4b4de', secondary: '#435d71' },
     '男公關': { primary: '#EFBB24', secondary: '#69b0ac' }
+    '酒吧': { primary: '#6681d8', secondary: '#8879b9' }
 };
 
 function switchWorld(target, updateHash = true) {
@@ -71,6 +72,7 @@ function switchWorld(target, updateHash = true) {
             '獅院三年級生vanilLa✕鷹院一年級生瑠璃': 'img/testimonials/v/無標題306_20260409213857.png',
             '樂團': 'img/testimonials/v/無標題306_20260331033921.png',
             '男公關': 'img/testimonials/v/無標題306_20260410150748.png'
+            '酒吧': 'img/testimonials/v/無標題306_20260410150748.png'
         };
         bannerImg.src = banners[target] || ''; 
     }
