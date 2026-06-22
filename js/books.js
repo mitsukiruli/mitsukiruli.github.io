@@ -292,3 +292,104 @@ function stopAndHideMusic() {
         icon.className = 'bi bi-music-note-beamed';
     }
 }
+function () {
+  const track    = document.getElementById('carouselTrack');
+  const slides   = Array.from(track.querySelectorAll('.carousel-slide'));
+  const dotsWrap = document.getElementById('dotsContainer');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const wrapper  = document.getElementById('carouselWrapper');
+
+  const lb       = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lightbox-img');
+  const lbCap    = document.getElementById('lightbox-caption');
+  const lbClose  = document.getElementById('lightbox-close');
+  const lbPrev   = document.getElementById('lightbox-prev');
+  const lbNext   = document.getElementById('lightbox-next');
+
+  let current = 0;
+  let autoTimer;
+
+  // ── build dots ──
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', `第 ${i+1} 張`);
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsWrap.querySelectorAll('.dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current));
+  }
+
+  function getSlideImg(idx) {
+    const slide = slides[idx];
+    return slide.querySelector('img') || null;
+  }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(current + 1), 4500);
+  }
+
+  prevBtn.addEventListener('click', e => { e.stopPropagation(); goTo(current - 1); startAuto(); });
+  nextBtn.addEventListener('click', e => { e.stopPropagation(); goTo(current + 1); startAuto(); });
+
+  // ── open lightbox on click ──
+  wrapper.addEventListener('click', () => openLightbox(current));
+
+  function openLightbox(idx) {
+    const slide = slides[idx];
+    const img   = slide.querySelector('img');
+    if (!img) return;           // placeholder：沒有真實圖就不開
+    lbImg.src = img.src;
+    lbImg.alt = img.alt || '';
+    lbCap.textContent = slide.dataset.caption || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  lbPrev.addEventListener('click', e => {
+    e.stopPropagation();
+    goTo(current - 1);
+    openLightbox(current);
+  });
+  lbNext.addEventListener('click', e => {
+    e.stopPropagation();
+    goTo(current + 1);
+    openLightbox(current);
+  });
+
+  // keyboard
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')  { goTo(current - 1); openLightbox(current); }
+    if (e.key === 'ArrowRight') { goTo(current + 1); openLightbox(current); }
+  });
+
+  // touch swipe
+  let touchX = null;
+  wrapper.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, {passive:true});
+  wrapper.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) { goTo(current + (dx < 0 ? 1 : -1)); startAuto(); }
+    touchX = null;
+  }, {passive:true});
+
+  goTo(0);
+  startAuto();
