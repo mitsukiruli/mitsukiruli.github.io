@@ -292,7 +292,7 @@ function stopAndHideMusic() {
         icon.className = 'bi bi-music-note-beamed';
     }
 }
-function () {
+(function () {
   const track    = document.getElementById('carouselTrack');
   const slides   = Array.from(track.querySelectorAll('.carousel-slide'));
   const dotsWrap = document.getElementById('dotsContainer');
@@ -393,3 +393,4 @@ function () {
 
   goTo(0);
   startAuto();
+})();
