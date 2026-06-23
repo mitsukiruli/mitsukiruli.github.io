@@ -450,6 +450,7 @@ h2.world-title-center {
     max-width: 860px;
     margin: 0 auto 2.5rem;
     padding: 2rem 1rem 0;
+    background-color: transparent; 
   }
 
   .carousel-label {
