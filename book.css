@@ -468,7 +468,6 @@ h2.world-title-center {
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(80,130,180,.18);
     background: #1a2a3a;
-    aspect-ratio: 16 / 7;   /* 橫向長方形 */
     cursor: zoom-in;
   }
 
@@ -489,8 +488,8 @@ h2.world-title-center {
 
   .carousel-slide img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;        
+    object-fit: contain;
     display: block;
     user-select: none;
     -webkit-user-drag: none;
