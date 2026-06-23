@@ -91,7 +91,8 @@ function switchWorld(target, updateHash = true) {
     document.getElementById('overview-grid').style.display = 'grid';
     document.getElementById('chapter-view').style.display = 'none';
     document.getElementById('article-reader').style.display = 'none';
-    
+
+    document.querySelector('.carousel-section').style.display = 'none';
     if (bannerContainer) bannerContainer.style.display = 'block';
     document.getElementById('display-world-name').innerText = target;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -239,7 +240,7 @@ function resetToLobby() {
     window.location.hash = ""; 
     document.getElementById('world-detail-page').style.display = 'none';
     document.getElementById('world-lobby').style.display = 'block';
-    
+    document.querySelector('.carousel-section').style.display = 'block';
     const mainNav = document.getElementById('main-footer-nav');
     if (mainNav) mainNav.style.display = 'flex';
     
